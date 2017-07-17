@@ -1,5 +1,5 @@
 from abc import ABC,abstractmethod
-
+import enum
 
 class Formula(ABC):
 
@@ -27,7 +27,7 @@ class Formula(ABC):
     def __eq__(self, other):
         pass
 
-    
 
-
-print("a")
+class TypeOfFormula(enum):
+    SF = 'Simple formula'
+    CF = 'Complex Formula'
