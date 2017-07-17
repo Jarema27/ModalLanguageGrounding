@@ -18,14 +18,14 @@ class IndividualModel:
     def set_object_type(self,ot):
         self.object_type = ot
 
-    def check_if_contains_traits(self,traits):
+    def check_if_contains_traits(self, traits):
         for x in traits:
             if x not in self.object_type.get_traits():
                 return False
         return True
 
     def __eq__(self, other):
-        return self.identifier.get_id_number() == other.identifier.get_id_number()
+        return self.identifier.get_code() == other.identifier.get_code()
 
     def __str__(self):
         return "IndividualModel{" + "identifier=" + self.identifier + " type=" + self.object_type + " };"

@@ -1,6 +1,7 @@
 import unittest
 from src.sc.pwr.inz.language.State import State
 
+
 class MyTestCase(unittest.TestCase):
 
     def setUp(self):

@@ -4,7 +4,7 @@ class ObjectType:
     typeId = ""
     traits = []
 
-    def __init__(self,id,traits):
+    def __init__(self, id, traits):
         self.typeId = id
         self.traits = traits
 
@@ -14,8 +14,8 @@ class ObjectType:
     def get_traits(self):
         return self.traits
 
-    def find_trait_by_name(self,name):
-        return (x for x in self.traits if x == name)
+    def find_trait_by_name(self, name):
+        return list((x for x in self.traits if x.gib_name() == name))[0]
 
     def __eq__(self, other):
         return self.typeId == other.typeId
