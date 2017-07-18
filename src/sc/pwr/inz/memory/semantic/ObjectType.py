@@ -1,4 +1,4 @@
-from src.sc.pwr.inz.memory.semantic.KnowledgeBoosters.ReadOT import ReadOT
+from src.sc.pwr.inz.memory.semantic.KnowledgeBoosters.XMLReader import XMLReader
 
 
 class ObjectType:
@@ -23,7 +23,8 @@ class ObjectType:
 
     @staticmethod
     def get_object_types():
-        desc = ReadOT.read_xml()
+        rot = XMLReader()
+        desc = rot.read_object_types_xml()
         out = []
         for key in desc.keys():
             out += [ObjectType(key, desc.get(key))]
