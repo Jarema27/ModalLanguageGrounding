@@ -1,7 +1,7 @@
-import enum
+from enum import Enum
 
 
-class ModalOperator(enum):
+class ModalOperator(Enum):
     BEL = 'BEL'
     POS = 'POS'
     KNOW = 'KNOW'

@@ -1,10 +1,15 @@
-from abc import ABC,abstractmethod
-import enum
+from abc import ABC, abstractmethod
+from enum import Enum
+
 
 class Formula(ABC):
 
     @abstractmethod
     def get_traits(self):
+        pass
+
+    @abstractmethod
+    def __init__(self, im, traits, states):
         pass
 
     @abstractmethod
@@ -28,6 +33,6 @@ class Formula(ABC):
         pass
 
 
-class TypeOfFormula(enum):
+class TypeOfFormula(Enum):
     SF = 'Simple formula'
     CF = 'Complex Formula'

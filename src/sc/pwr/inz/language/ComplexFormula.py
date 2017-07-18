@@ -1,4 +1,4 @@
-from sc.pwr.inz.language.Trait import Trait
+from src.sc.pwr.inz.language.Trait import Trait
 from src.sc.pwr.inz.language.Formula import Formula, TypeOfFormula
 from src.sc.pwr.inz.language.State import State
 
@@ -6,12 +6,12 @@ from src.sc.pwr.inz.language.State import State
 class ComplexFormula(Formula):
 
     def __init__(self, im, traits, states):
-        if not isinstance(traits, [Trait]):
+        if not all(isinstance(elem, Trait) for elem in traits):
             raise TypeError("Given traits aren't instance of Trait List")
-        if not isinstance(states,[State]):
+        if not all(isinstance(elem, State) for elem in states):
             raise TypeError("Given states aren't instance of State List")
         if im is not None and traits is not None and states is not None:
-            if traits in im.get_object_type().get_traits():
+            if all(elem in im.get_object_type().get_traits() for elem in traits):
                 self.indiv_model = im
                 self.traits = traits
                 self.state = states
@@ -25,7 +25,10 @@ class ComplexFormula(Formula):
         return self.indiv_model
 
     def get_complementary_formulas(self):
-        """"todo"""
+        return [ComplexFormula(self.indiv_model, self.traits, [State.IS, State.IS]),
+                ComplexFormula(self.indiv_model, self.traits, [State.IS, State.IS_NOT]),
+                ComplexFormula(self.indiv_model, self.traits, [State.IS_NOT, State.IS]),
+                ComplexFormula(self.indiv_model, self.traits, [State.IS_NOT, State.IS_NOT])]
 
     def get_type(self):
         return TypeOfFormula.CF
@@ -34,4 +37,5 @@ class ComplexFormula(Formula):
         return self.traits
 
     def __eq__(self, other):
-        pass
+        return self.indiv_model == other.get_model() and set(self.state) == set(other.get_states()) and self.traits \
+                                                                                              == other.get_traits()

@@ -1,7 +1,6 @@
-import enum
+from enum import Enum
 
-
-class LogicalOperator(enum):
+class LogicalOperator(Enum):
     OR = 'OR'
     AND = 'AND'
     XOR = 'XOR'
