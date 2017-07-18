@@ -1,3 +1,4 @@
+from src.sc.pwr.inz.memory.semantic.KnowledgeBoosters.ReadOT import ReadOT
 
 
 class ObjectType:
@@ -22,8 +23,11 @@ class ObjectType:
 
     @staticmethod
     def get_object_types():
-        #todo
-        return ["01", "02", "03"]
+        desc = ReadOT.read_xml()
+        out = []
+        for key in desc.keys():
+            out += [ObjectType(key, desc.get(key))]
+        return out
 
     def __str__(self):
         return str(self.typeId) + " " + str(self.traits)

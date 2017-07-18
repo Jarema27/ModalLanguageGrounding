@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<data>
+    <trait id="1">
+        <traitname>Red</traitname>
+        <traitname>Bolszoj</traitname>
+    </trait>
+    <trait id="2">
+        <traitname>Juicy</traitname>
+    </trait>
+    <trait id="3">
+        <traitname>Bloody</traitname>
+        <traitname>Twisted</traitname>
+    </trait>
+</data>
