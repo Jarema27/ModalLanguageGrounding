@@ -13,22 +13,25 @@ class BaseProfile:
             self.timestamp = timestamp
         if observations is None:
             self.observations = []
-            self.observationsIS = []
-            self.observationsIS_NOT = []
-            self.observationsMAYHAPS = []
+            self.observationsIS = {}
+            self.observationsIS_NOT = {}
+            self.observationsMAYHAPS = {}
         else:
             self.observations = observations
-            self.observationsIS = []
-            self.observationsIS_NOT = []
-            self.observationsMAYHAPS = []
-            for obs in self.observations:
-                for tuple in obs.get_observed():
-                    if tuple[1] == State.IS:
-                        self.observationsIS.append(obs)
-                    elif tuple[1] == State.IS_NOT:
-                        self.observationsIS_NOT.append(obs)
-                    else:
-                        self.observationsMAYHAPS.append(obs)
+            self.observationsIS = {}
+            self.observationsIS_NOT = {}
+            self.observationsMAYHAPS = {}
+            self.get_em_observations(self.observations)
+
+    def get_em_observations(self, observation):
+        for obs in observation:
+            for tupl in obs.get_observed():
+                if tupl[1] == State.IS:
+                    self.observationsIS[tupl[0]] = obs
+                elif tupl[1] == State.IS_NOT:
+                    self.observationsIS_NOT[tupl[0]] = obs
+                else:
+                    self.observationsMAYHAPS[tupl[0]] = obs
 
     def get_observations_is(self):
         return self.observationsIS
@@ -62,24 +65,19 @@ class BaseProfile:
 
     def add_observation_is_kind(self, o):
         self.observations.append(o)
-        self.observationsIS.append(o)
+        self.get_em_observations(o)
 
     def add_observation_is_not_kind(self, o):
         self.observations.append(o)
-        self.observationsIS_NOT.append(o)
+        self.get_em_observations(o)
 
     def add_observation_mayhaps_kind(self, o):
-        self.observationsMAYHAPS.append(o)
+        self.get_em_observations(o)
         self.observations.append(o)
 
     def add_observation_which_state_you_know_not(self, obs):
         self.observations.append(obs)
-        if obs.get_observed()[1] == State.IS:
-            self.observationsIS.append(obs)
-        elif obs.get_observed()[1] == State.IS_NOT:
-            self.observationsIS_NOT.append(obs)
-        else:
-            self.observationsMAYHAPS.append(obs)
+        self.get_em_observations([obs]  )
 
     def give_all_traits_involved(self):
         return set([x for x in self.observations.observed()])
