@@ -32,3 +32,6 @@ class ObjectType:
 
     def __str__(self):
         return str(self.typeId) + " " + str(self.traits)
+
+    def __hash__(self):
+        return hash(self.typeId)

@@ -29,3 +29,6 @@ class IndividualModel:
 
     def __str__(self):
         return "IndividualModel{" + "identifier=" + self.identifier + " type=" + self.object_type + " };"
+
+    def __hash__(self):
+        return hash(self.identifier) * hash(self.object_type)

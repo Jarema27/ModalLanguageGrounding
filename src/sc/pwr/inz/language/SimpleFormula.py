@@ -22,6 +22,7 @@ class SimpleFormula(Formula):
         return self.state == other.state and self.indiv_model == other.indiv_model and self.trait == other.trait
 
     def __init__(self, im, trait, state):
+        super().__init__()
         if not isinstance(trait, Trait):
             raise TypeError("Given trait ain't instance of Trait")
         if im is not None and trait is not None:
@@ -37,3 +38,6 @@ class SimpleFormula(Formula):
 
     def get_traits(self):
         return [self.trait]
+
+    def __hash__(self):
+        return hash(self.indiv_model) ^ hash(self.trait)

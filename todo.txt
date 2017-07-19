@@ -1,8 +1,7 @@
 Testy:
-baseProfile
-Base profile w tym momencie kuleja,przechowuja listy obiektów które maja state'y is isnot ,mayhaps,zmieni na cos bardziej logicznego
+BP operuj? obecnie na groundingsetach które s? par? Trait:bp , sprawdzi jak wiele sensu to ma
 
 Implementacja:
-BaseProfile
+Holony
 
 Gan+22#

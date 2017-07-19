@@ -51,7 +51,7 @@ class ComplexFormulaTest(unittest.TestCase):
         self.assertNotEqual(self.cf1, self.cf2)
 
     def test_get_complementary_formulas(self):
-        self.assertEqual(self.cf1.get_complementary_formulas(),[ComplexFormula(self.im1, [self.traits[0], self.traits[1]],
+        self.assertEqual(self.cf1.get_complementary_formulas(), [ComplexFormula(self.im1, [self.traits[0], self.traits[1]],
                                                                            [self.s1, self.s1]),
                          ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s1, self.s2]),
                          ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s2, self.s1]),

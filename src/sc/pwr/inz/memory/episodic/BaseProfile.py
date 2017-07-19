@@ -23,8 +23,8 @@ class BaseProfile:
             self.observationsMAYHAPS = {}
             self.get_em_observations(self.observations)
 
-    def get_em_observations(self, observation):
-        for obs in observation:
+    def get_em_observations(self, observations):
+        for obs in observations:
             for tupl in obs.get_observed():
                 if tupl[1] == State.IS:
                     self.observationsIS[tupl[0]] = obs
@@ -45,17 +45,17 @@ class BaseProfile:
     def get_timestamp(self):
         return self.timestamp
 
-    def add_observations_is(self, other):
-        self.observationsIS = other
-        self.observations.append(other)
+    def add_observations_is(self, o):
+        self.get_em_observations(o)
+        self.observations.append(o)
 
-    def add_observations_is_not(self, other):
-        self.observationsIS_NOT = other
-        self.observations.append(other)
+    def add_observations_is_not(self, o):
+        self.get_em_observations(o)
+        self.observations.append(o)
 
-    def add_observations_mayhaps(self, other):
-        self.observationsMAYHAPS = other
-        self.observations.append(other)
+    def add_observations_mayhaps(self, o):
+        self.get_em_observations(o)
+        self.observations.append(o)
 
     def get_observed_ims(self):
         return list(set([x.identifier for x in self.observations]))
@@ -72,7 +72,6 @@ class BaseProfile:
         for obs in self.observations:
             for tuptup in obs.get_observed():
                 out.append(tuptup[0])
-        print(set(out))
         return list(set(out))
 
     def __eq__(self, other):

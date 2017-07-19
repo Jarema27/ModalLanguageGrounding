@@ -57,7 +57,7 @@ class BaseProfileTest(unittest.TestCase):
 
     def test_add_observations_is(self):
         newo = Observation(self.ident2, [(self.traits[1], self.s1)], 1)
-        self.bp4.add_observation_is_kind([newo])
+        self.bp4.add_observations_is([newo])
         self.assertEqual(self.bp4.get_observations_is(), {self.traits[1]: self.o5, self.traits[1]: newo})
 
     def test_get_observed_ims(self):
@@ -77,7 +77,7 @@ class BaseProfileTest(unittest.TestCase):
         self.assertEqual(self.bp4.get_observations_is(), {self.traits[1]: self.o5, self.traits[1]: newo})
 
     def test_give_all_traits_involved(self):
-        self.assertEquals(self.bp4.give_all_traits_involved(), [self.traits2[1], self.traits[1]])
+        self.assertTrue(self.traits2[1] in self.bp4.give_all_traits_involved() and self.traits[1] in self.bp4.give_all_traits_involved())
 
     def test_eq(self):
 
