@@ -45,42 +45,35 @@ class BaseProfile:
     def get_timestamp(self):
         return self.timestamp
 
-    def set_observations_is(self, other):
+    def add_observations_is(self, other):
         self.observationsIS = other
         self.observations.append(other)
 
-    def set_observations_is_not(self, other):
+    def add_observations_is_not(self, other):
         self.observationsIS_NOT = other
         self.observations.append(other)
 
-    def set_observations_mayhaps(self, other):
+    def add_observations_mayhaps(self, other):
         self.observationsMAYHAPS = other
         self.observations.append(other)
 
     def get_observed_ims(self):
-        return set([(x for x in self.observations)])
+        return list(set([x.identifier for x in self.observations]))
 
-    def check_if_observed(self, im, trait, state):
-        return Observation(im, (trait, state)) in self.observations
-
-    def add_observation_is_kind(self, o):
-        self.observations.append(o)
-        self.get_em_observations(o)
-
-    def add_observation_is_not_kind(self, o):
-        self.observations.append(o)
-        self.get_em_observations(o)
-
-    def add_observation_mayhaps_kind(self, o):
-        self.get_em_observations(o)
-        self.observations.append(o)
+    def check_if_observed(self, im, trait_state_in_proper_order):
+        return Observation(im, trait_state_in_proper_order) in self.observations
 
     def add_observation_which_state_you_know_not(self, obs):
         self.observations.append(obs)
-        self.get_em_observations([obs]  )
+        self.get_em_observations([obs])
 
     def give_all_traits_involved(self):
-        return set([x for x in self.observations.observed()])
+        out = []
+        for obs in self.observations:
+            for tuptup in obs.get_observed():
+                out.append(tuptup[0])
+        print(set(out))
+        return list(set(out))
 
     def __eq__(self, other):
         return self.timestamp == other.timestamp and self.observationsIS == other.observationsIS and \

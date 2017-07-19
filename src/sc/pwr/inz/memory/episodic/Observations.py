@@ -33,3 +33,6 @@ class Observation:
     def __eq__(self, other):
         return self.identifier == other.identifier and len(list((x for x in other.get_observed() if x in
                                                                  self.get_observed()))) == len(other.get_observed())
+
+    def __hash__(self):
+        return sum(hash(x) for x in self.observed) ^ hash(self.identifier)

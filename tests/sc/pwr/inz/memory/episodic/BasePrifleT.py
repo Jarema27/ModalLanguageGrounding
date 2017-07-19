@@ -42,9 +42,47 @@ class BaseProfileTest(unittest.TestCase):
         self.assertEqual(self.bp3.get_timestamp(), 3)
 
     def test_get_observations_is(self):
-        self.assertEqual(self.bp4.get_observations_is(), [self.o5])
-        self.assertEqual(self.bp2.get_observations_is(), [self.o2])
-        self.assertEqual(self.bp4.get_observations_is(), [self.o5])
+        self.assertEqual(self.bp4.get_observations_is(), {self.traits[1]: self.o5})
+        self.assertEqual(self.bp2.get_observations_is(), {self.traits[0]: self.o1, self.traits2[2]: self.o1,
+                                                          self.traits[1]: self.o5})
+
+    def test_get_observations_is_not(self):
+        self.assertEqual(self.bp4.get_observations_is_not(), {self.traits2[1]: self.o5})
+        self.assertEqual(self.bp2.get_observations_is_not(), {self.traits[1]: self.o1, self.traits2[1]: self.o5,
+                                                              self.traits[2]: self.o4})
+
+    def test_get_observations_mayhaps(self):
+        self.assertEqual(self.bp4.get_observations_mayhaps(), {self.traits[1]: self.o5})
+        self.assertEqual(self.bp3.get_observations_mayhaps(), {self.traits[1]: self.o5, self.traits2[0]: self.o3})
+
+    def test_add_observations_is(self):
+        newo = Observation(self.ident2, [(self.traits[1], self.s1)], 1)
+        self.bp4.add_observation_is_kind([newo])
+        self.assertEqual(self.bp4.get_observations_is(), {self.traits[1]: self.o5, self.traits[1]: newo})
+
+    def test_get_observed_ims(self):
+        self.assertEqual(self.bp4.get_observed_ims(), [self.ident2])
+        self.assertEqual(len(self.bp2.get_observed_ims()), 2)
+        self.assertTrue(self.ident2 in self.bp2.get_observed_ims() and self.ident1 in self.bp2.get_observed_ims())
+        self.assertTrue(self.ident1 in self.bp3.get_observed_ims() and self.ident2 in self.bp3.get_observed_ims() and
+                        self.ident3 in self.bp3.get_observed_ims())
+
+    def test_check_if_observed(self):
+        self.assertTrue(self.bp4.check_if_observed(self.ident2, [(self.traits[1], self.s1), (self.traits2[1], self.s2),
+                                                                 (self.traits[1], self.s3)]))
+
+    def test_add_observation_which_state_you_know_not(self):
+        newo = Observation(self.ident2, [(self.traits[1], self.s1)], 1)
+        self.bp4.add_observation_which_state_you_know_not(newo)
+        self.assertEqual(self.bp4.get_observations_is(), {self.traits[1]: self.o5, self.traits[1]: newo})
+
+    def test_give_all_traits_involved(self):
+        self.assertEquals(self.bp4.give_all_traits_involved(), [self.traits2[1], self.traits[1]])
+
+    def test_eq(self):
+
+        bp4prim = BaseProfile(3, [self.o5])
+        self.assertTrue(self.bp4 == bp4prim)
 
     def tearDown(self):
         self.traits2 = None
