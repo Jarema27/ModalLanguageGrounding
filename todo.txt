@@ -2,6 +2,7 @@ Testy:
 BP operuj? obecnie na groundingsetach które s? par? Trait:bp , sprawdzi jak wiele sensu to ma
 
 Implementacja:
+Grounder
 Holony
 
 Gan+22#
