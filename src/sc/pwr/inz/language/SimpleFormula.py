@@ -6,7 +6,7 @@ from src.sc.pwr.inz.language.State import State
 class SimpleFormula(Formula):
 
     def get_states(self):
-        return self.state
+        return [self.state]
 
     def get_model(self):
         return self.indiv_model
@@ -15,14 +15,14 @@ class SimpleFormula(Formula):
         return TypeOfFormula.SF
 
     def get_complementary_formulas(self):
-        temp2 = SimpleFormula(self.indiv_model, self.trait, self.state.notS())
-        return [self, temp2]
+        temp1 = SimpleFormula(self.indiv_model, self.trait, State.IS)
+        temp2 = SimpleFormula(self.indiv_model, self.trait, State.IS_not)
+        return [temp1, temp2]
 
     def __eq__(self, other):
         return self.state == other.state and self.indiv_model == other.indiv_model and self.trait == other.trait
 
     def __init__(self, im, trait, state):
-        super().__init__()
         if not isinstance(trait, Trait):
             raise TypeError("Given trait ain't instance of Trait")
         if im is not None and trait is not None:

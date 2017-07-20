@@ -68,8 +68,9 @@ class BaseProfileTest(unittest.TestCase):
                         self.ident3 in self.bp3.get_observed_ims())
 
     def test_check_if_observed(self):
-        self.assertTrue(self.bp4.check_if_observed(self.ident2, [(self.traits[1], self.s1), (self.traits2[1], self.s2),
-                                                                 (self.traits[1], self.s3)]))
+        self.assertTrue(self.bp4.check_if_observed(self.ident2, [self.traits[1], self.traits2[1], self.traits[1]],
+                                                   [self.s1, self.s2, self.s3]))
+
 
     def test_add_observation_which_state_you_know_not(self):
         newo = Observation(self.ident2, [(self.traits[1], self.s1)], 1)

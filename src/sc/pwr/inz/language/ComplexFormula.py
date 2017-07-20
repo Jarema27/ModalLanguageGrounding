@@ -6,7 +6,6 @@ from src.sc.pwr.inz.language.State import State
 class ComplexFormula(Formula):
 
     def __init__(self, im, traits, states):
-        super().__init__()
         if not all(isinstance(elem, Trait) for elem in traits):
             raise TypeError("Given traits aren't instance of Trait List")
         if not all(isinstance(elem, State) for elem in states):
@@ -38,8 +37,10 @@ class ComplexFormula(Formula):
         return self.traits
 
     def __eq__(self, other):
-        return self.indiv_model == other.get_model() and set(self.state) == set(other.get_states()) and self.traits \
-                                                                                              == other.get_traits()
+        return self.indiv_model == other.get_model() and((self.traits[0], self.state[0]) == (other.traits[0],
+                                                                                             other.state[0]) and
+                                                         self.traits[1], self.state[1]) == (other.traits[1],
+                                                                                            other.state[1])
 
     def __hash__(self):
         return hash(self.indiv_model) * sum(list((hash(x) for x in self.traits)))

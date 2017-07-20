@@ -60,8 +60,23 @@ class BaseProfile:
     def get_observed_ims(self):
         return list(set([x.identifier for x in self.observations]))
 
-    def check_if_observed(self, im, trait_state_in_proper_order):
-        return Observation(im, trait_state_in_proper_order) in self.observations
+    def check_if_observed(self, im, traits, state):
+        for st in state:
+            if st == State.IS:
+                for trait in traits:
+                    if trait in self.observationsIS.keys():
+
+                        if self.observationsIS.get(trait).get_identifier() == im:
+                            return True
+                return False
+            elif st== State.IS_NOT:
+                for trait in traits:
+                    if trait in self.observationsIS_NOT.keys():
+                        if self.observationsIS_NOT.get(trait).get_identifier() == im:
+                            return True
+                return False
+            else:
+                return False
 
     def add_observation_which_state_you_know_not(self, obs):
         self.observations.append(obs)
@@ -78,3 +93,13 @@ class BaseProfile:
         return self.timestamp == other.timestamp and self.observationsIS == other.observationsIS and \
                self.observationsIS_NOT == other.observationsIS_NOT and self.observationsMAYHAPS == \
                other.observationsMAYHAPS
+
+""""for obs in self.observations:
+            if obs.get_identifier() == im.get_identifier():
+                k = 0
+                for i in range(0,len(traits)):
+                    if (traits[i], state[i]) in obs.get_observed():
+                        k += 1
+                if k == len(traits):
+                    return True
+        return False"""

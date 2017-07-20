@@ -29,10 +29,6 @@ class Holon(ABC):
         pass
 
     @abstractmethod
-    def get_context(self):
-        pass
-
-    @abstractmethod
     def get_formula(self):
         pass
 
