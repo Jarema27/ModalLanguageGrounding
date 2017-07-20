@@ -65,7 +65,6 @@ class BaseProfile:
             if st == State.IS:
                 for trait in traits:
                     if trait in self.observationsIS.keys():
-
                         if self.observationsIS.get(trait).get_identifier() == im:
                             return True
                 return False
