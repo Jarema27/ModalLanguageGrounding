@@ -16,7 +16,7 @@ class SimpleFormula(Formula):
 
     def get_complementary_formulas(self):
         temp1 = SimpleFormula(self.indiv_model, self.trait, State.IS)
-        temp2 = SimpleFormula(self.indiv_model, self.trait, State.IS_not)
+        temp2 = SimpleFormula(self.indiv_model, self.trait, State.IS_NOT)
         return [temp1, temp2]
 
     def __eq__(self, other):

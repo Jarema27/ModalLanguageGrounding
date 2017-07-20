@@ -10,16 +10,15 @@ class BinaryHolon(Holon):
         self.formula = dk.get_formula()
         self.timestamp = dk.get_timestamp()
         self.dk = dk
-        self.tao = ()
+        self.tao = [0, 0]
         self.update(dk)
 
     def update(self, dk):
         if dk.get_formula().get_type() is not TypeOfFormula.SF:
             raise TypeError("Wrong type of formula has been provided, I only take simple ones")
         else:
-            pos = Grounder.determine_fulfilment(dk, dk.get_complementary_formulas[0])
-            neg = Grounder.determine_fulfilment(dk, dk.get_complementary_formulas[1])
-            self.tao = (pos, neg)
+            self.tao[0] += Grounder.determine_fulfilment(self.dk, self.dk.get_complementary_formulas()[0])
+            self.tao[1] += Grounder.determine_fulfilment(self.dk, self.dk.get_complementary_formulas()[1])
 
     def get_kind(self):
         return HolonKind.BH
