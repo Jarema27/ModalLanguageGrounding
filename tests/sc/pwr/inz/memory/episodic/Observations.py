@@ -2,7 +2,7 @@ import unittest
 
 from src.sc.pwr.inz.language.parts.State import State
 
-from sc.pwr.inz.language.Pa.Trait import Trait
+from sc.pwr.inz.language.components.Trait import Trait
 from src.sc.pwr.inz.memory.episodic.Observations import Observation
 from src.sc.pwr.inz.memory.semantic.identifiers.QRCode import QRCode
 

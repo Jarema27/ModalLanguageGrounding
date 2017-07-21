@@ -5,7 +5,7 @@ from src.sc.pwr.inz.language.parts.LogicalOperator import LogicalOperator
 from src.sc.pwr.inz.language.parts.SimpleFormula import SimpleFormula
 from src.sc.pwr.inz.language.parts.State import State
 
-from sc.pwr.inz.language.Pa.Trait import Trait
+from sc.pwr.inz.language.components.Trait import Trait
 from src.sc.pwr.inz.memory.episodic.BaseProfile import BaseProfile
 from src.sc.pwr.inz.memory.episodic.DistributedKnowledge import DistributedKnowledge
 from src.sc.pwr.inz.memory.episodic.Observations import Observation

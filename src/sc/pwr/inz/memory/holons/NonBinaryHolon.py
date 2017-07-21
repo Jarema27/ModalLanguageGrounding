@@ -1,4 +1,4 @@
-from sc.pwr.inz.language.Pa.Formula import TypeOfFormula
+from sc.pwr.inz.language.components.Formula import TypeOfFormula
 from src.sc.pwr.inz.memory.episodic.Grounder import Grounder
 from src.sc.pwr.inz.memory.holons.Holon import HolonKind, Holon
 
