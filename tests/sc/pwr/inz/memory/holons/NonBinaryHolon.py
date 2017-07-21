@@ -1,10 +1,10 @@
 import unittest
 
-from src.sc.pwr.inz.language.parts.ComplexFormula import ComplexFormula
-from src.sc.pwr.inz.language.parts.LogicalOperator import LogicalOperator
-from src.sc.pwr.inz.language.parts.State import State
+from src.sc.pwr.inz.language.components.ComplexFormula import ComplexFormula
+from src.sc.pwr.inz.language.components.LogicalOperator import LogicalOperator
+from src.sc.pwr.inz.language.components.State import State
 
-from sc.pwr.inz.language.components.Trait import Trait
+from src.sc.pwr.inz.language.components.Trait import Trait
 from src.sc.pwr.inz.memory.episodic.BaseProfile import BaseProfile
 from src.sc.pwr.inz.memory.episodic.DistributedKnowledge import DistributedKnowledge
 from src.sc.pwr.inz.memory.episodic.Observations import Observation

@@ -1,6 +1,6 @@
 from time import time
 
-from sc.pwr.inz.language.components.State import State
+from src.sc.pwr.inz.language.components.State import State
 
 
 class BaseProfile:

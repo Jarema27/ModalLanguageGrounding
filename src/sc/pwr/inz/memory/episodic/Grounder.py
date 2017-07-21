@@ -1,4 +1,4 @@
-from sc.pwr.inz.language.components.LogicalOperator import LogicalOperator
+from src.sc.pwr.inz.language.components.LogicalOperator import LogicalOperator
 
 
 class Grounder:

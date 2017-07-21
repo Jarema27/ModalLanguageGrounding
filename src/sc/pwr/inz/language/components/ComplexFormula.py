@@ -1,7 +1,7 @@
-from src.sc.pwr.inz.language.parts.Formula import Formula, TypeOfFormula
-from src.sc.pwr.inz.language.parts.State import State
+from src.sc.pwr.inz.language.components.Formula import Formula, TypeOfFormula
+from src.sc.pwr.inz.language.components.State import State
 
-from sc.pwr.inz.language.components.Trait import Trait
+from src.sc.pwr.inz.language.components.Trait import Trait
 
 
 class ComplexFormula(Formula):

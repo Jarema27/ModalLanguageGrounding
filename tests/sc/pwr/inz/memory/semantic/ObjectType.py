@@ -1,6 +1,6 @@
 import unittest
 
-from sc.pwr.inz.language.components.Trait import Trait
+from src.sc.pwr.inz.language.components.Trait import Trait
 from src.sc.pwr.inz.memory.semantic.ObjectType import ObjectType
 
 

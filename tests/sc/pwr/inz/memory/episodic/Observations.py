@@ -1,8 +1,8 @@
 import unittest
 
-from src.sc.pwr.inz.language.parts.State import State
+from src.sc.pwr.inz.language.components.State import State
 
-from sc.pwr.inz.language.components.Trait import Trait
+from src.sc.pwr.inz.language.components.Trait import Trait
 from src.sc.pwr.inz.memory.episodic.Observations import Observation
 from src.sc.pwr.inz.memory.semantic.identifiers.QRCode import QRCode
 
