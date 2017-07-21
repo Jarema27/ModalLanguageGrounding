@@ -1,16 +1,18 @@
 import unittest
-from src.sc.pwr.inz.memory.semantic.ObjectType import ObjectType
-from src.sc.pwr.inz.memory.semantic.IndividualModel import IndividualModel
-from src.sc.pwr.inz.memory.episodic.DistributedKnowledge import DistributedKnowledge
-from src.sc.pwr.inz.language.ComplexFormula import ComplexFormula
+
+from src.sc.pwr.inz.language.parts.ComplexFormula import ComplexFormula
+from src.sc.pwr.inz.language.parts.LogicalOperator import LogicalOperator
+from src.sc.pwr.inz.language.parts.State import State
+
+from src.sc.pwr.inz.language.parts.Trait import Trait
 from src.sc.pwr.inz.memory.episodic.BaseProfile import BaseProfile
-from src.sc.pwr.inz.memory.holons.NonBinaryHolon import NonBinaryHolon
-from src.sc.pwr.inz.memory.holons.Holon import HolonKind
-from src.sc.pwr.inz.language.State import State
-from src.sc.pwr.inz.language.Trait import Trait
+from src.sc.pwr.inz.memory.episodic.DistributedKnowledge import DistributedKnowledge
 from src.sc.pwr.inz.memory.episodic.Observations import Observation
+from src.sc.pwr.inz.memory.holons.Holon import HolonKind
+from src.sc.pwr.inz.memory.holons.NonBinaryHolon import NonBinaryHolon
+from src.sc.pwr.inz.memory.semantic.IndividualModel import IndividualModel
+from src.sc.pwr.inz.memory.semantic.ObjectType import ObjectType
 from src.sc.pwr.inz.memory.semantic.identifiers.QRCode import QRCode
-from src.sc.pwr.inz.language.LogicalOperator import LogicalOperator
 
 
 class TestNonBinaryHolon(unittest.TestCase):

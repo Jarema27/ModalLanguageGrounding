@@ -1,5 +1,5 @@
 import unittest
-from src.sc.pwr.inz.memory.semantic.identifiers.QRCode import  QRCode
+from src.sc.pwr.inz.memory.semantic.identifiers.QRCode import QRCode
 
 
 class IdentifierTestCase(unittest.TestCase):

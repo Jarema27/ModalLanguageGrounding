@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
-from src.sc.pwr.inz.language.Trait import Trait
+
+from src.sc.pwr.inz.language.parts.Trait import Trait
 
 
 class XMLReader:

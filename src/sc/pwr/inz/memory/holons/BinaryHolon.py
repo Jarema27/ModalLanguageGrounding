@@ -1,6 +1,6 @@
+from src.sc.pwr.inz.language.parts.Formula import TypeOfFormula
+from src.sc.pwr.inz.memory.episodic.Grounder import Grounder
 from src.sc.pwr.inz.memory.holons.Holon import Holon, HolonKind
-from src.sc.pwr.inz.language.Formula import TypeOfFormula
-from src.sc.pwr.inz.language.Grounder import Grounder
 
 
 class BinaryHolon(Holon):

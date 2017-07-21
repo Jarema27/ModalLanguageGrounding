@@ -1,7 +1,6 @@
 from time import time
 
-from src.sc.pwr.inz.memory.episodic.Observations import Observation
-from src.sc.pwr.inz.language.State import State
+from src.sc.pwr.inz.language.parts.State import State
 
 
 class BaseProfile:

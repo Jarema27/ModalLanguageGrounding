@@ -1,9 +1,9 @@
 import unittest
 
-from src.sc.pwr.inz.language.Trait import Trait
+from src.sc.pwr.inz.language.parts.Trait import Trait
+from src.sc.pwr.inz.memory.semantic.IndividualModel import IndividualModel
 from src.sc.pwr.inz.memory.semantic.ObjectType import ObjectType
 from src.sc.pwr.inz.memory.semantic.identifiers.QRCode import QRCode
-from src.sc.pwr.inz.memory.semantic.IndividualModel import IndividualModel
 
 
 class TestIndividualModel(unittest.TestCase):
