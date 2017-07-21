@@ -27,12 +27,12 @@ class SimpleFormulaTest(unittest.TestCase):
         self.s2 = State.IS_NOT
         self.s3 = State.MAYHAPS
 
-        self.sf1 = SimpleFormula(self.im1,self.traits[1],self.s1)
-        self.sf3 = SimpleFormula(self.im2,self.traits2[2],self.s2)
+        self.sf1 = SimpleFormula(self.im1, self.traits[1], self.s1)
+        self.sf3 = SimpleFormula(self.im2, self.traits2[2], self.s2)
 
     def test_get_states(self):
-        self.assertEquals(self.sf1.get_states(), self.s1)
-        self.assertEquals(self.sf3.get_states(), self.s2)
+        self.assertEquals(self.sf1.get_states(), [self.s1])
+        self.assertEquals(self.sf3.get_states(), [self.s2])
 
     def test_error(self):
         self.assertRaises(TypeError, lambda: SimpleFormula(self.im1, [self.traits[1]], self.s1))
@@ -46,10 +46,14 @@ class SimpleFormulaTest(unittest.TestCase):
         self.assertEqual(self.sf3.get_type(), TypeOfFormula.SF)
 
     def test_get_complementary_formulas(self):
-        self.assertEqual(self.sf1.get_complementary_formulas(), [self.sf1, SimpleFormula(self.im1, self.traits[1],
-                                                                                         self.s2)])
-        self.assertEqual(self.sf3.get_complementary_formulas(), [self.sf3, SimpleFormula(self.im2, self.traits2[2],
-                                                                                         self.s1)])
+        self.assertEqual(self.sf1.get_complementary_formulas(), [SimpleFormula(self.im1, self.traits[1],
+                                                                               self.s1),
+                                                                 SimpleFormula(self.im1, self.traits[1],
+                                                                 self.s2)])
+        self.assertEqual(self.sf3.get_complementary_formulas(), [SimpleFormula(self.im2, self.traits2[2],
+                                                                               self.s1),
+                                                                 SimpleFormula(self.im2, self.traits2[2],
+                                                                 self.s2)])
 
     def test_eq(self):
         self.assertEqual(self.sf1, SimpleFormula(self.im1, self.traits[1], self.s1))

@@ -60,19 +60,16 @@ class BaseProfile:
     def get_observed_ims(self):
         return list(set([x.identifier for x in self.observations]))
 
-    def check_if_observed(self, im, traits, state):
-        for st in state:
-            if st == State.IS:
-                for trait in traits:
-                    if trait in self.observationsIS.keys():
-                        if self.observationsIS.get(trait).get_identifier() == im:
-                            return True
+    def check_if_observed(self, im, trait, state):
+            if state == State.IS:
+                if trait in self.observationsIS.keys():
+                    if self.observationsIS.get(trait).get_identifier() == im:
+                        return True
                 return False
-            elif st== State.IS_NOT:
-                for trait in traits:
-                    if trait in self.observationsIS_NOT.keys():
-                        if self.observationsIS_NOT.get(trait).get_identifier() == im:
-                            return True
+            elif state == State.IS_NOT:
+                if trait in self.observationsIS_NOT.keys():
+                    if self.observationsIS_NOT.get(trait).get_identifier() == im:
+                        return True
                 return False
             else:
                 return False

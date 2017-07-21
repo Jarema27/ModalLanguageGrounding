@@ -1,4 +1,6 @@
 import unittest
+
+from src.sc.pwr.inz.language.LogicalOperator import LogicalOperator
 from src.sc.pwr.inz.language.Trait import Trait
 from src.sc.pwr.inz.memory.semantic.ObjectType import ObjectType
 from src.sc.pwr.inz.memory.semantic.identifiers.QRCode import QRCode
@@ -27,8 +29,8 @@ class ComplexFormulaTest(unittest.TestCase):
         self.s2 = State.IS_NOT
         self.s3 = State.MAYHAPS
 
-        self.cf1 = ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s2, self.s3])
-        self.cf2 = ComplexFormula(self.im2, [self.traits2[0], self.traits2[1]], [self.s1, self.s1])
+        self.cf1 = ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s2, self.s3], LogicalOperator.AND)
+        self.cf2 = ComplexFormula(self.im2, [self.traits2[0], self.traits2[1]], [self.s1, self.s1], LogicalOperator.AND)
 
     def test_get_type(self):
         self.assertEqual(self.cf1.get_type(), TypeOfFormula.CF)
@@ -52,10 +54,10 @@ class ComplexFormulaTest(unittest.TestCase):
 
     def test_get_complementary_formulas(self):
         self.assertEqual(self.cf1.get_complementary_formulas(), [ComplexFormula(self.im1, [self.traits[0], self.traits[1]],
-                                                                           [self.s1, self.s1]),
-                         ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s1, self.s2]),
-                         ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s2, self.s1]),
-                         ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s2, self.s2])])
+                                                                           [self.s1, self.s1], LogicalOperator.AND),
+                         ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s1, self.s2], LogicalOperator.AND),
+                         ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s2, self.s1], LogicalOperator.AND),
+                         ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s2, self.s2], LogicalOperator.AND)])
 
     def tearDown(self):
         self.traits2 = None

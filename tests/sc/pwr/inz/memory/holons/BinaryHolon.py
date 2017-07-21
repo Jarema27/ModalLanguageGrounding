@@ -1,4 +1,6 @@
 import unittest
+
+from src.sc.pwr.inz.language.LogicalOperator import LogicalOperator
 from src.sc.pwr.inz.memory.semantic.ObjectType import ObjectType
 from src.sc.pwr.inz.memory.semantic.IndividualModel import IndividualModel
 from src.sc.pwr.inz.memory.episodic.DistributedKnowledge import DistributedKnowledge
@@ -56,8 +58,8 @@ class BinaryHolonTest(unittest.TestCase):
         self.bp6 = BaseProfile(4, [self.o6])
         self.bp7 = BaseProfile(4, [self.o7])
 
-        self.cf1 = ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s2, self.s3])
-        self.cf2 = ComplexFormula(self.im2, [self.traits2[0], self.traits2[1]], [self.s1, self.s1])
+        self.cf1 = ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s2, self.s3], LogicalOperator.AND)
+        self.cf2 = ComplexFormula(self.im2, [self.traits2[0], self.traits2[1]], [self.s1, self.s1], LogicalOperator.AND)
 
         self.sf1 = SimpleFormula(self.im1, self.traits[1], self.s1)
         self.sf3 = SimpleFormula(self.im2, self.traits2[2], self.s2)

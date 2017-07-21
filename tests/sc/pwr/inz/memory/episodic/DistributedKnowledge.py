@@ -1,5 +1,6 @@
 import unittest
 
+from src.sc.pwr.inz.language.LogicalOperator import LogicalOperator
 from src.sc.pwr.inz.memory.semantic.ObjectType import ObjectType
 from src.sc.pwr.inz.memory.semantic.IndividualModel import IndividualModel
 from src.sc.pwr.inz.memory.episodic.DistributedKnowledge import DistributedKnowledge
@@ -47,8 +48,8 @@ class TestDistributedKnowledge(unittest.TestCase):
         self.bp3 = BaseProfile(3, [self.o5, self.o1, self.o3])
         self.bp4 = BaseProfile(3, [self.o5])
 
-        self.cf1 = ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s2, self.s3])
-        self.cf2 = ComplexFormula(self.im2, [self.traits2[0], self.traits2[1]], [self.s1, self.s1])
+        self.cf1 = ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s2, self.s3], LogicalOperator.AND)
+        self.cf2 = ComplexFormula(self.im2, [self.traits2[0], self.traits2[1]], [self.s1, self.s1], LogicalOperator.AND)
 
         self.sf1 = SimpleFormula(self.im1, self.traits[1], self.s1)
         self.sf3 = SimpleFormula(self.im2, self.traits2[2], self.s2)
@@ -76,10 +77,10 @@ class TestDistributedKnowledge(unittest.TestCase):
 
     def test_get_complementary_formulas(self):
         self.assertEqual(self.dk1.get_complementary_formulas(), [
-                         ComplexFormula(self.im1,[self.traits[0], self.traits[1]], [self.s1, self.s1]),
-                         ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s1, self.s2]),
-                         ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s2, self.s1]),
-                         ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s2, self.s2])])
+                         ComplexFormula(self.im1,[self.traits[0], self.traits[1]], [self.s1, self.s1], LogicalOperator.AND),
+                         ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s1, self.s2], LogicalOperator.AND),
+                         ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s2, self.s1], LogicalOperator.AND),
+                         ComplexFormula(self.im1, [self.traits[0], self.traits[1]], [self.s2, self.s2], LogicalOperator.AND)])
         self.assertEqual(self.dk3.get_complementary_formulas(), [self.sf1, SimpleFormula(self.im1, self.traits[1],
                                                                                          self.s2)])
 

@@ -5,7 +5,7 @@ from src.sc.pwr.inz.language.State import State
 
 class ComplexFormula(Formula):
 
-    def __init__(self, im, traits, states):
+    def __init__(self, im, traits, states,log):
         if not all(isinstance(elem, Trait) for elem in traits):
             raise TypeError("Given traits aren't instance of Trait List")
         if not all(isinstance(elem, State) for elem in states):
@@ -15,20 +15,24 @@ class ComplexFormula(Formula):
                 self.indiv_model = im
                 self.traits = traits
                 self.state = states
+                self.LO = log
         else:
             raise Exception("Obligatory fields include variables with None value")
 
     def get_states(self):
         return self.state
 
+    def get_logical_operator(self):
+        return self.LO
+
     def get_model(self):
         return self.indiv_model
 
     def get_complementary_formulas(self):
-        return [ComplexFormula(self.indiv_model, self.traits, [State.IS, State.IS]),
-                ComplexFormula(self.indiv_model, self.traits, [State.IS, State.IS_NOT]),
-                ComplexFormula(self.indiv_model, self.traits, [State.IS_NOT, State.IS]),
-                ComplexFormula(self.indiv_model, self.traits, [State.IS_NOT, State.IS_NOT])]
+        return [ComplexFormula(self.indiv_model, self.traits, [State.IS, State.IS], self.LO),
+                ComplexFormula(self.indiv_model, self.traits, [State.IS, State.IS_NOT], self.LO),
+                ComplexFormula(self.indiv_model, self.traits, [State.IS_NOT, State.IS], self.LO),
+                ComplexFormula(self.indiv_model, self.traits, [State.IS_NOT, State.IS_NOT], self.LO)]
 
     def get_type(self):
         return TypeOfFormula.CF

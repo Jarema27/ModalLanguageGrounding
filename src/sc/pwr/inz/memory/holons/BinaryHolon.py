@@ -19,6 +19,9 @@ class BinaryHolon(Holon):
         else:
             self.tao[0] += Grounder.determine_fulfilment(self.dk, self.dk.get_complementary_formulas()[0])
             self.tao[1] += Grounder.determine_fulfilment(self.dk, self.dk.get_complementary_formulas()[1])
+            suma = sum(self.tao)
+            if suma > 0:
+                self.tao = [self.tao[0]/suma, self.tao[1]/suma]
 
     def get_kind(self):
         return HolonKind.BH
