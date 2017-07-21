@@ -1,6 +1,6 @@
 from time import time
 
-from src.sc.pwr.inz.language.parts.State import State
+from sc.pwr.inz.language.Pa.State import State
 
 
 class BaseProfile:

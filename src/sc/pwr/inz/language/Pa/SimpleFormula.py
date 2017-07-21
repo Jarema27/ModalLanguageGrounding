@@ -1,0 +1,44 @@
+from src.sc.pwr.inz.language.parts.Formula import Formula, TypeOfFormula
+from src.sc.pwr.inz.language.parts.State import State
+
+from sc.pwr.inz.language.Pa.Trait import Trait
+
+
+class SimpleFormula(Formula):
+
+    def get_states(self):
+        return [self.state]
+
+    def get_model(self):
+        return self.indiv_model
+
+    def get_type(self):
+        return TypeOfFormula.SF
+
+    def get_complementary_formulas(self):
+        temp1 = SimpleFormula(self.indiv_model, self.trait, State.IS)
+        temp2 = SimpleFormula(self.indiv_model, self.trait, State.IS_NOT)
+        return [temp1, temp2]
+
+    def __eq__(self, other):
+        return self.state == other.state and self.indiv_model == other.indiv_model and self.trait == other.trait
+
+    def __init__(self, im, trait, state):
+        if not isinstance(trait, Trait):
+            raise TypeError("Given trait ain't instance of Trait")
+        if im is not None and trait is not None:
+            if trait in im.get_object_type().get_traits():
+                self.indiv_model = im
+                self.trait = trait
+                if state is None:
+                    self.state = State.IS_NOT
+                else:
+                    self.state = state
+        else:
+            raise Exception("Obligatory fields include variables with None value")
+
+    def get_traits(self):
+        return [self.trait]
+
+    def __hash__(self):
+        return hash(self.indiv_model) ^ hash(self.trait)

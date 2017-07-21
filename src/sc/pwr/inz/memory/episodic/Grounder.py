@@ -1,4 +1,4 @@
-from src.sc.pwr.inz.language.parts.LogicalOperator import LogicalOperator
+from sc.pwr.inz.language.Pa.LogicalOperator import LogicalOperator
 
 
 class Grounder:
