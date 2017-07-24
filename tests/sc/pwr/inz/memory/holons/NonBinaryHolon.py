@@ -100,7 +100,6 @@ class TestNonBinaryHolon(unittest.TestCase):
         self.assertEqual(self.nbholon4.get_formula(),self.cf4)
 
     def tearDown(self):
-#todo zamkną w kolekcji
         self.traits2 = None
         self.traits = None
         self.ident1 = None

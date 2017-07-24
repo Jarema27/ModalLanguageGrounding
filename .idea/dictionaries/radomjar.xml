@@ -3,7 +3,11 @@
     <words>
       <w>barowalny</w>
       <w>bolszoj</w>
+      <w>bpcollective</w>
+      <w>bpset</w>
       <w>formu</w>
+      <w>groundingsets</w>
+      <w>holons</w>
       <w>konieczny</w>
       <w>krasny</w>
       <w>mayhaps</w>
@@ -12,6 +16,7 @@
       <w>obly</w>
       <w>sowiecki</w>
       <w>suma</w>
+      <w>vallist</w>
     </words>
   </dictionary>
 </component>

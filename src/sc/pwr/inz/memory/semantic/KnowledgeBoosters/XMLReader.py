@@ -23,3 +23,7 @@ class XMLReader:
                 traits += [Trait(root[i][j].text)]
                 ot[root[i].get('id')] = traits
         return ot
+
+    @staticmethod
+    def read_agent_variables():
+        pass

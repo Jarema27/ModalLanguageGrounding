@@ -5,5 +5,5 @@ class ModalOperator(Enum):
     BEL = 'BEL'
     POS = 'POS'
     KNOW = 'KNOW'
-    NOIDEA = 'LOL'
+    NOIDEA = 'XD'
 

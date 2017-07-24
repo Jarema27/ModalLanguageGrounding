@@ -1,8 +1,8 @@
 Testy:
-BP operuj? obecnie na groundingsetach które s? par? Trait:bp , sprawdzi jak wiele sensu to ma
 
 Implementacja:
-Grounder
-Holony
+
+Notki.
+Wrzucic pamiec do jakiejs wszeklasy
 
 Gan+22#
