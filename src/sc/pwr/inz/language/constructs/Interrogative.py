@@ -48,11 +48,15 @@ class Interrogative(Sentence):
         pass_responsibility = self.get_epistemic_conclusion(epistemic_values)
 #       return Declarative(self.subject, self.traits, pass_responsibility, self.LO)
 
-    @staticmethod
-    def build_from_scraps(plaintext):
+    def build_from_scraps(self, plaintext):
         shattered = plaintext.split(" ")
+        imfound = None
         if len(shattered) == 4:
-            return [shattered[1], shattered[3], shattered[2]]
+            for im in self.memory.get_indivmodels():
+                if shattered[1] == im.get_identifier():
+                    imfound = im
+
+            return [imfound, shattered[3], shattered[2]]
         elif len(shattered) == 7:
             return [shattered[1], [shattered[3], shattered[6]], [shattered[2], shattered[5]], shattered[4]]
         else:

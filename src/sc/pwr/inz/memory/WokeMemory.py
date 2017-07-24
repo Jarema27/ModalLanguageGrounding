@@ -8,9 +8,10 @@ from src.sc.pwr.inz.language.components.Formula import TypeOfFormula
 
 class WokeMemory:
 
-    def __init__(self, holons, bpcollective):
+    def __init__(self, holons, bpcollective, imodels=None):
         self.holons = holons
         self.bpcollective = bpcollective
+        self.indiv = imodels
 
     def get_holon_by_formula(self, formula):
         for holon in self.holons:
@@ -38,3 +39,6 @@ class WokeMemory:
 
     def get_bpcollective(self):
         return self.bpcollective
+
+    def get_indivmodels(self):
+        return self.indiv

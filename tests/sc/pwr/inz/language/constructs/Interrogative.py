@@ -90,8 +90,10 @@ class TestInterrogative(unittest.TestCase):
         self.bholon1 = BinaryHolon(self.dk4)
         self.bholon2 = BinaryHolon(self.dk3)
 
-        self.wM1 = WokeMemory([self.nbholon1, self.nbholon2], [self.bp4, self.bp5, self.bp6, self.bp7])
-        self.wM2 = WokeMemory([self.bholon1, self.bholon2], [self.bp4, self.bp5, self.bp6, self.bp7])
+        self.wM1 = WokeMemory([self.nbholon1, self.nbholon2], [self.bp4, self.bp5, self.bp6, self.bp7],
+                              [self.im1, self.im2])
+        self.wM2 = WokeMemory([self.bholon1, self.bholon2], [self.bp4, self.bp5, self.bp6, self.bp7],
+                              [self.im1, self.im2])
 
         self.interr = Interrogative(self.im1, [self.traits[1]], [State.IS], self.wM2)
         self.interr2 = Interrogative(self.im2, [self.traits2[1], self.traits2[2]], [State.IS, State.IS_NOT],
