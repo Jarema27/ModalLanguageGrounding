@@ -1,6 +1,13 @@
 <?xml version="1.0"?>
 <data>
     <variables>
-
+        <epistemicNOIDEA_LEFT>0.0</epistemicNOIDEA_LEFT>
+        <epistemicNOIDEA_RIGHT>0.5</epistemicNOIDEA_RIGHT>
+        <epistemicPOS_LEFT>0.5</epistemicPOS_LEFT>
+        <epistemicPOS_RIGHT>0.7</epistemicPOS_RIGHT>
+        <epistemicBEL_LEFT>0.7</epistemicBEL_LEFT>
+        <epistemicBEL_RIGHT>0.9</epistemicBEL_RIGHT>
+        <epistemicKNOW_LEFT>0.9</epistemicKNOW_LEFT>
+        <epistemicKNOW_RIGHT>1.0</epistemicKNOW_RIGHT>
     </variables>
 </data>

@@ -40,3 +40,7 @@ class DistributedKnowledge:
 
     def get_complementary_formulas(self):
         return self.formula.get_complementary_formulas()
+
+    def __eq__(self, other):
+        return self.formula == other.formula and self.groundingsets == other.groundingsets and \
+               self.timestamp == other.timestamp

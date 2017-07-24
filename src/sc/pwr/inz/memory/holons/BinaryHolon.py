@@ -38,6 +38,8 @@ class BinaryHolon(Holon):
     def is_applicable(self, formula):
         return formula in self.formula.get_complementary_formulas()
 
+    def __eq__(self, other):
+        return self.formula == other.formula and self.timestamp == other.timestamp and self.dk == other.dk
 """else:
             pos = Grounder.determine_fulfilment(dk, dk.get_complementary_formulas[0])
             neg = Grounder.determine_fulfilment(dk, dk.get_complementary_formulas[1])

@@ -39,3 +39,6 @@ class NonBinaryHolon(Holon):
 
     def get_formula(self):
         return self.formula
+
+    def __eq__(self, other):
+        return self.formula == other.formula and self.timestamp == other.timestamp and self.dk == other.dk

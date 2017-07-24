@@ -7,7 +7,7 @@ class XMLReader:
 
     def __init__(self):
         tree = ET.parse(os.path.abspath(os.path.dirname(__file__)) + '\config.xml')
-        root = tree.getroot()
+        self.root = tree.getroot()
 
 #       1 ObjectTypeDir
 #       self.object_type_dir = root.find('varibalepaths').find('objecttypepath').text
@@ -26,4 +26,10 @@ class XMLReader:
 
     @staticmethod
     def read_agent_variables():
-        pass
+        tree = ET.parse(os.path.abspath(os.path.dirname(__file__)) + '\config.xml')
+        root = tree.getroot()
+        out = []
+        for i, child in enumerate(root):
+            for j, childchild in enumerate(child):
+                out.append(root[i][j].text)
+        return out

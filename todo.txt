@@ -1,6 +1,8 @@
 Testy:
 
 Implementacja:
+BuildFromScraps
+answer
 
 Notki.
 Wrzucic pamiec do jakiejs wszeklasy

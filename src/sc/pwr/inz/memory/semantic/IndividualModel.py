@@ -2,7 +2,7 @@ class IndividualModel:
     identifier = None
     object_type = None
 
-    def __init__(self,idn,ot):
+    def __init__(self, idn, ot):
         self.identifier = idn
         self.object_type = ot
 
@@ -28,7 +28,7 @@ class IndividualModel:
         return self.identifier.get_code() == other.identifier.get_code()
 
     def __str__(self):
-        return "IndividualModel{" + "identifier=" + self.identifier + " type=" + self.object_type + " };"
+        return "IndividualModel{" + "identifier=" + str(self.identifier) + "}"
 
     def __hash__(self):
         return hash(self.identifier) * hash(self.object_type)

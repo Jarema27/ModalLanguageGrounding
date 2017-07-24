@@ -1,8 +1,7 @@
-from src.sc.pwr.inz.language.constructs.Declarative import Declarative
+from src.sc.pwr.inz.memory.semantic.KnowledgeBoosters.XMLReader import XMLReader
 from src.sc.pwr.inz.language.components.SimpleFormula import SimpleFormula
 from src.sc.pwr.inz.language.components.ComplexFormula import ComplexFormula
 from src.sc.pwr.inz.language.constructs.Sentence import Sentence, SentenceType
-from src.sc.pwr.inz.memory.holons.Holon import HolonKind
 from src.sc.pwr.inz.language.components.ModalOperator import ModalOperator
 
 
@@ -14,7 +13,7 @@ class Interrogative(Sentence):
             self.traits = traits
             self.states = states
             self.memory = memory
-            if len(traits > 1):
+            if len(traits) > 1:
                 self.LO = logicaloperator
         else:
             acquired = self.build_from_scraps(plaintext)
@@ -27,7 +26,7 @@ class Interrogative(Sentence):
             raise ValueError("What are you on about ? Can't really understand you mate")
         if len(traits) > 0:
             if len(traits) == 1:
-                self.formula = SimpleFormula(self.subject, self.traits, self.states)
+                self.formula = SimpleFormula(self.subject, self.traits[0], self.states[0])
             elif len(traits) == 2:
                 self.formula = ComplexFormula(self.subject, self.traits, self.states, self.LO)
 
@@ -39,14 +38,15 @@ class Interrogative(Sentence):
 
     def __str__(self):
         if len(self.traits) == 1:
-            return "Is " + self.subject + " " + self.states[0] + " " + self.traits[0] + "?"
+            return str(self.states[0]) + " " + str(self.subject) + " " + str(self.traits[0]) + "?"
         else:
-            return "Is " + self.subject + " " + self.states[0] + " " + self.traits[0] + " " + self.LO + " "
-            + self.states[0] + " " + self.traits[0] + "?"
+            return str(self.states[0]) + " " + str(self.subject) + " " + str(self.traits[0]) + " " \
+                   + str(self.LO) + " " + str(self.states[1]) + "" + str(self.traits[1]) + "?"
 
     def answer(self):
         epistemic_values = self.memory.get_holon_by_formula(self.formula)
-        return Declarative(self.subject, self.traits, epistemic_values, self.LO)
+        pass_responsibility = self.get_epistemic_conclusion(epistemic_values)
+#       return Declarative(self.subject, self.traits, pass_responsibility, self.LO)
 
     @staticmethod
     def build_from_scraps(plaintext):
@@ -59,21 +59,20 @@ class Interrogative(Sentence):
             raise ValueError(" Question ain't properly built ")
 
     def get_epistemic_conclusion(self, holon):
-        if holon.get_kind == HolonKind.BH:
-            values = holon.get_tao
-
-        elif holon.get_kind == HolonKind.NBH:
-            pass
+        values = holon.get_tao()
+        return self.check_epistemic_scope(values)
 
     @staticmethod
     def check_epistemic_scope(vallist):
+        ranges = XMLReader.read_agent_variables()
         out = []
         for val in vallist:
-            if val in range(0, 0.5):
+            if float(ranges[0]) <= val <= float(ranges[1]):
                 out.append(ModalOperator.NOIDEA)
-            elif val in range(0.5, 0.7):
+            elif float(ranges[2]) <= val <= float(ranges[3]):
                 out.append(ModalOperator.POS)
-            elif val in range(0.7,0.9):
+            elif float(ranges[4]) <= val <= float(ranges[5]):
                 out.append(ModalOperator.BEL)
-            elif val in range(0.9,1.0):
+            elif float(ranges[6]) <= val <= float(ranges[7]):
                 out.append(ModalOperator.KNOW)
+        return out
