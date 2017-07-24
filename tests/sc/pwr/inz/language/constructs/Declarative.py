@@ -1,5 +1,6 @@
 import unittest
 
+from src.sc.pwr.inz.language.constructs.Declarative import Declarative
 from src.sc.pwr.inz.language.components.SimpleFormula import SimpleFormula
 from src.sc.pwr.inz.memory.holons.BinaryHolon import BinaryHolon
 from src.sc.pwr.inz.memory.WokeMemory import WokeMemory
@@ -15,15 +16,13 @@ from src.sc.pwr.inz.memory.holons.NonBinaryHolon import NonBinaryHolon
 from src.sc.pwr.inz.memory.semantic.IndividualModel import IndividualModel
 from src.sc.pwr.inz.memory.semantic.ObjectType import ObjectType
 from src.sc.pwr.inz.memory.semantic.identifiers.QRCode import QRCode
-from src.sc.pwr.inz.language.constructs.Interrogative import Interrogative
 from src.sc.pwr.inz.language.constructs.Sentence import SentenceType
 from src.sc.pwr.inz.language.components.ModalOperator import ModalOperator
 
 
-class TestInterrogative(unittest.TestCase):
+class TestDeclarative(unittest.TestCase):
 
     def setUp(self):
-
         self.ident1 = QRCode("1")
         self.ident2 = QRCode("2")
         self.ident3 = QRCode("-231")
@@ -96,53 +95,21 @@ class TestInterrogative(unittest.TestCase):
         self.wM2 = WokeMemory([self.bholon1, self.bholon2], [self.bp4, self.bp5, self.bp6, self.bp7],
                               [self.im1, self.im2])
 
-        self.interr = Interrogative(self.im1, [self.traits[1]], [State.IS], None, None, self.wM2)
-        self.interr2 = Interrogative(self.im2, [self.traits2[1], self.traits2[2]], [State.IS, State.IS_NOT],
-                                     LogicalOperator.AND, self.wM1)
-
-    def test_get_kind(self):
-        self.assertEqual(self.interr.get_kind(), SentenceType.Int)
-        self.assertEqual(self.interr2.get_kind(), SentenceType.Int)
+        self.dec1 = Declarative(self.im1, self.traits[1], State.IS, None, ModalOperator.KNOW)
+        self.dec2 = Declarative(self.im2, [self.traits2[2], self.traits2[1]], [State.IS, State.IS_NOT],
+                                LogicalOperator.AND, ModalOperator.BEL)
 
     def test_get_subject(self):
-        self.assertEqual(self.interr.get_subject(), self.im1)
-        self.assertEqual(self.interr2.get_subject(), self.im2)
+        self.assertEqual(self.dec1.get_subject(), self.im1)
+        self.assertEqual(self.dec2.get_subject(), self.im2)
+
+    def test_get_type(self):
+        self.assertEqual(self.dec1.get_kind(), SentenceType.Dec)
 
     def test___str__(self):
-        self.assertEqual(str(self.interr), " is  IndividualModel{identifier=QRCode{id=1}} Krasny?")
-        self.assertEqual(str(self.interr2), " is  IndividualModel{identifier=QRCode{id=2}}"
-                                            " Konieczny and is_not Bolszoj?")
-
-    def test_check_epistemic_scope(self):
-        self.assertEqual(Interrogative.check_epistemic_scope([0.15, 0.75, 0.85]),
-                         [ModalOperator.NOIDEA, ModalOperator.BEL, ModalOperator.BEL])
-        self.assertEqual(Interrogative.check_epistemic_scope([0.15, 0.55, 0.75, 0.95]),
-                         [ModalOperator.NOIDEA, ModalOperator.POS,  ModalOperator.BEL, ModalOperator.KNOW])
-
-    def test_get_epistemic_conclusion(self):
-        self.assertEqual(self.interr.get_epistemic_conclusion(self.bholon1), [ModalOperator.NOIDEA, ModalOperator.KNOW])
-        self.assertEqual(self.interr.get_epistemic_conclusion(self.nbholon4), [ModalOperator.NOIDEA,
-                                                                               ModalOperator.NOIDEA,
-                                                                               ModalOperator.NOIDEA,
-                                                                               ModalOperator.NOIDEA])
-
-    def test_build_from_scraps(self):
-        self.assertEqual(self.interr.build_from_scraps("is QRCode{id=1} Sowiecki ?"), [self.im1, [self.traits[2]]
-                                                                                       , [State.IS]])
-
-        testowyinterr = Interrogative(None, None, None, None, "is QRCode{id=1} Sowiecki ?", self.wM1)
-
-        self.assertEqual(testowyinterr.get_subject(), self.im1)
-        self.assertEqual(str(testowyinterr), " is  IndividualModel{identifier=QRCode{id=1}} Sowiecki?")
-
-        testowyinterrcomplex = Interrogative(None, None, None, None, "is QRCode{id=2} Konieczny and is_not Bolszoj ?",
-                                             self.wM1)
-        self.assertEqual(str(testowyinterrcomplex), " is  IndividualModel{identifier=QRCode{id=2}} "
-                                                    "Konieczny and is_not Bolszoj?")
+        self.assertEqual(str(self.dec1), "")
 
     def tearDown(self):
-        self.interr = None
-        self.interr2 = None
         self.traits2 = None
         self.traits = None
         self.ident1 = None

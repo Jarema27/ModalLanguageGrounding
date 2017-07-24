@@ -1,8 +1,11 @@
 Testy:
 
 Implementacja:
-BuildFromScraps
-answer
+
+answer - znalezc nonetype,declarative jest niemal gotowy
+
+voice reader/speaker
+threading
 
 Notki.
 Wrzucic pamiec do jakiejs wszeklasy

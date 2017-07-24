@@ -38,6 +38,6 @@ class State(Enum):
         if giv == State.IS:
             return " is "
         if giv == State.IS_NOT:
-            return " is not "
+            return " is_not "
         if giv == State.MAYHAPS:
-            return " might be "
+            return " might_be "

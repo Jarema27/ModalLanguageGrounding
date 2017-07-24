@@ -1,3 +1,5 @@
+from src.sc.pwr.inz.language.components.LogicalOperator import LogicalOperator
+from src.sc.pwr.inz.language.components.State import State
 from src.sc.pwr.inz.memory.semantic.KnowledgeBoosters.XMLReader import XMLReader
 from src.sc.pwr.inz.language.components.SimpleFormula import SimpleFormula
 from src.sc.pwr.inz.language.components.ComplexFormula import ComplexFormula
@@ -8,6 +10,8 @@ from src.sc.pwr.inz.language.components.ModalOperator import ModalOperator
 class Interrogative(Sentence):
 
     def __init__(self, subject=None, traits=None, states=None, logicaloperator=None, plaintext=None, memory=None):
+        self.dict = {'is': State.IS, 'is_not': State.IS_NOT, 'might_be': State.MAYHAPS,
+                     'and': LogicalOperator.AND, 'or': LogicalOperator.OR}
         if subject is not None and traits is not None:
             self.subject = subject
             self.traits = traits
@@ -16,18 +20,19 @@ class Interrogative(Sentence):
             if len(traits) > 1:
                 self.LO = logicaloperator
         else:
+            self.memory = memory
             acquired = self.build_from_scraps(plaintext)
             self.subject = acquired[0]
             self.traits = acquired[1]
             self.states = acquired[2]
-            if len(traits > 1):
+            if len(self.traits) > 1:
                 self.LO = acquired[3]
         if self.subject is None or self.traits is None or self.states is None:
             raise ValueError("What are you on about ? Can't really understand you mate")
-        if len(traits) > 0:
-            if len(traits) == 1:
+        if len(self.traits) > 0:
+            if len(self.traits) == 1:
                 self.formula = SimpleFormula(self.subject, self.traits[0], self.states[0])
-            elif len(traits) == 2:
+            elif len(self.traits) == 2:
                 self.formula = ComplexFormula(self.subject, self.traits, self.states, self.LO)
 
     def get_kind(self):
@@ -41,7 +46,7 @@ class Interrogative(Sentence):
             return str(self.states[0]) + " " + str(self.subject) + " " + str(self.traits[0]) + "?"
         else:
             return str(self.states[0]) + " " + str(self.subject) + " " + str(self.traits[0]) + " " \
-                   + str(self.LO) + " " + str(self.states[1]) + "" + str(self.traits[1]) + "?"
+                   + str(self.LO) + "" + str(self.states[1]) + "" + str(self.traits[1]) + "?"
 
     def answer(self):
         epistemic_values = self.memory.get_holon_by_formula(self.formula)
@@ -51,14 +56,30 @@ class Interrogative(Sentence):
     def build_from_scraps(self, plaintext):
         shattered = plaintext.split(" ")
         imfound = None
+        traitfound = None
         if len(shattered) == 4:
             for im in self.memory.get_indivmodels():
-                if shattered[1] == im.get_identifier():
+                if shattered[1] == str(im.get_identifier()):
                     imfound = im
+            for trait in imfound.get_object_type().get_traits():
+                if shattered[2] == trait.name:
+                    traitfound = trait
 
-            return [imfound, shattered[3], shattered[2]]
+            return [imfound, [traitfound], [self.dict.get(shattered[0])]]
         elif len(shattered) == 7:
-            return [shattered[1], [shattered[3], shattered[6]], [shattered[2], shattered[5]], shattered[4]]
+            imfound = None
+            trait1 = None
+            trait2 = None
+            for im in self.memory.get_indivmodels():
+                if shattered[1] == str(im.get_identifier()):
+                    imfound = im
+            for trait in imfound.get_object_type().get_traits():
+                if shattered[2] == trait.name:
+                    trait1 = trait
+                if shattered[5] == trait.name:
+                    trait2 = trait
+            return [imfound, [trait1, trait2], [self.dict.get(shattered[0]), self.dict.get(shattered[4])],
+                    self.dict.get(shattered[3])]
         else:
             raise ValueError(" Question ain't properly built ")
 
