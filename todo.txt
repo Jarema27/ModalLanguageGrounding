@@ -2,9 +2,10 @@ Testy:
 
 Implementacja:
 
-answer - znalezc nonetype,declarative jest niemal gotowy
+voice reader/speaker ++
 
-voice reader/speaker
+Doda aliasy na IMki
+
 threading
 
 Notki.

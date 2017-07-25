@@ -1,0 +1,1 @@
+#       todo mozliwosc dyskusji nazw

@@ -53,7 +53,6 @@ class Interrogative(Sentence):
     def ask(self):
         epistemic_values = self.memory.get_holon_by_formula(self.formula)
         pass_responsibility = self.get_epistemic_conclusion(epistemic_values)
-#       todo read variables and set stuff correctly
         if hasattr(self, 'LO'):
             return Declarative(self.subject, self.traits, self.states, self.LO, pass_responsibility[0])
         else:
