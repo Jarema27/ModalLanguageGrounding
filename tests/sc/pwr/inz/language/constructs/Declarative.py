@@ -27,7 +27,7 @@ class TestDeclarative(unittest.TestCase):
         self.ident2 = QRCode("2")
         self.ident3 = QRCode("-231")
 
-        self.traits = [Trait("Obly"),Trait("Krasny"), Trait("Sowiecki")]
+        self.traits = [Trait("Obly"), Trait("Krasny"), Trait("Sowiecki")]
         self.object_type = ObjectType(1, self.traits)
         self.traits2 = [Trait("Barowalny"), Trait("Konieczny"), Trait("Bolszoj")]
 
@@ -107,7 +107,9 @@ class TestDeclarative(unittest.TestCase):
         self.assertEqual(self.dec1.get_kind(), SentenceType.Dec)
 
     def test___str__(self):
-        self.assertEqual(str(self.dec1), "")
+        self.assertEqual(str(self.dec1), "I definitely know that IndividualModel{identifier=QRCode{id=1}}  is  Krasny")
+        self.assertEqual(str(self.dec2), "I deeply and truthfully believe that  "
+                                         "IndividualModel{identifier=QRCode{id=2}}  is Bolszoj and  is_not Konieczny.")
 
     def tearDown(self):
         self.traits2 = None

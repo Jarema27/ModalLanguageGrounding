@@ -25,6 +25,10 @@ class Holon(ABC):
         pass
 
     @abstractmethod
+    def get_tao_for_state(self, state1, state2=None):
+        pass
+
+    @abstractmethod
     def get_kind(self):
         pass
 

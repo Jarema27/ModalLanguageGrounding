@@ -1,3 +1,4 @@
+from src.sc.pwr.inz.language.components.State import State
 from src.sc.pwr.inz.language.components.Formula import TypeOfFormula
 from src.sc.pwr.inz.memory.episodic.Grounder import Grounder
 from src.sc.pwr.inz.memory.holons.Holon import Holon, HolonKind
@@ -23,6 +24,10 @@ class BinaryHolon(Holon):
             if suma > 0:
                 self.tao = [self.tao[0]/suma, self.tao[1]/suma]
 
+    def get_tao_for_state(self, state1, state2=None):
+        dicdic = {State.IS: 0, State.IS_NOT: 1}
+        return self.tao[dicdic.get(state1)]
+
     def get_kind(self):
         return HolonKind.BH
 
@@ -36,7 +41,10 @@ class BinaryHolon(Holon):
         return self.tao
 
     def is_applicable(self, formula):
-        return formula in self.formula.get_complementary_formulas()
+        if formula.get_type() is TypeOfFormula.SF:
+            return formula in self.formula.get_complementary_formulas()
+        else:
+            return False
 
     def __eq__(self, other):
         return self.formula == other.formula and self.timestamp == other.timestamp and self.dk == other.dk

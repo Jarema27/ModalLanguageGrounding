@@ -99,6 +99,9 @@ class TestNonBinaryHolon(unittest.TestCase):
     def test_get_formula(self):
         self.assertEqual(self.nbholon4.get_formula(),self.cf4)
 
+    def test_get_tao_for_state(self):
+        self.assertEqual(self.nbholon4.get_tao_for_state(self.s1, self.s2), 0.25)
+
     def tearDown(self):
         self.traits2 = None
         self.traits = None

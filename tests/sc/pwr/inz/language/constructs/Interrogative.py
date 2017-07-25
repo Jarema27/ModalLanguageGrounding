@@ -98,7 +98,7 @@ class TestInterrogative(unittest.TestCase):
 
         self.interr = Interrogative(self.im1, [self.traits[1]], [State.IS], None, None, self.wM2)
         self.interr2 = Interrogative(self.im2, [self.traits2[1], self.traits2[2]], [State.IS, State.IS_NOT],
-                                     LogicalOperator.AND, self.wM1)
+                                     LogicalOperator.AND, None, self.wM2)
 
     def test_get_kind(self):
         self.assertEqual(self.interr.get_kind(), SentenceType.Int)
@@ -120,11 +120,8 @@ class TestInterrogative(unittest.TestCase):
                          [ModalOperator.NOIDEA, ModalOperator.POS,  ModalOperator.BEL, ModalOperator.KNOW])
 
     def test_get_epistemic_conclusion(self):
-        self.assertEqual(self.interr.get_epistemic_conclusion(self.bholon1), [ModalOperator.NOIDEA, ModalOperator.KNOW])
-        self.assertEqual(self.interr.get_epistemic_conclusion(self.nbholon4), [ModalOperator.NOIDEA,
-                                                                               ModalOperator.NOIDEA,
-                                                                               ModalOperator.NOIDEA,
-                                                                               ModalOperator.NOIDEA])
+        self.assertEqual(self.interr.get_epistemic_conclusion(self.bholon1), [ModalOperator.NOIDEA])
+        self.assertEqual(self.interr.get_epistemic_conclusion(self.nbholon4), [ModalOperator.NOIDEA])
 
     def test_build_from_scraps(self):
         self.assertEqual(self.interr.build_from_scraps("is QRCode{id=1} Sowiecki ?"), [self.im1, [self.traits[2]]
@@ -139,6 +136,17 @@ class TestInterrogative(unittest.TestCase):
                                              self.wM1)
         self.assertEqual(str(testowyinterrcomplex), " is  IndividualModel{identifier=QRCode{id=2}} "
                                                     "Konieczny and is_not Bolszoj?")
+
+    def test_ask(self):
+        self.assertEqual(str(self.interr.ask()), "I cannot tell if  IndividualModel{identifier=QRCode{id=1}} "
+                                                    " is  Krasny")
+        self.assertEqual(str(self.interr2.ask()), "I cannot tell if  IndividualModel{identifier=QRCode{id=2}} "
+                                                     " is Konieczny and  is_not Bolszoj.")
+
+        testowyinterrcomplex = Interrogative(None, None, None, None, "is QRCode{id=2} Konieczny and is_not Bolszoj ?",
+                                             self.wM1)
+        self.assertEqual(str(testowyinterrcomplex.ask()), "I cannot tell if  IndividualModel{identifier=QRCode{id=2}} "
+                                                          " is Konieczny and  is_not Bolszoj.")
 
     def tearDown(self):
         self.interr = None

@@ -100,6 +100,9 @@ class BinaryHolonTest(unittest.TestCase):
         self.assertTrue(self.bholon1.is_applicable(self.sf1))
         self.assertFalse(self.bholon1.is_applicable(self.sf5))
 
+    def test_get_tao_for_state(self):
+        self.assertEqual(self.bholon1.get_tao_for_state(self.s1), 0.0)
+
     def tearDown(self):
         self.traits2 = None
         self.traits = None

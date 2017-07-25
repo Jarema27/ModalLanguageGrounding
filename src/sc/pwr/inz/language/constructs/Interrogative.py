@@ -1,3 +1,5 @@
+from src.sc.pwr.inz.language.components.Formula import TypeOfFormula
+from src.sc.pwr.inz.language.constructs.Declarative import Declarative
 from src.sc.pwr.inz.language.components.LogicalOperator import LogicalOperator
 from src.sc.pwr.inz.language.components.State import State
 from src.sc.pwr.inz.memory.semantic.KnowledgeBoosters.XMLReader import XMLReader
@@ -48,10 +50,14 @@ class Interrogative(Sentence):
             return str(self.states[0]) + " " + str(self.subject) + " " + str(self.traits[0]) + " " \
                    + str(self.LO) + "" + str(self.states[1]) + "" + str(self.traits[1]) + "?"
 
-    def answer(self):
+    def ask(self):
         epistemic_values = self.memory.get_holon_by_formula(self.formula)
         pass_responsibility = self.get_epistemic_conclusion(epistemic_values)
-#       return Declarative(self.subject, self.traits, pass_responsibility, self.LO)
+#       todo read variables and set stuff correctly
+        if hasattr(self, 'LO'):
+            return Declarative(self.subject, self.traits, self.states, self.LO, pass_responsibility[0])
+        else:
+            return Declarative(self.subject, self.traits[0], self.states[0], None, pass_responsibility[0])
 
     def build_from_scraps(self, plaintext):
         shattered = plaintext.split(" ")
@@ -84,8 +90,14 @@ class Interrogative(Sentence):
             raise ValueError(" Question ain't properly built ")
 
     def get_epistemic_conclusion(self, holon):
-        values = holon.get_tao()
-        return self.check_epistemic_scope(values)
+        if holon.get_formula().get_type() == TypeOfFormula.SF:
+            values = holon.get_tao_for_state(self.formula.get_states()[0])
+        elif holon.get_formula().get_type() == TypeOfFormula.CF:
+            if len(self.formula.get_states()) > 1:
+                values = holon.get_tao_for_state(self.formula.get_states()[0], self.formula.get_states()[1])
+            else:
+                values = holon.get_tao_for_state(self.formula.get_states()[0], self.formula.get_states()[0])
+        return self.check_epistemic_scope([values])
 
     @staticmethod
     def check_epistemic_scope(vallist):

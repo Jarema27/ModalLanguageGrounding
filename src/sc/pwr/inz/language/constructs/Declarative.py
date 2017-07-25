@@ -10,10 +10,10 @@ class Declarative(Sentence):
 
     def __init__(self, subject=None, traits=None, states=None, logicaloperator=None, modal_operator=None):
         self.subject = subject
-        self.gentleman_dict = {'I cannot tell if ': ModalOperator.NOIDEA,
-                               'I think its absolutely possible that ': ModalOperator.POS,
-                               'I deeply and truthfully believe that ': ModalOperator.BEL,
-                               'I definitely know that': ModalOperator.KNOW}
+        self.gentleman_dict = {ModalOperator.NOIDEA: 'I cannot tell if ',
+                               ModalOperator.POS: 'I think its absolutely possible that ',
+                               ModalOperator.BEL: 'I deeply and truthfully believe that ',
+                               ModalOperator.KNOW: 'I definitely know that'}
         self.traits = traits
         self.states = states
         if isinstance(traits, Trait):
@@ -32,10 +32,8 @@ class Declarative(Sentence):
 
     def __str__(self):
         if self.formula.get_type() == TypeOfFormula.SF:
-#       GDZIES TU JEST JEBANY NONETYPE
             return self.gentleman_dict.get(self.modaloperator) + " " + str(self.subject) + " " + \
-                   str(self.states) + " " + self.traits
+                   str(self.states) + " " + str(self.traits)
 
         elif self.formula.get_type() == TypeOfFormula.CF:
-            return self.gentleman_dict.get(self.modaloperator) + " " + self.subject + " " + self.states[0] + " " + \
-                   self.traits[0] + " " + self.logicaloperator + " " + self.states[1] + self.traits[1] + "."
+            return self.gentleman_dict.get(self.modaloperator) + " " + str(self.subject) + " " + str(self.states[0]) + "" + str(self.traits[0]) + " " + str(self.logicaloperator) + " " + str(self.states[1]) + str(self.traits[1]) + "."
