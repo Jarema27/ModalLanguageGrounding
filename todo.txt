@@ -2,11 +2,11 @@ Testy:
 
 Implementacja:
 
-voice reader/speaker ++
-
-Doda aliasy na IMki
-
-threading
+voice speaker ++
+voice reader --
+Doda aliasy na IMki --
+Grounder,dodac czytanie dla OR i XOR --
+threading --
 
 Notki.
 Wrzucic pamiec do jakiejs wszeklasy

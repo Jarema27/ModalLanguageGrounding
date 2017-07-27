@@ -10,5 +10,6 @@ class Phonograph:
 
     def read_something_up(self, string):
         self.engine.say(string)
+        self.engine.runAndWait()
 
 Phonograph()
