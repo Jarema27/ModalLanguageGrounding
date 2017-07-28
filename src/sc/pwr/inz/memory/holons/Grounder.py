@@ -4,7 +4,7 @@ from src.sc.pwr.inz.language.components.LogicalOperator import LogicalOperator
 class Grounder:
     @staticmethod
     def determine_fulfilment(dk, formula):
-        if (dk.get_formula().get_type() == formula.get_type()) and (formula == dk.get_formula()):
+        if (dk.get_formula().get_type() == formula.get_type()) and (formula in dk.get_complementary_formulas()):
             count = 0
             for bp in dk.get_bpset():
                 if bp.check_if_observed(formula.get_model().get_identifier(),
@@ -16,7 +16,7 @@ class Grounder:
 
     @staticmethod
     def determine_fulfilment_cf(dk, formula):
-        if (dk.get_formula().get_type() == formula.get_type()) and (formula == dk.get_formula()):
+        if (dk.get_formula().get_type() == formula.get_type()) and (formula in dk.get_complementary_formulas()):
             count = 0
             for bp in dk.get_bpset():
                 if formula.get_logical_operator() == LogicalOperator.AND:
