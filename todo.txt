@@ -9,7 +9,7 @@ Grounder,dodac czytanie dla OR i XOR ++
 threading --
 scenariusze--
 
-#Obserwacje.
+#Obserwacje++
 #Formowanie bpekow w reakcji na nadchodzace obserwacje
 #Tworzenie holonow co 10 sekund
 #Tworzenie Holonow na zapytanie
