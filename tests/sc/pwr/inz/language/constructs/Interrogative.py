@@ -28,7 +28,7 @@ class TestInterrogative(unittest.TestCase):
         self.ident2 = QRCode("2")
         self.ident3 = QRCode("-231")
 
-        self.traits = [Trait("Obly"),Trait("Krasny"), Trait("Sowiecki")]
+        self.traits = [Trait("Obly"), Trait("Krasny"), Trait("Sowiecki")]
         self.object_type = ObjectType(1, self.traits)
         self.traits2 = [Trait("Barowalny"), Trait("Konieczny"), Trait("Bolszoj")]
 

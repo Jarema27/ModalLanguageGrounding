@@ -33,3 +33,13 @@ class XMLReader:
             for j, childchild in enumerate(child):
                 out.append(root[i][j].text)
         return out
+
+    @staticmethod
+    def read_ids():
+        tree = ET.parse(os.path.abspath(os.path.dirname(__file__)) + '\Ids.xml')
+        root = tree.getroot()
+        out = []
+        for i, child in enumerate(root):
+            for j, childchild in enumerate(child):
+                out.append(root[i][j].text)
+        return out

@@ -11,6 +11,8 @@
       <w>formu</w>
       <w>groundingsets</w>
       <w>holons</w>
+      <w>identificator</w>
+      <w>inbetween</w>
       <w>interr</w>
       <w>konieczny</w>
       <w>krasny</w>
@@ -19,12 +21,15 @@
       <w>nbholon</w>
       <w>newo</w>
       <w>noidea</w>
+      <w>nstates</w>
       <w>obly</w>
       <w>pszemek</w>
       <w>sowiecki</w>
+      <w>spamreader</w>
       <w>suma</w>
       <w>testowyinterrcomplex</w>
       <w>traitname</w>
+      <w>tuplecik</w>
       <w>vallist</w>
       <w>zbigniew</w>
     </words>
