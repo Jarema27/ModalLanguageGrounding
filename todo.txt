@@ -5,8 +5,9 @@ Implementacja:
 voice speaker ++
 voice reader --
 Doda aliasy na IMki --
-Grounder,dodac czytanie dla OR i XOR --
+Grounder,dodac czytanie dla OR i XOR ++
 threading --
+scenariusze--
 
 Notki.
 Wrzucic pamiec do jakiejs wszeklasy

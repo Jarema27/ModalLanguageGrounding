@@ -1,6 +1,6 @@
-from src.sc.pwr.inz.language.components.State import State
+from src.sc.pwr.inz.memory.holons.Grounder import Grounder
 from src.sc.pwr.inz.language.components.Formula import TypeOfFormula
-from src.sc.pwr.inz.memory.episodic.Grounder import Grounder
+from src.sc.pwr.inz.language.components.State import State
 from src.sc.pwr.inz.memory.holons.Holon import HolonKind, Holon
 
 

@@ -70,7 +70,10 @@ class BaseProfile:
                     if self.observationsIS_NOT.get(trait).get_identifier() == im:
                         return True
                 return False
-            else:
+            elif state == State.MAYHAPS:
+                if trait in self.observationsMAYHAPS.keys():
+                    if self.observationsMAYHAPS.get(trait).get_identifier() == im:
+                        return True
                 return False
 
     def add_observation_which_state_you_know_not(self, obs):
