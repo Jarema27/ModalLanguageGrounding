@@ -7,13 +7,12 @@ voice reader --
 Doda aliasy na IMki --
 Grounder,dodac czytanie dla OR i XOR ++
 threading --
-scenariusze--
 
 #Obserwacje++
 #Formowanie bpekow w reakcji na nadchodzace obserwacje++
-#Tworzenie holonow co 10 sekund
-#Tworzenie Holonow na zapytanie
-#Powiazanie z working memory
+#Tworzenie holonow co 10 sekund++
+#Tworzenie Holonow na zapytanie++
+#Powiazanie z working memory++
 
 Notki.
 Wrzucic pamiec do jakiejs wszeklasy
