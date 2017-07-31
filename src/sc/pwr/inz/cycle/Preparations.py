@@ -1,3 +1,4 @@
+from src.sc.pwr.inz.speech.Phonograph import Phonograph
 from src.sc.pwr.inz.memory.semantic.identifiers.UniqueName import UniqueName
 from src.sc.pwr.inz.memory.episodic.BaseProfile import BaseProfile
 from src.sc.pwr.inz.language.components.State import State
@@ -16,7 +17,7 @@ class Preparations:
         self.traits = list((x.get_traits() for x in self.object_type))
         self.identifiers = self.properly_prepare_identifiers()
         self.ims = self.set_ims()
-
+        self.phonograph = Phonograph()
         self.observations = self.extract_observations()
 
     def extract_observations(self):
