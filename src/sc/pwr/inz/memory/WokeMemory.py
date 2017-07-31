@@ -24,9 +24,12 @@ class WokeMemory:
 
     def get_holon_by_formula(self, formula, timestamp):
         for holon in self.holons:
-            if holon.is_applicable(formula):
+            if holon.is_applicable(formula) and timestamp == holon.get_timestamp():
                 return holon
-        if formula.get_type == TypeOfFormula.SF:
+            else:
+                holon.update(self.get_distributed_knowledge(holon.get_formula(), timestamp))
+                return holon
+        if formula.get_type() == TypeOfFormula.SF:
             dk = self.get_distributed_knowledge(formula, timestamp)
             new_holon = BinaryHolon(dk)
             self.holons.append(new_holon)

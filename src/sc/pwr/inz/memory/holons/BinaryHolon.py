@@ -18,6 +18,8 @@ class BinaryHolon(Holon):
         self.update(dk)
 
     def update(self, dk):
+        self.timestamp = dk.get_timestamp()
+        self.dk = dk
         if dk.get_formula().get_type() is not TypeOfFormula.SF:
             raise TypeError("Wrong type of formula has been provided, I only take simple ones")
         else:

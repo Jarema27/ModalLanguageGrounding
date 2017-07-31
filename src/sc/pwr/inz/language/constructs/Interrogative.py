@@ -118,4 +118,6 @@ class Interrogative(Sentence):
                 out.append(ModalOperator.BEL)
             elif float(ranges[6]) <= val <= float(ranges[7]):
                 out.append(ModalOperator.KNOW)
+            else:
+                out.append(ModalOperator.NOIDEA)
         return out
