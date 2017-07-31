@@ -11,7 +11,7 @@ from src.sc.pwr.inz.memory.semantic.ObjectType import ObjectType
 class Preparations:
 
     def __init__(self):
-        self.state_dict = {1: State.IS, 2: State.IS_NOT,3: State.MAYHAPS}
+        self.state_dict = {'1': State.IS, '2': State.IS_NOT, '3': State.MAYHAPS}
         self.object_type = ObjectType.get_object_types()
         self.traits = list((x.get_traits() for x in self.object_type))
         self.identifiers = self.properly_prepare_identifiers()

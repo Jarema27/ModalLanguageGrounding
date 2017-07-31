@@ -18,4 +18,7 @@ scenariusze--
 Notki.
 Wrzucic pamiec do jakiejs wszeklasy
 
+Refactor:
+Knowledge Boosters
+
 Gan+22#

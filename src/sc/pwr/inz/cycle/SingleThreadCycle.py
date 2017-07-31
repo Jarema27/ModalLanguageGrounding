@@ -1,7 +1,6 @@
 from sc.pwr.inz.language.constructs.Interrogative import Interrogative
 from sc.pwr.inz.memory.WokeMemory import WokeMemory
 from src.sc.pwr.inz.cycle.Preparations import Preparations
-import threading
 
 
 class SingleThreadCycle:
@@ -23,9 +22,9 @@ class SingleThreadCycle:
             self.memory.update_em_all(time)
 
         #   Not complementary segment of asking questions
-        question = Interrogative(None, None, None, None, "is RJ45 Bloody and is_not Twisted ?",
+        question = Interrogative(None, None, None, None, "is RJ45 Bloody and is Twisted ?",
                                  self.memory, time)
-        #question.ask()
+        print(question.ask())
 
     def __init__(self):
         self.preparations = Preparations()

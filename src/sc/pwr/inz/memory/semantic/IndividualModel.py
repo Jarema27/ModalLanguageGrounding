@@ -1,7 +1,3 @@
-from src.sc.pwr.inz.memory.semantic.identifiers import UniqueName
-from src.sc.pwr.inz.memory.semantic.identifiers import QRCode
-
-
 class IndividualModel:
     identifier = None
     object_type = None
@@ -29,10 +25,7 @@ class IndividualModel:
         return True
 
     def __eq__(self, other):
-        if isinstance(self.identifier, QRCode):
-            return self.identifier.get_code() == other.identifier.get_code()
-        elif isinstance(self.identifier, UniqueName):
-            return self.identifier.get_code() == other.identifier.get_code()
+        return self.identifier.get_code() == other.identifier.get_code()
 
     def __str__(self):
         return "IndividualModel{" + "identifier=" + str(self.identifier) + "}"
