@@ -1,3 +1,7 @@
+from src.sc.pwr.inz.memory.semantic.identifiers import UniqueName
+from src.sc.pwr.inz.memory.semantic.identifiers import QRCode
+
+
 class IndividualModel:
     identifier = None
     object_type = None
@@ -12,10 +16,10 @@ class IndividualModel:
     def get_object_type(self):
         return self.object_type
 
-    def set_identifier(self,idn):
+    def set_identifier(self, idn):
         self.identifier = idn
 
-    def set_object_type(self,ot):
+    def set_object_type(self, ot):
         self.object_type = ot
 
     def check_if_contains_traits(self, traits):
@@ -25,7 +29,10 @@ class IndividualModel:
         return True
 
     def __eq__(self, other):
-        return self.identifier.get_code() == other.identifier.get_code()
+        if isinstance(self.identifier, QRCode):
+            return self.identifier.get_code() == other.identifier.get_code()
+        elif isinstance(self.identifier, UniqueName):
+            return self.identifier.get_code() == other.identifier.get_code()
 
     def __str__(self):
         return "IndividualModel{" + "identifier=" + str(self.identifier) + "}"

@@ -1,3 +1,5 @@
+from time import time
+
 from src.sc.pwr.inz.language.components.Formula import TypeOfFormula
 from src.sc.pwr.inz.language.constructs.Declarative import Declarative
 from src.sc.pwr.inz.language.components.LogicalOperator import LogicalOperator
@@ -11,9 +13,14 @@ from src.sc.pwr.inz.language.components.ModalOperator import ModalOperator
 
 class Interrogative(Sentence):
 
-    def __init__(self, subject=None, traits=None, states=None, logicaloperator=None, plaintext=None, memory=None):
+    def __init__(self, subject=None, traits=None, states=None, logicaloperator=None, plaintext=None, memory=None,
+                 timestamp=None):
         self.dict = {'is': State.IS, 'is_not': State.IS_NOT, 'might_be': State.MAYHAPS,
                      'and': LogicalOperator.AND, 'or': LogicalOperator.OR}
+        if timestamp is None:
+            self.timestamp = time()
+        else:
+            self.timestamp = timestamp
         if subject is not None and traits is not None:
             self.subject = subject
             self.traits = traits
@@ -51,7 +58,7 @@ class Interrogative(Sentence):
                    + str(self.LO) + "" + str(self.states[1]) + "" + str(self.traits[1]) + "?"
 
     def ask(self):
-        epistemic_values = self.memory.get_holon_by_formula(self.formula)
+        epistemic_values = self.memory.get_holon_by_formula(self.formula, self.timestamp)
         pass_responsibility = self.get_epistemic_conclusion(epistemic_values)
         if hasattr(self, 'LO'):
             return Declarative(self.subject, self.traits, self.states, self.LO, pass_responsibility[0])

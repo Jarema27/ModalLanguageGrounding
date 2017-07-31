@@ -12,7 +12,10 @@
       <w>groundingsets</w>
       <w>holons</w>
       <w>identificator</w>
+      <w>imodels</w>
       <w>inbetween</w>
+      <w>indiv</w>
+      <w>indivmodels</w>
       <w>interr</w>
       <w>konieczny</w>
       <w>krasny</w>
@@ -29,6 +32,7 @@
       <w>suma</w>
       <w>testowyinterrcomplex</w>
       <w>traitname</w>
+      <w>traitsnstates</w>
       <w>tuplecik</w>
       <w>vallist</w>
       <w>zbigniew</w>

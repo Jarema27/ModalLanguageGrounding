@@ -5,7 +5,7 @@ from src.sc.pwr.inz.language.components.State import State
 
 class BaseProfile:
 
-    def __init__(self, timestamp = None, observations = None):
+    def __init__(self, timestamp=None, observations=None):
         if timestamp is None:
             self.timestamp = time()
         else:

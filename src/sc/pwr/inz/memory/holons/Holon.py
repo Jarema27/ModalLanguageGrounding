@@ -36,6 +36,10 @@ class Holon(ABC):
     def get_formula(self):
         pass
 
+    @abstractmethod
+    def get_timestamp(self):
+        pass
+
 
 class HolonKind(Enum):
     BH = 'BinaryHolon'

@@ -6,6 +6,9 @@ from src.sc.pwr.inz.memory.holons.Holon import Holon, HolonKind
 
 class BinaryHolon(Holon):
 
+    def get_timestamp(self):
+        return self.timestamp
+
     def __init__(self, dk):
         super().__init__()
         self.formula = dk.get_formula()

@@ -8,28 +8,37 @@ from src.sc.pwr.inz.language.components.Formula import TypeOfFormula
 
 class WokeMemory:
 
-    def __init__(self, holons, bpcollective, imodels=None):
-        self.holons = holons
-        self.bpcollective = bpcollective
-        self.indiv = imodels
+    def __init__(self, holons=None, bpcollective=None, imodels=None):
+        if holons is None:
+            self.holons = []
+        else:
+            self.holons = holons
+        if bpcollective is None:
+            self.bpcollective = []
+        else:
+            self.bpcollective = bpcollective
+        if imodels is None:
+            self.indiv = []
+        else:
+            self.indiv = imodels
 
-    def get_holon_by_formula(self, formula):
+    def get_holon_by_formula(self, formula, timestamp):
         for holon in self.holons:
             if holon.is_applicable(formula):
                 return holon
         if formula.get_type == TypeOfFormula.SF:
-            dk = self.get_distributed_knowledge(formula)
+            dk = self.get_distributed_knowledge(formula, timestamp)
             new_holon = BinaryHolon(dk)
             self.holons.append(new_holon)
             return new_holon
         else:
-            dk = self.get_distributed_knowledge(formula)
+            dk = self.get_distributed_knowledge(formula, timestamp)
             new_holon = NonBinaryHolon(dk)
             self.holons.append(new_holon)
             return new_holon
 
-    def get_distributed_knowledge(self, formula):
-        return DistributedKnowledge(formula, self.bpcollective, time())
+    def get_distributed_knowledge(self, formula, timestamp):
+        return DistributedKnowledge(formula, self.get_bp_with_timestamp(timestamp), timestamp)
 
     def add_bp(self, bp):
         self.bpcollective.append(bp)
@@ -42,3 +51,10 @@ class WokeMemory:
 
     def get_indivmodels(self):
         return self.indiv
+
+    def update_em_all(self, timestamp):
+        for h in self.holons:
+            h.update(self.get_distributed_knowledge(h.get_formula(), timestamp))
+
+    def get_bp_with_timestamp(self, timestamp):
+        return list(x for x in self.bpcollective if int(x.get_timestamp()) == timestamp)
