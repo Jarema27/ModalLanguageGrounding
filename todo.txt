@@ -18,6 +18,8 @@ threading ++ :
 #Tworzenie Holonow na zapytanie++
 #Powiazanie z working memory++
 
+Kontekst -------------
+
 Notki.
 Wrzucic pamiec do jakiejs wszeklasy
 
@@ -25,3 +27,6 @@ Refactor:
 Knowledge Boosters
 
 Gan+22#
+
+SubM
+Porównywanie obserwacji z uprzednio zbudowanymi modelami mentalnymi

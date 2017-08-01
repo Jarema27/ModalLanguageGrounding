@@ -1,4 +1,4 @@
-from src.sc.pwr.inz.memory.SubconciousMemory import SubconciousMemory
+from src.sc.pwr.inz.memory.SubconsciousMemory import SubconsciousMemory
 from src.sc.pwr.inz.language.constructs.Interrogative import Interrogative
 from src.sc.pwr.inz.memory.WokeMemory import WokeMemory
 from src.sc.pwr.inz.cycle.Preparations import Preparations
@@ -112,7 +112,7 @@ class MultiThreadCycle:
         self.obs = []
         self.active_questions = []
         self.timer = 0
-        self.sub_memory = SubconciousMemory()
+        self.sub_memory = SubconsciousMemory()
         self.new_observations_flag = False
         self.semaphore = [0, 0, 0, 0]
         #        threads [listening, answering, mind, capturing]

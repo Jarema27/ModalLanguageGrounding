@@ -1,5 +1,13 @@
 import speech_recognition as sr
 
+"""
+This module serves purpose of converting speech to strings,which could be further used in agent's processes.
+
+Todo:
+    Make class out of it
+    Test the shit out of it
+"""
+
 r = sr.Recognizer()
 with sr.Microphone() as source:
     print("Say something!")

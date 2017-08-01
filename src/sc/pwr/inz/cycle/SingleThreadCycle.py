@@ -1,5 +1,5 @@
 from src.sc.pwr.inz.language.constructs.Interrogative import Interrogative
-from src.sc.pwr.inz.memory.SubconciousMemory import SubconciousMemory
+from src.sc.pwr.inz.memory.SubconsciousMemory import SubconsciousMemory
 from src.sc.pwr.inz.memory.WokeMemory import WokeMemory
 from src.sc.pwr.inz.cycle.Preparations import Preparations
 
@@ -56,7 +56,7 @@ class SingleThreadCycle:
         self.preparations = Preparations()
         self.memory = WokeMemory(None, None, self.preparations.ims)
         self.is_busy = False
-        self.sub_memory = SubconciousMemory()
+        self.sub_memory = SubconsciousMemory()
 
     def capture_observations(self, timer):
         print("Receiving observations")
