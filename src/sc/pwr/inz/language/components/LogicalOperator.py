@@ -1,5 +1,9 @@
 from enum import Enum
 
+"""
+Logical Operator Enum represents logical operators present in common speech
+"""
+
 
 class LogicalOperator(Enum):
     OR = 'OR'

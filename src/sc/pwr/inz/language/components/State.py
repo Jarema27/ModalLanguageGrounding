@@ -1,5 +1,11 @@
 from enum import Enum
 
+"""
+Enum represents possible state of object, IS - when we can certainly tell that something was observed,
+IS_NOT when we're certain that we didn't observe such trait
+MAYHAPS - When we're not sure whether thing we observed was or was not
+"""
+
 
 class State(Enum):
     IS = 1

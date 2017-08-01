@@ -4,7 +4,7 @@ Implementacja:
 
 
 voice reader --
-
+Documentation SF,CF i styka
 
 #Obserwacje++
 #Formowanie bpekow w reakcji na nadchodzace obserwacje++

@@ -1,5 +1,9 @@
 from enum import Enum
 
+""""
+Enum Modal Operator made in order to picture human's understatement of epistemic values
+"""
+
 
 class ModalOperator(Enum):
     BEL = 'BEL'

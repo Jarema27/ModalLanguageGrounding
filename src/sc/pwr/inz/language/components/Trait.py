@@ -1,11 +1,22 @@
 
+"""
+Class representing Trait like Red,Elliptical etc.
+"""
+
+
 class Trait:
     name = ""
 
-    def __init__(self,name):
+    def __init__(self, name):
+        """
+        :param name (str): name of trait
+        """
         self.name = name
 
     def gib_name(self):
+        """
+        :return: name of trait
+        """
         return self.name
 
     def __str__(self):

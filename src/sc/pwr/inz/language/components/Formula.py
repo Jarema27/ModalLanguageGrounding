@@ -1,6 +1,10 @@
 from abc import ABC, abstractmethod
 from enum import Enum
 
+"""
+Superclass of Formula. Represents formula present in natural language.
+"""
+
 
 class Formula(ABC):
 
@@ -31,6 +35,10 @@ class Formula(ABC):
     @abstractmethod
     def __eq__(self, other):
         pass
+
+"""
+Enum made in order to distinguish types of formulas from each other
+"""
 
 
 class TypeOfFormula(Enum):
