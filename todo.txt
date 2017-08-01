@@ -19,6 +19,7 @@ threading ++ :
 #Powiazanie z working memory++
 
 Kontekst -------------
+Object Type winien dziedziczyc po sobie Ryba,Rekin etc. ka?dy ma nowe cechy.
 
 Notki.
 Wrzucic pamiec do jakiejs wszeklasy

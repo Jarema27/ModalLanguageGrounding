@@ -1,5 +1,9 @@
 from abc import ABC, abstractmethod
 
+"""
+Identifier module serves us to be able to differ one object from another.
+"""
+
 
 class Identifier(ABC):
 
