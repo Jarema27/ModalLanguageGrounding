@@ -50,6 +50,12 @@ class Interrogative(Sentence):
     def get_subject(self):
         return self.subject
 
+    def get_timestamp(self):
+        return self.timestamp
+
+    def set_timestamp(self, other):
+        self.timestamp = other
+
     def __str__(self):
         if len(self.traits) == 1:
             return str(self.states[0]) + " " + str(self.subject) + " " + str(self.traits[0]) + "?"
@@ -96,6 +102,7 @@ class Interrogative(Sentence):
             raise ValueError(" Question ain't properly built ")
 
     def get_epistemic_conclusion(self, holon):
+        values = 0
         if holon.get_formula().get_type() == TypeOfFormula.SF:
             values = holon.get_tao_for_state(self.formula.get_states()[0])
         elif holon.get_formula().get_type() == TypeOfFormula.CF:

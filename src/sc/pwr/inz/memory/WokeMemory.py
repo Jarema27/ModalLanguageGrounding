@@ -20,8 +20,10 @@ class WokeMemory:
         else:
             self.indiv = imodels
         self.point_of_no_return = 0
+        self.timestamp = 0
 
     def get_holon_by_formula(self, formula, timestamp):
+        self.timestamp = timestamp
         for holon in self.holons:
             if holon.is_applicable(formula) and timestamp == holon.get_timestamp():
                 return holon
@@ -53,6 +55,9 @@ class WokeMemory:
 
     def get_indivmodels(self):
         return self.indiv
+
+    def get_timestamp(self):
+        return self.timestamp
 
     def update_em_all(self, timestamp):
         for h in self.holons:

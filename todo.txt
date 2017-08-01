@@ -6,10 +6,10 @@ voice speaker ++
 voice reader --
 Doda aliasy na IMki ++
 Grounder,dodac czytanie dla OR i XOR ++
-threading +- :
+threading ++ :
 
-    Zadawanie pytan
-    Formowanie odpowiedzi
+    Zadawanie pytan ++
+    Formowanie odpowiedzi   ++
     Odpowiadanie na przetwarzana wartosc holonu
 
 #Obserwacje++
