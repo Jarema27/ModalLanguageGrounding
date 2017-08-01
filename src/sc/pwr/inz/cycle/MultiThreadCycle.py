@@ -53,9 +53,10 @@ class MultiThreadCycle:
             logging.debug(" I'm listening ")
             if self.semaphore[0] == 1:
                 if len(self.active_questions) > 0:
-                    self.semaphore[1] = 1
                     for question in self.active_questions:
+                        print(question)
                         question.set_timestamp(self.timer)
+                    self.semaphore[2] = 1
             else:
                 time.sleep(3)
             time.sleep(1)
@@ -69,13 +70,13 @@ class MultiThreadCycle:
         while True:
             logging.debug(" I'm able to answer")
             if self.semaphore[1] == 1:
-                if len(self.active_questions) == 0:
+                if len(self.answers) == 0:
                     self.semaphore[1] = 0
                 else:
-                    for question in self.active_questions:
+                    for answer in self.answers:
                         print("Based on observations taken in moment of " + str(self.memory.get_timestamp()) + " "
-                              + str(question.ask()))
-                        self.active_questions.remove(question)
+                              + answer)
+                        self.answers.remove(answer)
                     self.semaphore[1] = 0
             else:
                 time.sleep(3)
@@ -98,6 +99,16 @@ class MultiThreadCycle:
                 self.semaphore[2] = 0
                 if self.timer % 5 == 0:
                     self.memory.update_em_all(self.timer)
+
+                if len(self.active_questions) == 0:
+                    self.semaphore[2] = 0
+                else:
+                    for question in self.active_questions:
+                        self.answers.append(str(question.ask()))
+                        self.active_questions.remove(question)
+                    self.semaphore[1] = 1
+                    self.semaphore[2] = 0
+
             else:
                 time.sleep(2)
                 self.timer += 1
@@ -139,6 +150,7 @@ class MultiThreadCycle:
         self.timer = 0
         self.sub_memory = SubconsciousMemory()
         self.new_observations_flag = False
+        self.answers = []
         self.semaphore = [0, 0, 0, 0]
         #        threads [listening, answering, mind, capturing]
 
