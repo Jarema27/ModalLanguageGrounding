@@ -2,15 +2,10 @@ Testy:
 
 Implementacja:
 
-voice speaker ++
-voice reader --
-Doda aliasy na IMki ++
-Grounder,dodac czytanie dla OR i XOR ++
-threading ++ :
 
-    Zadawanie pytan ++
-    Formowanie odpowiedzi   ++
-    Odpowiadanie na przetwarzana wartosc holonu
+voice reader --
+
+Ogarnac MTC, answering daloby sie zrobic tak aby mind robil ask a answer tylko go czytal
 
 #Obserwacje++
 #Formowanie bpekow w reakcji na nadchodzace obserwacje++

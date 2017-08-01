@@ -8,6 +8,11 @@ from src.sc.pwr.inz.memory.semantic.IndividualModel import IndividualModel
 from src.sc.pwr.inz.memory.semantic.KnowledgeBoosters.XMLReader import XMLReader
 from src.sc.pwr.inz.memory.semantic.ObjectType import ObjectType
 
+"""
+Module responsible for setting data up and preparing it to fire agent up.
+Metaphoric 5 minutes after waking up.
+"""
+
 
 class Preparations:
 
@@ -21,6 +26,10 @@ class Preparations:
         self.observations = self.extract_observations()
 
     def extract_observations(self):
+        """
+        Gets observation data extracted from csv file and turns them into actual objects
+        :return: list(Observation): list of observations
+        """
         scope = CSVReader.get_some_observations()
         out = []
         for x in scope:
@@ -33,18 +42,34 @@ class Preparations:
         return out
 
     def get_object_type(self, a):
+        """
+        :param a: Identifier : which OT we desire to find
+        :return:  ObjectType: with a as identifier
+        """
         return list((x for x in self.ims if a == x.get_identifier()))
 
     def set_ims(self):
+        """
+        :return: list(IndividualModel): based on Identifiers and OT we read
+        """
         out = []
         for i in range(0, min(len(self.identifiers), len(self.object_type))):
             out.append(IndividualModel(self.identifiers[i], self.object_type[i]))
         return out
 
     def get_observations_with_timestamp(self, timestamp):
+        """
+
+        :param timestamp: Point in time
+        :return: list(Observation): with given timestamp or empty list
+        """
         return list(x for x in self.observations if int(x.get_timestamp()) == timestamp)
 
-    def properly_prepare_identifiers(self):
+    @staticmethod
+    def properly_prepare_identifiers():
+        """
+        :return: list(Identifier): list of identifiers read from xml
+        """
         unique_names = XMLReader.read_ids()
         out = []
         for name in unique_names:
@@ -53,4 +78,9 @@ class Preparations:
 
     @staticmethod
     def prepare_bps(timestamp, observations):
+        """
+        :param timestamp: point in time
+        :param observations: observations from x=csv
+        :return: BaseProfile : made from given timestamp and observations
+        """
         return BaseProfile(timestamp, observations)

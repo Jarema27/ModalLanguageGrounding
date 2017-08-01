@@ -3,9 +3,16 @@ from src.sc.pwr.inz.memory.SubconsciousMemory import SubconsciousMemory
 from src.sc.pwr.inz.memory.WokeMemory import WokeMemory
 from src.sc.pwr.inz.cycle.Preparations import Preparations
 
+"""
+Module being a cycle in which agent will work, simple way of presenting functionality of agent
+"""
+
 
 class SingleThreadCycle:
     def main(self):
+        """
+        Method in which we initialize time,capturing observations and asking questions along with computing them
+        """
         #       while True:
         time = 1
         self.capture_observations(time)
@@ -59,6 +66,10 @@ class SingleThreadCycle:
         self.sub_memory = SubconsciousMemory()
 
     def capture_observations(self, timer):
+        """
+        :param timer: int: point in time
+        :return: Observations with given timestamp
+        """
         print("Receiving observations")
         obs = self.preparations.get_observations_with_timestamp(timer)
         if len(obs) == 0:

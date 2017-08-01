@@ -6,6 +6,11 @@ import logging
 import time
 import threading
 
+"""
+Module being a cycle in which agent will work, it's way more precise than SingleThread, also allows for a 
+few interesting behaviors
+"""
+
 
 class MultiThreadCycle:
 
@@ -14,6 +19,10 @@ class MultiThreadCycle:
                         )
 
     def main(self):
+        """
+        Main method managing threads and initializing new questions,in real life ,questions should be initialized in
+        listening_service
+        """
         self.thread_listening.start()
         self.thread_answering.start()
         self.thread_mind.start()
@@ -35,6 +44,10 @@ class MultiThreadCycle:
         self.active_questions.append(question)
 
     def listening_service(self):
+        """
+        Thread of agent which is always active, it waits for questions and even after receiving one,is still active.
+        Whenever question appears it changes answering_service's semaphore to 1 which allows it to work.
+        """
         logging.debug(" I'm able to listen")
         while True:
             logging.debug(" I'm listening ")
@@ -49,6 +62,10 @@ class MultiThreadCycle:
         #    logging.debug(" Cannot listen anymore ")
 
     def answering_service(self):
+        """
+        Answering thread ,focused on answering questions delivered by listening thread and processed by mind thread
+        Puts itself to sleep after it answers the question.
+        """
         while True:
             logging.debug(" I'm able to answer")
             if self.semaphore[1] == 1:
@@ -65,6 +82,10 @@ class MultiThreadCycle:
         #   logging.debug(" Exiting ")
 
     def mind(self):
+        """
+        Thread responsible for processing data either acquired by other threads or the one in memory in order
+         to process them and perfect it's cognitive abilities
+        """
         logging.debug(" Mind is present ")
         while True:
             logging.debug(" thinking... ")
@@ -83,6 +104,10 @@ class MultiThreadCycle:
         #    logging.debug(" Falling asleep ")
 
     def capture(self):
+        """
+        Thread responsible for capturing new observations,whenever it does,it sets mind semaphore to awake
+        thread to process them. It's always active.
+        """
         inner_timer = 0
         while True:
             logging.debug(" Watching ")
@@ -118,6 +143,10 @@ class MultiThreadCycle:
         #        threads [listening, answering, mind, capturing]
 
     def capture_observations(self, timer):
+        """
+        Captures observations in given moment
+        :param timer: timestamp which we use to acquire observations from
+        """
         print("Receiving observations")
         self.obs = self.preparations.get_observations_with_timestamp(timer)
         if len(self.obs) == 0:
