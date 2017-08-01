@@ -28,32 +28,32 @@ class DistributedKnowledge:
 
     def get_formula(self):
         """
-        :return: Formula: formula of this DK
+        :return Formula: formula of this DK
         """
         return self.formula
 
     def get_grounding_sets(self):
         """
-        :return: dict{Trait:BaseProfile}
+        :return dict{Trait:BaseProfile}
         """
         return self.groundingsets
 
     def get_timestamp(self):
         """
-        :return: int: timestamp
+        :return int: timestamp
         """
         return self.timestamp
 
     def get_bpset(self):
         """
-        :return: list(BaseProfile)
+        :return list(BaseProfile)
         """
         return self.bpset
 
     def get_grounding_set(self, formula):
         """
         :param formula: Formula which grounding sets we wish to get
-        :return: list(BaseProfile): List of BP which include given formula
+        :return list(BaseProfile): List of BP which include given formula
         """
         if formula in self.groundingsets.keys():
             out = []
@@ -67,7 +67,7 @@ class DistributedKnowledge:
     def get_complementary_formulas(self):
         """
         Gives set of complementary formulas, for full explanation visit Formula
-        :return: list(Formula)
+        :return list(Formula)
         """
         return self.formula.get_complementary_formulas()
 

@@ -1,6 +1,11 @@
 from abc import ABC, abstractmethod
 from enum import Enum
 
+"""
+Module containing superclass Sentence, subclasses are Imperative, Declarative, Interrogative and Exclamatory.
+Based on english language.
+"""
+
 
 class Sentence(ABC):
 
@@ -15,6 +20,10 @@ class Sentence(ABC):
     @abstractmethod
     def get_kind(self):
         pass
+
+"""
+Enum showing us what kind of Sentence we deal with
+"""
 
 
 class SentenceType(Enum):

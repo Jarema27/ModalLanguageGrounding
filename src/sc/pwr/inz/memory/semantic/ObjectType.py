@@ -21,20 +21,20 @@ class ObjectType:
 
     def get_type_id(self):
         """
-        :return: Identifier: of this OT
+        :return Identifier: of this OT
         """
         return self.typeId
 
     def get_traits(self):
         """
-        :return: traits which this OT can have
+        :return traits which this OT can have
         """
         return self.traits
 
     def find_trait_by_name(self, name):
         """
         :param name: name of trait which we want to find
-        :return: list of traits with such name
+        :return list of traits with such name
         """
         return list((x for x in self.traits if x.gib_name() == name))[0]
 
@@ -45,7 +45,7 @@ class ObjectType:
     def get_object_types():
         """
         Method using XMLReader to extract object types from XML File
-        :return: list(ObjectType)
+        :return list(ObjectType)
         """
         rot = XMLReader()
         desc = rot.read_object_types_xml()

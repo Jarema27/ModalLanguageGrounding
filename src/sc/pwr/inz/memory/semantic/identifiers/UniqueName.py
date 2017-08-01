@@ -17,7 +17,7 @@ class UniqueName(Identifier):
 
     def get_code(self):
         """
-        :return: unique name
+        :return (str) unique name
         """
         return self.name
 

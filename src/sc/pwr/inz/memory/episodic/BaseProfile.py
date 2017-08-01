@@ -52,25 +52,25 @@ class BaseProfile:
 
     def get_observations_is(self):
         """
-        :return: dict(Trait:Observation): Dictionary of Observations with State IS
+        :return dict(Trait:Observation): Dictionary of Observations with State IS
         """
         return self.observationsIS
 
     def get_observations_is_not(self):
         """
-        :return: dict(Trait:Observation): Dictionary of Observations with State IS_NOT
+        :return dict(Trait:Observation): Dictionary of Observations with State IS_NOT
         """
         return self.observationsIS_NOT
 
     def get_observations_mayhaps(self):
         """
-        :return: dict(Trait:Observation): Dictionary of Observations with State MAYHAPS
+        :return dict(Trait:Observation): Dictionary of Observations with State MAYHAPS
         """
         return self.observationsMAYHAPS
 
     def get_timestamp(self):
         """
-        :return: int : timestamp
+        :return int : timestamp
         """
         return self.timestamp
 
@@ -101,7 +101,7 @@ class BaseProfile:
     def get_observed_ims(self):
         """
         Method giving all IMs which appeared in observations
-        :return: list(IndividualModel)
+        :return list(IndividualModel)
         """
         return list(set([x.identifier for x in self.observations]))
 
@@ -111,7 +111,7 @@ class BaseProfile:
             :param im: IndividualModel
             :param trait: Trait
             :param state: State
-            :return: Boolean : depending weather such im had given trait in given state
+            :return Boolean : depending weather such im had given trait in given state
             """
             if state == State.IS:
                 if trait in self.observationsIS.keys():
@@ -139,7 +139,7 @@ class BaseProfile:
 
     def give_all_traits_involved(self):
         """
-        :return: list(Trait): list of traits which were observed
+        :return list(Trait): list of traits which were observed
         """
         out = []
         for obs in self.observations:

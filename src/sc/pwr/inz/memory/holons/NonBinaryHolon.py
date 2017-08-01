@@ -12,7 +12,7 @@ class NonBinaryHolon(Holon):
 
     def get_timestamp(self):
         """
-        :return: int: timestamp
+        :return int: timestamp
         """
         return self.timestamp
 
@@ -31,7 +31,7 @@ class NonBinaryHolon(Holon):
     def get_complementary_formulas(self):
         """
         For more info goto Formula
-        :return:list(Formula) Complementary Formulas
+        :return list(Formula) Complementary Formulas
         """
         return self.formula.get_complementary_formulas()
 
@@ -57,7 +57,7 @@ class NonBinaryHolon(Holon):
         """
         :param state1: State : which we want to know,either IS or IS_NOT
         :param state2: State : which we want to know,either IS or IS_NOT
-        :return: int: Returns value of tao for given state
+        :return int: Returns value of tao for given state
         """
         dicdic = {(State.IS, State.IS): 0, (State.IS, State.IS_NOT): 1, (State.IS_NOT, State.IS): 2,
                   (State.IS_NOT, State.IS_NOT): 3}
@@ -65,26 +65,26 @@ class NonBinaryHolon(Holon):
 
     def get_kind(self):
         """
-        :return: HolonKind:  Returns information that it's Binary Holon
+        :return HolonKind:  Returns information that it's Binary Holon
         """
         return HolonKind.NBH
 
     def get_tao(self):
         """
-        :return: list(int): Four element list containing four sides of tao
+        :return list(int): Four element list containing four sides of tao
         """
         return self.tao
 
     def is_applicable(self, formula):
         """
         :param formula: Formula : which we want to check if can be applied to this specific Holon
-        :return: Boolean: Depending if formula is applicable or not
+        :return Boolean: Depending if formula is applicable or not
         """
         return formula in self.formula.get_complementary_formulas()
 
     def get_formula(self):
         """
-        :return: Formula: formula of this holon
+        :return Formula: formula of this holon
         """
         return self.formula
 

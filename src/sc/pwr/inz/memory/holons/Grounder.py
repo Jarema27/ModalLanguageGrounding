@@ -14,7 +14,7 @@ class Grounder:
         formula was fulfilled a.e when carpet indeed was red.
         :param dk : DistributedKnowledge: contains most of data which we will seek truth in
         :param formula: Formula : Given formula we'd want to find answer for
-        :return: int : Number of times given formula was observed
+        :return int : Number of times given formula was observed
         """
         if (dk.get_formula().get_type() == formula.get_type()) and (formula in dk.get_complementary_formulas()):
             count = 0
@@ -33,7 +33,7 @@ class Grounder:
         formula was fulfilled a.e when carpet indeed was red and fluffy.
         :param dk:  DistributedKnowledge: contains most of data which we will seek truth in
         :param formula: Formula : Given formula we'd want to find answer for
-        :return: int : Number of times given formula was observed
+        :return int : Number of times given formula was observed
         """
         if (dk.get_formula().get_type() == formula.get_type()) and (formula in dk.get_complementary_formulas()):
             count = 0

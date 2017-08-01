@@ -9,12 +9,26 @@ from src.sc.pwr.inz.language.components.SimpleFormula import SimpleFormula
 from src.sc.pwr.inz.language.components.ComplexFormula import ComplexFormula
 from src.sc.pwr.inz.language.constructs.Sentence import Sentence, SentenceType
 from src.sc.pwr.inz.language.components.ModalOperator import ModalOperator
+"""
+Sentence ,which serves purpose of acquiring data, usually ends up with ? and high pitched voice.
+"""
 
 
 class Interrogative(Sentence):
 
     def __init__(self, subject=None, traits=None, states=None, logicaloperator=None, plaintext=None, memory=None,
                  timestamp=None):
+        """
+        Again, names of attributes are pretty self explanatory
+        :param subject (IndividualModel): subject
+        :param traits (list(Trait) or Trait): traits
+        :param states (list(State) or State): states
+        :param logicaloperator (LogicalOperator): LO
+        :param plaintext (str): Interesting option to build question from plain text, must follow strict rules.
+        a.e ' is QRCode{id=1} Sowiecki ?' or 'is QRCode{id=2} Konieczny and is_not Bolszoj ?'
+        :param memory (WokeMemory): memory we associate this question with
+        :param timestamp (int): Moment in time when question was asked
+        """
         self.dict = {'is': State.IS, 'is_not': State.IS_NOT, 'might_be': State.MAYHAPS,
                      'and': LogicalOperator.AND, 'or': LogicalOperator.OR}
         if timestamp is None:
@@ -45,15 +59,28 @@ class Interrogative(Sentence):
                 self.formula = ComplexFormula(self.subject, self.traits, self.states, self.LO)
 
     def get_kind(self):
+        """
+        :return (SentenceType): Type of sentence, Interrogative in this kind
+        """
         return SentenceType.Int
 
     def get_subject(self):
+        """
+        :return (IndividualModel): subject
+        """
         return self.subject
 
     def get_timestamp(self):
+        """
+        :return (int): timestamp
+        """
         return self.timestamp
 
     def set_timestamp(self, other):
+        """
+        set timestamp
+        :param other : int: other timestamp
+        """
         self.timestamp = other
 
     def __str__(self):
@@ -64,6 +91,11 @@ class Interrogative(Sentence):
                    + str(self.LO) + "" + str(self.states[1]) + "" + str(self.traits[1]) + "?"
 
     def ask(self):
+        """
+        Method 'asks' question which means it finds or builds holon, then checks epistemic ranges and gets proper
+        modal operator and in the end builds Declarative based on acquired data
+        :return (Declarative): as answer to asked question
+        """
         epistemic_values = self.memory.get_holon_by_formula(self.formula, self.timestamp)
         pass_responsibility = self.get_epistemic_conclusion(epistemic_values)
         if hasattr(self, 'LO'):
@@ -72,6 +104,12 @@ class Interrogative(Sentence):
             return Declarative(self.subject, self.traits[0], self.states[0], None, pass_responsibility[0])
 
     def build_from_scraps(self, plaintext):
+        """
+        builds Interrogative object from string
+        :param plaintext: str: which will be turned into meaningful question
+        :raises ValueError: in case you didn't build your question properly
+        :return: self(Interrogative)
+        """
         shattered = plaintext.split(" ")
         imfound = None
         traitfound = None
@@ -102,6 +140,11 @@ class Interrogative(Sentence):
             raise ValueError(" Question ain't properly built ")
 
     def get_epistemic_conclusion(self, holon):
+        """
+        Acquires proper piece of tao and acquires Modal Operator for it.
+        :param holon: Holon which contains values we're interested in
+        :return: list(ModalOperator)
+        """
         values = 0
         if holon.get_formula().get_type() == TypeOfFormula.SF:
             values = holon.get_tao_for_state(self.formula.get_states()[0])
@@ -114,6 +157,11 @@ class Interrogative(Sentence):
 
     @staticmethod
     def check_epistemic_scope(vallist):
+        """
+        Gets ranges of each modal operator and returns proper ModalOperator
+        :param vallist: list(int): to which we want to obtain Modal Operators
+        :return list(ModalOperator)
+        """
         ranges = XMLReader.read_agent_variables()
         out = []
         for val in vallist:

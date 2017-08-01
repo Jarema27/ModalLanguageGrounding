@@ -16,7 +16,7 @@ class CSVReader:
     @staticmethod
     def get_some_observations():
         """
-        :return: observations read from Observations.csv
+        :return list(Observation): observations read from Observations.csv
         """
         out = []
         with open(os.path.dirname(__file__) + '/Observations.csv', 'r') as csvfile:

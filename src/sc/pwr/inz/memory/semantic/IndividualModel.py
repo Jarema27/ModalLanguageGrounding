@@ -21,13 +21,13 @@ class IndividualModel:
 
     def get_identifier(self):
         """
-        :return: Identifier: of this IM
+        :return Identifier: of this IM
         """
         return self.identifier
 
     def get_object_type(self):
         """
-        :return: ObjectType : of this IM
+        :return ObjectType : of this IM
         """
         return self.object_type
 
@@ -47,7 +47,7 @@ class IndividualModel:
         """
         Determines if IM's ObjectType involved given traits
         :param traits: traits to test
-        :return: Boolean: True when trait is in object_type,False otherwise
+        :return Boolean: True when trait is in object_type,False otherwise
         """
         for x in traits:
             if x not in self.object_type.get_traits():

@@ -42,7 +42,7 @@ class WokeMemory:
         timestamp.
         :param formula : Formula, for which we want to find or create holon.
         :param timestamp: int, measure of time, used to specify which BPs and Observations we use
-        :return:    Holon, with freshly created tao
+        :return    Holon, with freshly created tao
         """
         self.timestamp = timestamp
         for holon in self.holons:
@@ -69,7 +69,7 @@ class WokeMemory:
         :param formula:  Formula, around which we build DistributedKnowledge
         :param timestamp: Integer, maximal value in range of time
         :param point:   Integer, minimal value in range of time
-        :return: DistributedKnowledge
+        :return DistributedKnowledge
         """
         return DistributedKnowledge(formula, self.get_bp_with_timestamp(point, timestamp), timestamp)
 
@@ -83,28 +83,28 @@ class WokeMemory:
     def get_holons(self):
         """
         Returns list of Holons from memory
-        :return: list(Holon): list of Holons stored in memory
+        :return list(Holon): list of Holons stored in memory
         """
         return self.holons
 
     def get_bpcollective(self):
         """
         Returns list of base profiles
-        :return: list(BaseProfile): list of base profiles stored in memory
+        :return list(BaseProfile): list of base profiles stored in memory
         """
         return self.bpcollective
 
     def get_indivmodels(self):
         """
         Returns list of individual models
-        :return: list(IndividualModel): list of individual models stored in memory
+        :return list(IndividualModel): list of individual models stored in memory
         """
         return self.indiv
 
     def get_timestamp(self):
         """
         Returns timestamp of WokeMemory which is last time it was used
-        :return: int: timestamp
+        :return int: timestamp
         """
         return self.timestamp
 
@@ -121,7 +121,7 @@ class WokeMemory:
         Method collecting all bp which timestamps are in range(point, timestamp)
         :param point: int: minimal value of time we take into consideration
         :param timestamp: int: maximal value of time we take into consideration
-        :return: list(BProfiles): BProfiles with timestamp in range (point, timestamp)
+        :return list(BProfiles): BProfiles with timestamp in range (point, timestamp)
         """
         return list(x for x in self.bpcollective if timestamp >= int(x.get_timestamp()) >= point)
 

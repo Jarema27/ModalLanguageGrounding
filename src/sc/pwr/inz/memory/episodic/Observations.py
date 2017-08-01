@@ -22,19 +22,19 @@ class Observation:
 
     def get_identifier(self):
         """
-        :return: observation's identifier
+        :return observation's identifier
         """
         return self.identifier
 
     def get_observed(self):
         """
-        :return: list(Trait): List of observed traits
+        :return list(Trait): List of observed traits
         """
         return self.observed
 
     def get_timestamp(self):
         """
-        :return: int : timestamp
+        :return int : timestamp
         """
         return self.timestamp
 

@@ -5,10 +5,22 @@ from src.sc.pwr.inz.language.components.SimpleFormula import SimpleFormula
 from src.sc.pwr.inz.language.components.Formula import TypeOfFormula
 from src.sc.pwr.inz.language.constructs.Sentence import Sentence,SentenceType
 
+"""
+Declarative is one of types of Sentence. As example 'Carl indeed was white' or 'She might have been stoked and broke'
+"""
+
 
 class Declarative(Sentence):
 
     def __init__(self, subject=None, traits=None, states=None, logicaloperator=None, modal_operator=None):
+        """
+        I really don't have any desire in explaining basic english
+        :param subject (IndividualModel): subject
+        :param traits (Trait or list(Traits)) : traits
+        :param states (State or list(State)) : states
+        :param logicaloperator (LogicalOperator): Logical operator
+        :param modal_operator (ModalOperator): Modal Operator
+        """
         self.subject = subject
         self.gentleman_dict = {ModalOperator.NOIDEA: 'I cannot tell if ',
                                ModalOperator.POS: 'I think its absolutely possible that ',
@@ -25,9 +37,15 @@ class Declarative(Sentence):
             self.modaloperator = modal_operator
 
     def get_kind(self):
+        """
+        :return (SentenceType): Type of sentence,in this one Declarative
+        """
         return SentenceType.Dec
 
     def get_subject(self):
+        """
+        :return IndividualModel: IM of this setnence
+        """
         return self.subject
 
     def __str__(self):

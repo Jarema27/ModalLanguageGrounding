@@ -17,7 +17,7 @@ class QRCode(Identifier):
 
     def get_code(self):
         """
-        :return: unique code
+        :return (str) unique code
         """
         return self.code
 
