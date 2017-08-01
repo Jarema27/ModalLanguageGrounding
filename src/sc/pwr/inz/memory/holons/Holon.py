@@ -1,6 +1,20 @@
 from abc import abstractmethod, ABC
 from enum import Enum
 
+"""
+Holon is mind representation of some knowledge. For centuries we learned how to transform simple Observations into 
+amazing mind creations called Holons. Holons contain knowledge about Formula, a.e Orange is orange. In time with every
+observation belief in the fact that Orange is orange is strengthened , until we see red orange. When we do,we update our
+belief, we don't start to believe that oranges are red, but we do know that not all oranges are orange,that bit of 
+uncertainty will remain in our minds forever. That's exactly what makes us human. Holon is represented by Tao.
+https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Tao_symbol.svg/463px-Tao_symbol.svg.png
+
+Tao is used for two main reasons. First is that it's accurate representation of idea that each formula we can think of
+might be fulfilled or not ,which is nicely presented in such metaphor.
+Secondly 'It pleases chinks' , I believe Chinese people like to imagine that people more coherent than
+third wave hippies are interested in their culture.
+"""
+
 
 class Holon(ABC):
 
@@ -42,5 +56,8 @@ class Holon(ABC):
 
 
 class HolonKind(Enum):
+    """
+    Enum showing us weather we deal with Binary or NonBinaryHolon
+    """
     BH = 'BinaryHolon'
     NBH = 'NonBinaryHolon'
