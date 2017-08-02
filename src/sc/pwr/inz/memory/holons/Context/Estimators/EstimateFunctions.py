@@ -5,10 +5,6 @@ from enum import Enum
 class EstimateFunctions(ABC):
 
     @abstractmethod
-    def __init__(self):
-        pass
-
-    @abstractmethod
     def get_kind_of_estimator(self):
         pass
 

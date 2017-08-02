@@ -33,10 +33,10 @@ class CompositeContext(UberContext):
         trait_is_not = list(x.get_observations_is_not().keys() for x in bpset)
         for t in trait_is:
             for bp in bpset:
-                if t not in bp.get_observations_is():
+                if t not in bp.get_observations_is().keys():
                     trait_is.remove(t)
         for t in trait_is_not:
             for bp in bpset:
-                if t not in bp.get_observations_is_not():
+                if t not in bp.get_observations_is_not().keys():
                     trait_is_not.remove(t)
         return trait_is, trait_is_not
