@@ -3,19 +3,37 @@ from src.sc.pwr.inz.language.components.State import State
 
 from src.sc.pwr.inz.language.components.Trait import Trait
 
+"""
+    Module representing Simple Formula ,which is widely present in natural speech. Simple formula contains one trait and
+     state of this trait, example : 'Is this plant blue?'
+"""
+
 
 class SimpleFormula(Formula):
 
     def get_states(self):
+        """
+        :return list(State) : one member list of State used in formula
+        """
         return [self.state]
 
     def get_model(self):
+        """
+        :return (IndividualModel): returns IM used to build this Formula
+        """
         return self.indiv_model
 
     def get_type(self):
+        """
+        :return (TypeOfFormula.SF): Returns Type of Formula,Simple one in this case
+        """
         return TypeOfFormula.SF
 
     def get_complementary_formulas(self):
+        """
+        Complementary formulas are all formulas which could be acquired from given set of IM and traits
+        :return list(Formula): list of two formulas,mind the order.
+        """
         temp1 = SimpleFormula(self.indiv_model, self.trait, State.IS)
         temp2 = SimpleFormula(self.indiv_model, self.trait, State.IS_NOT)
         return [temp1, temp2]
@@ -38,6 +56,9 @@ class SimpleFormula(Formula):
             raise Exception("Obligatory fields include variables with None value")
 
     def get_traits(self):
+        """
+        :return list(Trait): One member list of Trait
+        """
         return [self.trait]
 
     def __hash__(self):

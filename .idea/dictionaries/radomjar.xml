@@ -5,6 +5,7 @@
       <w>asctime</w>
       <w>barowalny</w>
       <w>bartek</w>
+      <w>benchtraits</w>
       <w>bolszoj</w>
       <w>bpcollective</w>
       <w>bpset</w>
@@ -22,14 +23,18 @@
       <w>indivmodels</w>
       <w>interr</w>
       <w>konieczny</w>
+      <w>kontekst</w>
       <w>krasny</w>
+      <w>maxthreshold</w>
       <w>mayhaps</w>
       <w>modaloperator</w>
       <w>nbholon</w>
       <w>newo</w>
       <w>noidea</w>
       <w>nstates</w>
+      <w>nuff</w>
       <w>obly</w>
+      <w>pointful</w>
       <w>pszemek</w>
       <w>pyttsx</w>
       <w>sowiecki</w>
@@ -39,6 +44,7 @@
       <w>traitname</w>
       <w>traitsnstates</w>
       <w>tuplecik</w>
+      <w>uber</w>
       <w>vallist</w>
       <w>zbigniew</w>
     </words>

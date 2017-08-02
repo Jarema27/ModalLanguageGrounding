@@ -1,22 +1,12 @@
 Testy:
 
 Implementacja:
-
-
-voice reader --
-Documentation SF,CF i styka
-
-#Obserwacje++
-#Formowanie bpekow w reakcji na nadchodzace obserwacje++
-#Tworzenie holonow co 10 sekund++
-#Tworzenie Holonow na zapytanie++
-#Powiazanie z working memory++
+todo Kontekst
 
 Kontekst -------------
-Object Type winien dziedziczyc po sobie Ryba,Rekin etc. ka?dy ma nowe cechy.
 
-Notki.
-Wrzucic pamiec do jakiejs wszeklasy
+
+Object Type winien dziedziczyc po sobie Ryba,Rekin etc. ka?dy ma nowe cechy.
 
 Refactor:
 Knowledge Boosters

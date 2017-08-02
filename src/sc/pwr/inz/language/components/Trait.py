@@ -1,6 +1,6 @@
 
 """
-Class representing Trait like Red,Elliptical etc.
+Class representing Trait a.e Red,Elliptical
 """
 
 
