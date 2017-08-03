@@ -1,9 +1,10 @@
-from src.sc.pwr.inz.language.constructs.Interrogative import Interrogative
-from src.sc.pwr.inz.memory.WokeMemory import WokeMemory
-from src.sc.pwr.inz.cycle.Preparations import Preparations
 import logging
-import time
 import threading
+import time
+
+from src.sc.pwr.inz.memory.ShortTermMemory.WokeMemory import WokeMemory
+from src.sc.pwr.inz.cycle.Preparations import Preparations
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.constructs.Interrogative import Interrogative
 
 """
 Module being a cycle in which agent will work, it's way more precise than SingleThread, also allows for a 

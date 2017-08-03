@@ -1,7 +1,24 @@
 Testy:
 
 Implementacja:
-todo Testy kontekstu w holonach
+
+
+Notatki:
+
+Tulving -> Wang
+
+
+
+Tulving:
+
+    Semantic
+        Social customs
+        Common sense, rules of logic and inference.
+    Episodic = Autobiographical
+
+
+((      ))
+
 
 Object Type winien dziedziczyc po sobie Ryba,Rekin etc. ka?dy ma nowe cechy.
 

@@ -1,20 +1,20 @@
 import unittest
 
+from src.sc.pwr.inz.memory.ShortTermMemory.WokeMemory import WokeMemory
 from src.sc.pwr.inz.cycle.RiseAndShine import RiseAndShine
-from src.sc.pwr.inz.language.components.SimpleFormula import SimpleFormula
-from src.sc.pwr.inz.memory.WokeMemory import WokeMemory
-from src.sc.pwr.inz.language.components.State import State
-from src.sc.pwr.inz.language.components.ComplexFormula import ComplexFormula
-from src.sc.pwr.inz.language.components.LogicalOperator import LogicalOperator
-from src.sc.pwr.inz.language.components.Trait import Trait
-from src.sc.pwr.inz.memory.episodic.BaseProfile import BaseProfile
-from src.sc.pwr.inz.memory.episodic.DistributedKnowledge import DistributedKnowledge
-from src.sc.pwr.inz.memory.episodic.Observations import Observation
-from src.sc.pwr.inz.memory.holons.NonBinaryHolon import NonBinaryHolon
-from src.sc.pwr.inz.memory.semantic.IndividualModel import IndividualModel
-from src.sc.pwr.inz.memory.semantic.ObjectType import ObjectType
-from src.sc.pwr.inz.memory.semantic.identifiers.QRCode import QRCode
-from src.sc.pwr.inz.language.constructs.Interrogative import Interrogative
+from src.sc.pwr.inz.memory.LongTermMemory.holons.NonBinaryHolon import NonBinaryHolon
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.IndividualModel import IndividualModel
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.ObjectType import ObjectType
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.identifiers.QRCode import QRCode
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.ComplexFormula import ComplexFormula
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.LogicalOperator import LogicalOperator
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.SimpleFormula import SimpleFormula
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.State import State
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Trait import Trait
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.constructs.Interrogative import Interrogative
+from src.sc.pwr.inz.memory.SensoryBufferMemory.Observations import Observation
+from src.sc.pwr.inz.memory.ShortTermMemory.episodic.BaseProfile import BaseProfile
+from src.sc.pwr.inz.memory.ShortTermMemory.episodic.DistributedKnowledge import DistributedKnowledge
 
 
 class TestRiseAndShine(unittest.TestCase):

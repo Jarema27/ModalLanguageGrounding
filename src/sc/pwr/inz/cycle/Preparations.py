@@ -1,12 +1,12 @@
+from src.sc.pwr.inz.memory.SensoryBufferMemory.Observations import Observation
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.State import State
+from src.sc.pwr.inz.memory.ShortTermMemory.episodic.BaseProfile import BaseProfile
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.IndividualModel import IndividualModel
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.KnowledgeBoosters.CSVReader import CSVReader
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.KnowledgeBoosters.XMLReader import XMLReader
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.ObjectType import ObjectType
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.identifiers.UniqueName import UniqueName
 from src.sc.pwr.inz.speech.Phonograph import Phonograph
-from src.sc.pwr.inz.memory.semantic.identifiers.UniqueName import UniqueName
-from src.sc.pwr.inz.memory.episodic.BaseProfile import BaseProfile
-from src.sc.pwr.inz.language.components.State import State
-from src.sc.pwr.inz.memory.episodic.Observations import Observation
-from src.sc.pwr.inz.memory.semantic.KnowledgeBoosters.CSVReader import CSVReader
-from src.sc.pwr.inz.memory.semantic.IndividualModel import IndividualModel
-from src.sc.pwr.inz.memory.semantic.KnowledgeBoosters.XMLReader import XMLReader
-from src.sc.pwr.inz.memory.semantic.ObjectType import ObjectType
 
 """
 Module responsible for setting data up and preparing it to fire agent up.

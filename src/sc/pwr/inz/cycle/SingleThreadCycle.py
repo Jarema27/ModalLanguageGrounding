@@ -1,6 +1,6 @@
-from src.sc.pwr.inz.language.constructs.Interrogative import Interrogative
-from src.sc.pwr.inz.memory.WokeMemory import WokeMemory
+from src.sc.pwr.inz.memory.ShortTermMemory.WokeMemory import WokeMemory
 from src.sc.pwr.inz.cycle.Preparations import Preparations
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.constructs.Interrogative import Interrogative
 
 """
 Module being a cycle in which agent will work, simple way of presenting functionality of agent
