@@ -16,7 +16,7 @@ class BinaryHolon(Holon):
         """
         return self.timestamp
 
-    def __init__(self, dk):
+    def __init__(self, dk, context=None):
         """
         :param dk (DistributedKnowledge) : Nicely packed data which is needed to properly establish holon.
         """
@@ -24,6 +24,7 @@ class BinaryHolon(Holon):
         self.formula = dk.get_formula()
         self.timestamp = dk.get_timestamp()
         self.dk = dk
+        self.context = context
         self.tao = [0, 0]
         self.update(dk)
 
@@ -37,8 +38,8 @@ class BinaryHolon(Holon):
         if dk.get_formula().get_type() is not TypeOfFormula.SF:
             raise TypeError("Wrong type of formula has been provided, I only take simple ones")
         else:
-            self.tao[0] += Grounder.determine_fulfilment(self.dk, self.dk.get_complementary_formulas()[0])
-            self.tao[1] += Grounder.determine_fulfilment(self.dk, self.dk.get_complementary_formulas()[1])
+            self.tao[0] += Grounder.determine_fulfilment(self.dk, self.dk.get_complementary_formulas()[0], self.context)
+            self.tao[1] += Grounder.determine_fulfilment(self.dk, self.dk.get_complementary_formulas()[1], self.context)
             suma = sum(self.tao)
             if suma > 0:
                 self.tao = [self.tao[0]/suma, self.tao[1]/suma]

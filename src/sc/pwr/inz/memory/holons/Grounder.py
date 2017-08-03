@@ -8,7 +8,7 @@ As it seems this old 500loc module wasn't so necessary after all.
 
 class Grounder:
     @staticmethod
-    def determine_fulfilment(dk, formula):
+    def determine_fulfilment(dk, formula, context = None):
         """
         Method determines fulfilment for SimpleFormula it basically counts appearances of Observations in which
         formula was fulfilled a.e when carpet indeed was red.
@@ -18,7 +18,11 @@ class Grounder:
         """
         if (dk.get_formula().get_type() == formula.get_type()) and (formula in dk.get_complementary_formulas()):
             count = 0
-            for bp in dk.get_bpset():
+            if context is not None and len(context) != 0:
+                bloop = context
+            else:
+                bloop = dk.get_bpset()
+            for bp in bloop:
                 if bp.check_if_observed(formula.get_model().get_identifier(),
                                         formula.get_traits()[0], formula.get_states()[0]):
                     count += 1
@@ -27,7 +31,7 @@ class Grounder:
             raise AttributeError("Either you gave me wrong formula,or Distributed Knowledge which doesn't belong to it")
 
     @staticmethod
-    def determine_fulfilment_cf(dk, formula):
+    def determine_fulfilment_cf(dk, formula, context = None):
         """
         Method determines fulfilment for ComplexFormula it basically counts appearances of Observations in which
         formula was fulfilled a.e when carpet indeed was red and fluffy.
@@ -37,7 +41,11 @@ class Grounder:
         """
         if (dk.get_formula().get_type() == formula.get_type()) and (formula in dk.get_complementary_formulas()):
             count = 0
-            for bp in dk.get_bpset():
+            if context is not None and len(context) != 0:
+                bloop = context
+            else:
+                bloop = dk.get_bpset()
+            for bp in bloop:
                 if formula.get_logical_operator() == LogicalOperator.AND:
                     if bp.check_if_observed(formula.get_model().get_identifier(), formula.get_traits()[0],
                                             formula.get_states()[0]) and \
