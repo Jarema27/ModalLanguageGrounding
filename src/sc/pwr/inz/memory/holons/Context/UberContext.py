@@ -1,5 +1,9 @@
 from abc import abstractmethod, ABC
 
+"""
+Abstract module which allows us to build and use numerous contextsS
+"""
+
 
 class UberContext(ABC):
 

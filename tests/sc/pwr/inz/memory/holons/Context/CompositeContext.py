@@ -57,7 +57,7 @@ class DistanceEstimatorTest(unittest.TestCase):
         self.trait_pair = ([self.traits2[2], self.traits[1]], [self.traits2[0], self.traits[1]])
 
         self.DE = DistanceEstimator()
-        self.CC = CompositeContext(self.DE, [self.bp1, self.bp4, self.bp6], 2, 1)
+        self.CC = CompositeContext(self.DE, [self.bp1, self.bp4, self.bp6], 1, 1)
 
     def test_get_judgement_method(self):
         self.assertEqual(self.CC.get_judgement_method(), self.DE)
@@ -67,6 +67,15 @@ class DistanceEstimatorTest(unittest.TestCase):
 
     def test_get_common_traits(self):
         self.assertEqual(self.CC.get_common_traits([self.bp4, self.bp6]), ([self.traits2[2]], []))
+        self.assertEqual(self.CC.get_common_traits([self.bp1, self.bp6]), ([self.traits2[2], self.traits[1]], []))
+
+    def test_DE(self):
+        self.assertEqual(self.CC.estimator.get_estimated_value(self.bp1, ([self.traits2[2], self.traits[1]], [])), 2)
+        self.assertEqual(self.CC.estimator.get_estimated_value(self.bp6, ([self.traits2[2], self.traits[1]], [])), 2)
+        self.assertEqual(self.CC.estimator.get_estimated_value(self.bp4, ([self.traits2[2], self.traits[1]], [])), 1)
+
+    def test_get_contextualized_bpset(self):
+        self.assertEqual(self.CC.get_contextualized_bpset(), [self.bp1, self.bp4, self.bp6])
 
     def tearDown(self):
         self.traits2 = None

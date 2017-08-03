@@ -1,6 +1,10 @@
 from abc import abstractmethod, ABC
 from enum import Enum
 
+"""
+Abstract module which allows us to build various ways of estimating context
+"""
+
 
 class EstimateFunctions(ABC):
 
