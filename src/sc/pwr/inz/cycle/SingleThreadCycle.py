@@ -1,4 +1,4 @@
-from src.sc.pwr.inz.memory.ShortTermMemory.WokeMemory import WokeMemory
+from src.sc.pwr.inz.memory.LongTermMemory.WokeMemory import WokeMemory
 from src.sc.pwr.inz.cycle.Preparations import Preparations
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.constructs.Interrogative import Interrogative
 

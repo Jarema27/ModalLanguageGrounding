@@ -1,20 +1,20 @@
 import unittest
 
-from src.sc.pwr.inz.memory.SensoryBufferMemory.Observations import Observation
-from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.ComplexFormula import ComplexFormula
-from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.LogicalOperator import LogicalOperator
-from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.State import State
-from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Trait import Trait
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.IdentifyingMetaCognition.IndividualModel import IndividualModel
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.IdentifyingMetaCognition.ObjectType import ObjectType
 from src.sc.pwr.inz.memory.LongTermMemory.holons.Context.CompositeContext import CompositeContext
 from src.sc.pwr.inz.memory.LongTermMemory.holons.Context.Estimators.DistanceFunctions.DistanceEstimator import \
     DistanceEstimator
 from src.sc.pwr.inz.memory.LongTermMemory.holons.Holon import HolonKind
 from src.sc.pwr.inz.memory.LongTermMemory.holons.NonBinaryHolon import NonBinaryHolon
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.identifiers.QRCode import QRCode
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.ComplexFormula import ComplexFormula
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.LogicalOperator import LogicalOperator
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.State import State
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Trait import Trait
+from src.sc.pwr.inz.memory.SensoryBufferMemory.Observation import Observation
 from src.sc.pwr.inz.memory.ShortTermMemory.episodic.BaseProfile import BaseProfile
 from src.sc.pwr.inz.memory.ShortTermMemory.episodic.DistributedKnowledge import DistributedKnowledge
-from src.sc.pwr.inz.memory.LongTermMemory.semantic.IndividualModel import IndividualModel
-from src.sc.pwr.inz.memory.LongTermMemory.semantic.ObjectType import ObjectType
-from src.sc.pwr.inz.memory.LongTermMemory.semantic.identifiers.QRCode import QRCode
 
 
 class TestNonBinaryHolon(unittest.TestCase):

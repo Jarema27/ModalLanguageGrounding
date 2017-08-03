@@ -1,6 +1,6 @@
 import unittest
 
-from src.sc.pwr.inz.memory.SensoryBufferMemory.Observations import Observation
+from src.sc.pwr.inz.memory.SensoryBufferMemory.Observation import Observation
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.State import State
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Trait import Trait
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.identifiers.QRCode import QRCode
@@ -41,7 +41,7 @@ class ObservationsTest(unittest.TestCase):
         self.assertEqual(self.o1.get_observed(), [(self.traits[0], self.s1), (self.traits2[2], self.s1), (self.traits[1]
                                                                                                           , self.s2)])
         self.assertEqual(self.o2.get_observed(),  [(self.traits[1], self.s3), (self.traits2[1], self.s2), (self.traits[1],
-                                                                                                         self.s2)])
+                                                                                                           self.s2)])
 
     def test_get_timestamp(self):
         self.assertEqual(self.o2.get_timestamp(), 1)

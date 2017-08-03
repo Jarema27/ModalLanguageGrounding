@@ -1,7 +1,7 @@
 import unittest
 
+from sc.pwr.inz.memory.LongTermMemory.semantic.IdentifyingMetaCognition.ObjectType import ObjectType
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Trait import Trait
-from src.sc.pwr.inz.memory.LongTermMemory.semantic.ObjectType import ObjectType
 
 
 class ObjectTypeTest(unittest.TestCase):

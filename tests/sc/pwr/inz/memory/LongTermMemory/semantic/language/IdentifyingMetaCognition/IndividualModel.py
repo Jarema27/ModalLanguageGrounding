@@ -1,9 +1,9 @@
 import unittest
 
-from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Trait import Trait
-from src.sc.pwr.inz.memory.LongTermMemory.semantic.IndividualModel import IndividualModel
-from src.sc.pwr.inz.memory.LongTermMemory.semantic.ObjectType import ObjectType
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.IdentifyingMetaCognition.IndividualModel import IndividualModel
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.IdentifyingMetaCognition.ObjectType import ObjectType
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.identifiers.QRCode import QRCode
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Trait import Trait
 
 
 class TestIndividualModel(unittest.TestCase):

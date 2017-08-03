@@ -7,7 +7,8 @@ Notatki:
 
 Tulving -> Wang
 
-
+#todo Obserwacje moga nie miec IMki,w takim wypadku przeszukac drzewo cech jak najglebiej.
+#todo Obserwacja moze miec IM ,ale nie miec traitsow,w takim wypadku przypomniec sobie podstawowe cechy,z drzewka
 
 Tulving:
 
@@ -17,7 +18,7 @@ Tulving:
     Episodic = Autobiographical
 
 
-((      ))
+
 
 
 Object Type winien dziedziczyc po sobie Ryba,Rekin etc. ka?dy ma nowe cechy.

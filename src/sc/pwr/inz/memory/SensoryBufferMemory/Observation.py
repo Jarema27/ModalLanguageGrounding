@@ -7,14 +7,16 @@ As example 'Carpet is Red' -> Identifier, Trait, Trait.State
 
 class Observation:
 
-    def __init__(self, identifier, observed, timestamp=None):
+    def __init__(self, identifier=None, observed=None, timestamp=None):
         """
         :param identifier: (Identifier): Identifier such as QRCode or UniqueName
         :param observed: list(Trait): list of observed traits in context of given Identifier
         :param timestamp (int): timestamp
         """
-        self.identifier = identifier
-        self.observed = observed
+        if identifier is not None:
+            self.identifier = identifier
+        if observed is not None:
+            self.observed = observed
         if timestamp is None:
             self.timestamp = int(time.time())
         else:

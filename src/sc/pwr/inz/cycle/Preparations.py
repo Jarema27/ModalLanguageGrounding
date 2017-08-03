@@ -1,11 +1,11 @@
-from src.sc.pwr.inz.memory.SensoryBufferMemory.Observations import Observation
-from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.State import State
-from src.sc.pwr.inz.memory.ShortTermMemory.episodic.BaseProfile import BaseProfile
-from src.sc.pwr.inz.memory.LongTermMemory.semantic.IndividualModel import IndividualModel
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.IdentifyingMetaCognition.IndividualModel import IndividualModel
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.IdentifyingMetaCognition.ObjectType import ObjectType
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.KnowledgeBoosters.CSVReader import CSVReader
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.KnowledgeBoosters.XMLReader import XMLReader
-from src.sc.pwr.inz.memory.LongTermMemory.semantic.ObjectType import ObjectType
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.identifiers.UniqueName import UniqueName
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.State import State
+from src.sc.pwr.inz.memory.SensoryBufferMemory.Observation import Observation
+from src.sc.pwr.inz.memory.ShortTermMemory.episodic.BaseProfile import BaseProfile
 from src.sc.pwr.inz.speech.Phonograph import Phonograph
 
 """
