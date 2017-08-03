@@ -78,6 +78,12 @@ class BinaryHolon(Holon):
         """
         return self.tao
 
+    def get_context(self):
+        """
+        :return (UberContext):
+        """
+        return self.context
+
     def is_applicable(self, formula):
         """
         :param formula: Formula : which we want to check if can be applied to this specific Holon

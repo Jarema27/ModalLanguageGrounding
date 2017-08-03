@@ -1,5 +1,7 @@
 import unittest
 
+from src.sc.pwr.inz.memory.holons.Context.CompositeContext import CompositeContext
+from src.sc.pwr.inz.memory.holons.Context.Estimators.DistanceFunctions.DistanceEstimator import DistanceEstimator
 from src.sc.pwr.inz.language.components.ComplexFormula import ComplexFormula
 from src.sc.pwr.inz.language.components.LogicalOperator import LogicalOperator
 from src.sc.pwr.inz.language.components.State import State
@@ -74,10 +76,18 @@ class TestNonBinaryHolon(unittest.TestCase):
         self.dk5 = DistributedKnowledge(self.cf3, [self.bp1, self.bp4], 1)
         self.dk6 = DistributedKnowledge(self.cf4, [self.bp4, self.bp5, self.bp6, self.bp7], 2)
 
+        self.DE = DistanceEstimator()
+        self.CC = CompositeContext(self.DE,  [self.bp1, self.bp4], 1, 1)
+        self.CC2 = CompositeContext(self.DE, [self.bp4, self.bp5, self.bp6, self.bp7], 1, 1)
+        self.CC3 = CompositeContext(self.DE, [self.bp4, self.bp5, self.bp6, self.bp7], 3, 1)
+
         self.nbholon1 = NonBinaryHolon(self.dk1)
         self.nbholon2 = NonBinaryHolon(self.dk2)
         self.nbholon3 = NonBinaryHolon(self.dk5)
         self.nbholon4 = NonBinaryHolon(self.dk6)
+        self.nbholon5 = NonBinaryHolon(self.dk5, self.CC.get_contextualized_bpset())
+        self.nbholon6 = NonBinaryHolon(self.dk6, self.CC2.get_contextualized_bpset())
+        self.nbholon7 = NonBinaryHolon(self.dk6, self.CC3.get_contextualized_bpset())
 
     def test_get_tao(self):
         self.assertEqual(self.nbholon1.get_tao(), [0.0, 0.0, 0.0, 0.0])
@@ -86,10 +96,10 @@ class TestNonBinaryHolon(unittest.TestCase):
         self.assertEqual(self.nbholon4.get_tao(), [0.25, 0.25, 0.25, 0.25])
 
     def test_get_complementary_formulas(self):
-        self.assertEqual(self.nbholon4.get_complementary_formulas(),self.cf4.get_complementary_formulas())
+        self.assertEqual(self.nbholon4.get_complementary_formulas(), self.cf4.get_complementary_formulas())
 
     def test_get_kind(self):
-        self.assertEqual(self.nbholon4.get_kind(),HolonKind.NBH)
+        self.assertEqual(self.nbholon4.get_kind(), HolonKind.NBH)
 
     def test_is_applicable(self):
         self.assertTrue(self.nbholon4.is_applicable(self.cf4))
@@ -97,10 +107,16 @@ class TestNonBinaryHolon(unittest.TestCase):
                                                                    [self.s2, self.s2], LogicalOperator.AND)))
 
     def test_get_formula(self):
-        self.assertEqual(self.nbholon4.get_formula(),self.cf4)
+        self.assertEqual(self.nbholon4.get_formula(), self.cf4)
 
     def test_get_tao_for_state(self):
         self.assertEqual(self.nbholon4.get_tao_for_state(self.s1, self.s2), 0.25)
+
+    def test_context(self):
+        self.assertEqual(self.nbholon5.get_tao(), [0.0, 0.0, 0.0, 0.0])
+        self.assertEqual(self.nbholon6.get_tao(), [0.0, 0.3333333333333333, 0.3333333333333333,
+                                                   0.3333333333333333])
+        self.assertEqual(self.nbholon7.get_tao(), [0.25, 0.25, 0.25, 0.25])
 
     def tearDown(self):
         self.traits2 = None

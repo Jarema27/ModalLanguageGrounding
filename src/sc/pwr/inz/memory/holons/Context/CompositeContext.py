@@ -23,7 +23,7 @@ class CompositeContext(UberContext):
         if len(bpset) < taken_into_consideration:
             raise AttributeError("You should give me nuff Base Profiles for building Context you moron")
         else:
-            self.benchmarks = self.bpset[:3]
+            self.benchmarks = self.bpset[:taken_into_consideration]
         self.taken_into_consideration = taken_into_consideration
         self.maxthreshold = maxthreshold
         self.benchtraits = self.get_common_traits(self.benchmarks)

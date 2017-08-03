@@ -1,17 +1,13 @@
 Testy:
 
 Implementacja:
-todo Kontekst
-
-Kontekst -------------
-
+todo Testy kontekstu w holonach
 
 Object Type winien dziedziczyc po sobie Ryba,Rekin etc. ka?dy ma nowe cechy.
-
-Refactor:
-Knowledge Boosters
 
 Gan+22#
 
 SubM
+
+Musi byc osobnym,niekonczacym sie watkiem
 Porównywanie obserwacji z uprzednio zbudowanymi modelami mentalnymi

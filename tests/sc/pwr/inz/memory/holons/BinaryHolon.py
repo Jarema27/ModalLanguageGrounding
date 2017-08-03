@@ -1,5 +1,7 @@
 import unittest
 
+from src.sc.pwr.inz.memory.holons.Context.CompositeContext import CompositeContext
+from src.sc.pwr.inz.memory.holons.Context.Estimators.DistanceFunctions.DistanceEstimator import DistanceEstimator
 from src.sc.pwr.inz.language.components.ComplexFormula import ComplexFormula
 from src.sc.pwr.inz.language.components.LogicalOperator import LogicalOperator
 from src.sc.pwr.inz.language.components.SimpleFormula import SimpleFormula
@@ -76,10 +78,19 @@ class BinaryHolonTest(unittest.TestCase):
         self.dk5 = DistributedKnowledge(self.sf4, [self.bp6, self.bp4], 12)
         self.dk6 = DistributedKnowledge(self.sf5, [self.bp6, self.bp7], 12)
 
+        self.DE = DistanceEstimator()
+        self.CC = CompositeContext(self.DE, [self.bp6, self.bp7], 1, 1)
+        self.CC2 = CompositeContext(self.DE, [self.bp6, self.bp7, self.bp4], 1, 1)
+        self.CC3 = CompositeContext(self.DE, [self.bp6, self.bp6, self.bp2], 2, 1)
+
         self.bholon1 = BinaryHolon(self.dk3)
         self.bholon2 = BinaryHolon(self.dk4)
         self.bholon3 = BinaryHolon(self.dk5)
         self.bholon4 = BinaryHolon(self.dk6)
+        self.bholon5 = BinaryHolon(self.dk6, self.CC.get_contextualized_bpset())
+        self.bholon6 = BinaryHolon(self.dk3, self.CC2.get_contextualized_bpset())
+        self.bholon7 = BinaryHolon(self.dk5, self.CC2.get_contextualized_bpset())
+        self.bholon8 = BinaryHolon(self.dk5, self.CC3.get_contextualized_bpset())
 
     def test_get_tao(self):
         self.assertEqual(self.bholon1.get_tao(), [0, 0])
@@ -102,6 +113,13 @@ class BinaryHolonTest(unittest.TestCase):
 
     def test_get_tao_for_state(self):
         self.assertEqual(self.bholon1.get_tao_for_state(self.s1), 0.0)
+
+    def test_context(self):
+        self.assertEqual(self.bholon5.get_tao(), [0.5, 0.5])
+        self.assertEqual(self.bholon7.get_tao(), [0.6666666666666666, 0.3333333333333333])
+        self.assertEqual(self.bholon7.get_context(), [self.bp6, self.bp7, self.bp4])
+        self.assertEqual(self.bholon6.get_tao(), [0.0, 0.0])
+        self.assertEqual(self.bholon8.get_context(), [self.bp6, self.bp6, self.bp2])
 
     def tearDown(self):
         self.traits2 = None
