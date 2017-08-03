@@ -27,16 +27,21 @@ class CompositeContext(UberContext):
     def get_contextualized_bpset(self):
         return list(x for x in self.bpset if self.estimator.get_estimated_value(x, self.benchtraits) > self.maxthreshold)
 
+#   todo
     @staticmethod
     def get_common_traits(bpset):
-        trait_is = list(x.get_observations_is().keys() for x in bpset)
-        trait_is_not = list(x.get_observations_is_not().keys() for x in bpset)
+        trait_is = list(list(x.get_observations_is().keys()) for x in bpset)
+        trait_is_not = list(list(x.get_observations_is_not().keys()) for x in bpset)
+        out = ([], [])
         for t in trait_is:
             for bp in bpset:
-                if t not in bp.get_observations_is().keys():
-                    trait_is.remove(t)
+                for trait in t:
+                    if trait in bp.get_observations_is().keys():
+                        out[0].append(trait)
         for t in trait_is_not:
             for bp in bpset:
-                if t not in bp.get_observations_is_not().keys():
-                    trait_is_not.remove(t)
+                for trait in t:
+                    if trait not in  bp.get_observations_is_not().keys():
+                        out[1].append(out)
+        print(out)
         return trait_is, trait_is_not

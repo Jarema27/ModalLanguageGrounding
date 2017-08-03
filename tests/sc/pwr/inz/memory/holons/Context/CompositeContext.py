@@ -60,7 +60,13 @@ class DistanceEstimatorTest(unittest.TestCase):
         self.CC = CompositeContext(self.DE, [self.bp1, self.bp4, self.bp6], 2, 1)
 
     def test_get_judgement_method(self):
-        pass
+        self.assertEqual(self.CC.get_judgement_method(), self.DE)
+
+    def test_get_bp_set(self):
+        self.assertEqual(self.CC.get_bpset(), [self.bp1, self.bp4, self.bp6])
+
+    def test_get_common_traits(self):
+        self.assertEqual(self.CC.get_common_traits([self.bp4, self.bp6]), ([self.traits2[2]], []))
 
     def tearDown(self):
         self.traits2 = None
