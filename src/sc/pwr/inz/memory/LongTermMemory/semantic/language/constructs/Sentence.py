@@ -34,5 +34,4 @@ class SentenceType(Enum):
     #   Asks a Question
     Int = 'Interrogative'
     #   Expresses a sudden emotion
-    #   todo: implement emotions
     Exc = 'Exclamatory'
