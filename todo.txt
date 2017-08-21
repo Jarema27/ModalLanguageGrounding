@@ -7,6 +7,10 @@ Notatki:
 
 Tulving -> Wang
 
+nowe formu?y zawierajace dwa typy
+Proba podjecia sie konstrukcji implikacji
+Implikacja na typach,miksowane implikacje (?)
+
 #todo Obserwacje moga nie miec IMki,w takim wypadku przeszukac drzewo cech jak najglebiej.
 #todo Obserwacja moze miec IM ,ale nie miec traitsow,w takim wypadku przypomniec sobie podstawowe cechy,z drzewka
 
