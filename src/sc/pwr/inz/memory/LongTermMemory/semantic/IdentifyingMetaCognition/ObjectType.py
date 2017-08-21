@@ -89,8 +89,8 @@ class ObjectType:
         """
         out = self.traits
         for superior in self.superphylium:
-            out.extend(superior.get_traits_all_the_way_up())
-        return list(set(out))
+            out = out + (superior.get_traits_all_the_way_up())
+        return out
 
     def find_trait_by_name(self, name):
         """
