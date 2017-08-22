@@ -71,7 +71,7 @@ class ComplexFormulaOT(Formula):
         """
         :return (TypeOfFormula): Returns type of formula, Complex Formula at this point.
         """
-        return TypeOfFormula.CF
+        return TypeOfFormula.OT
 
     def __eq__(self, other):
         return self.get_states() == other.get_states() and self.get_logical_operator() == other.get_logical_operator() \

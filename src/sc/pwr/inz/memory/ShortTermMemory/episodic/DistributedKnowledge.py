@@ -1,5 +1,7 @@
 from time import time
 
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Formula import TypeOfFormula
+
 """
 Distributed Knowledge module serves us to create Holon's later on, it contains formula, list of BProfiles and timestamp
 """
@@ -21,10 +23,16 @@ class DistributedKnowledge:
             self.timestamp = int(time())
         else:
             self.timestamp = timestamp
-        for bp in self.bpset:
-            for trr in self.formula.get_traits():
-                if trr in bp.give_all_traits_involved():
-                    self.groundingsets[trr] = bp
+        if formula.get_type == TypeOfFormula.OT:
+            for bp in self.bpset:
+                for sub in formula.get_subjects():
+                    if sub in bp.give_im_involved():
+                        self.groundingsets[sub] = bp
+        else:
+            for bp in self.bpset:
+                for trr in self.formula.get_traits():
+                    if trr in bp.give_all_traits_involved():
+                        self.groundingsets[trr] = bp
 
     def get_formula(self):
         """

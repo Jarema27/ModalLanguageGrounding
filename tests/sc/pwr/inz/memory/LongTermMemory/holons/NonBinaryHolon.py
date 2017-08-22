@@ -1,5 +1,7 @@
 import unittest
 
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Tense import Tense
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.ComplexFormulaOT import ComplexFormulaOT
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.IdentifyingMetaCognition.IndividualModel import IndividualModel
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.IdentifyingMetaCognition.ObjectType import ObjectType
 from src.sc.pwr.inz.memory.LongTermMemory.holons.Context.CompositeContext import CompositeContext
@@ -18,13 +20,12 @@ from src.sc.pwr.inz.memory.ShortTermMemory.episodic.DistributedKnowledge import 
 
 
 class TestNonBinaryHolon(unittest.TestCase):
-
     def setUp(self):
         self.ident1 = QRCode("1")
         self.ident2 = QRCode("2")
         self.ident3 = QRCode("-231")
 
-        self.traits = [Trait("Obly"),Trait("Krasny"), Trait("Sowiecki")]
+        self.traits = [Trait("Obly"), Trait("Krasny"), Trait("Sowiecki")]
         self.traits2 = [Trait("Barowalny"), Trait("Konieczny"), Trait("Bolszoj")]
 
         self.s1 = State.IS
@@ -46,7 +47,7 @@ class TestNonBinaryHolon(unittest.TestCase):
         self.o4 = Observation(self.ident1, [(self.traits[2], self.s3), (self.traits2[0], self.s3), (self.traits[2],
                                                                                                     self.s2)])
         self.o5 = Observation(self.ident2, [(self.traits2[1], self.s2), (self.traits2[2], self.s2), (self.traits[1],
-                                                                                                    self.s3)], 1)
+                                                                                                     self.s3)], 1)
 
         self.o6 = Observation(self.ident2, [(self.traits2[1], self.s1), (self.traits[1], self.s1), (self.traits2[2],
                                                                                                     self.s1)], 1)
@@ -77,7 +78,7 @@ class TestNonBinaryHolon(unittest.TestCase):
         self.dk6 = DistributedKnowledge(self.cf4, [self.bp4, self.bp5, self.bp6, self.bp7], 2)
 
         self.DE = DistanceEstimator()
-        self.CC = CompositeContext(self.DE,  [self.bp1, self.bp4], 1, 1)
+        self.CC = CompositeContext(self.DE, [self.bp1, self.bp4], 1, 1)
         self.CC2 = CompositeContext(self.DE, [self.bp4, self.bp5, self.bp6, self.bp7], 1, 1)
         self.CC3 = CompositeContext(self.DE, [self.bp4, self.bp5, self.bp6, self.bp7], 3, 1)
 
@@ -88,6 +89,13 @@ class TestNonBinaryHolon(unittest.TestCase):
         self.nbholon5 = NonBinaryHolon(self.dk5, self.CC.get_contextualized_bpset())
         self.nbholon6 = NonBinaryHolon(self.dk6, self.CC2.get_contextualized_bpset())
         self.nbholon7 = NonBinaryHolon(self.dk6, self.CC3.get_contextualized_bpset())
+
+        self.cfot1 = ComplexFormulaOT([self.object_type, self.object_type2], [self.s2, self.s3], LogicalOperator.AND)
+        self.cfot2 = ComplexFormulaOT([self.object_type, self.object_type2], [self.s1, self.s2], LogicalOperator.OR,
+                                      Tense.FUTURE)
+
+        self.dk7 = DistributedKnowledge(self.cf1, [self.bp4, self.bp5, self.bp6, self.bp7], 2)
+        self.nbholon8 = NonBinaryHolon(self.dk7)
 
     def test_get_tao(self):
         self.assertEqual(self.nbholon1.get_tao(), [0.0, 0.0, 0.0, 0.0])

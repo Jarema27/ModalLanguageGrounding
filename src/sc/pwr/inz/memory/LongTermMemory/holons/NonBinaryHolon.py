@@ -16,7 +16,7 @@ class NonBinaryHolon(Holon):
         """
         return self.timestamp
 
-    def __init__(self, dk, context=None):
+    def __init__(self, dk=None, context=None):
         """
         :param dk (DistributedKnowledge) : Nicely packed data which is needed to properly establish holon.
         """
@@ -44,7 +44,10 @@ class NonBinaryHolon(Holon):
         self.timestamp = dk.get_timestamp()
         self.dk = dk
         if dk.get_formula().get_type() is not TypeOfFormula.CF:
-            raise TypeError("Wrong type of formula has been provided, I only take complex ones")
+            if dk.get_formula().get_type() is TypeOfFormula.OT:
+                print('Wo bist du')
+            else:
+                raise TypeError("Wrong type of formula has been provided, I only take complex ones")
         else:
             self.tao[0] += Grounder.determine_fulfilment_cf(self.dk, self.dk.get_complementary_formulas()[0],
                                                             self.context)

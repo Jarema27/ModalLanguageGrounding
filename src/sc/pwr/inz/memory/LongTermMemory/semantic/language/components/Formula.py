@@ -44,3 +44,4 @@ Enum made in order to distinguish types of formulas from each other
 class TypeOfFormula(Enum):
     SF = 'Simple formula'
     CF = 'Complex Formula'
+    OT = 'Object Type Formula'

@@ -147,6 +147,15 @@ class BaseProfile:
                 out.append(tuptup[0])
         return list(set(out))
 
+    def give_im_involved(self):
+        """
+        :return list(Trait): list of traits which were observed
+        """
+        out = []
+        for obs in self.observations:
+            out.append(obs.get_identifier())
+        return list(set(out))
+
     def __eq__(self, other):
         return self.timestamp == other.timestamp and self.observationsIS == other.observationsIS and \
                self.observationsIS_NOT == other.observationsIS_NOT and self.observationsMAYHAPS == \
