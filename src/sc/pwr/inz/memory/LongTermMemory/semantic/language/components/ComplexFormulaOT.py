@@ -3,7 +3,6 @@ Don't want to destroy ComplexFormula,which was done exclusively for two traits s
 be overly precise thing to do,this class will focus on two Object Types/Individual Models questions, this time will
 attempt to make it more flexible for future usage.
 """
-#   todo Tense
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.State import State
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Formula import Formula, TypeOfFormula
 
@@ -51,6 +50,12 @@ class ComplexFormulaOT(Formula):
         """
         return self.subjects
 
+    def get_tense(self):
+        """
+        :return (Tense): Tense in which the formula has been created
+        """
+        return self.tense
+
     def get_complementary_formulas(self):
         """
         Complementary formulas are all formulas which could be acquired from given set of IM,traits and Logical operator
@@ -70,7 +75,7 @@ class ComplexFormulaOT(Formula):
 
     def __eq__(self, other):
         return self.get_states() == other.get_states() and self.get_logical_operator() == other.get_logical_operator() \
-               and self.get_subjects() == other.get_subjects()
+               and self.get_subjects() == other.get_subjects() and self.get_tense() == other.get_tense()
 
     def __hash__(self):
         return hash(self.state[0]) * sum(list((hash(x) for x in self.subjects)))
