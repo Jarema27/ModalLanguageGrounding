@@ -32,7 +32,7 @@ class Grounder:
             raise AttributeError("Either you gave me wrong formula,or Distributed Knowledge which doesn't belong to it")
 
     @staticmethod
-    def determine_fulfilment_ot(dk, formula, context):
+    def determine_fulfilment_ot(dk, formula, context=None):
         if (dk.get_formula().get_type() == formula.get_type()) and (formula in dk.get_complementary_formulas()):
             count = 0
             if context is not None and len(context) != 0:

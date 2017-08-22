@@ -7,25 +7,25 @@ QRCode as identificator
 
 class QRCode(Identifier):
 
-    code = ""
+    typeId = ""
 
     def __init__(self, code):
         """
         :param name (int): unique code of certain identificator
         """
-        self.code = code
+        self.typeId = code
 
     def get_code(self):
         """
         :return (str) unique code
         """
-        return self.code
+        return self.typeId
 
-    def set_code(self, code):
+    def set_code(self, typeId):
         """
-        :param code: new unique code
+        :param typeId: new unique code
         """
-        self.code = code
+        self.typeId = typeId
 
     def is_id_member_of(self):
         """
@@ -35,10 +35,10 @@ class QRCode(Identifier):
         return True
 
     def __str__(self):
-        return "QRCode{id=" + self.code + "}"
+        return "QRCode{id=" + self.typeId + "}"
 
     def __eq__(self, other):
-        return self.code == other.code
+        return self.typeId == other.typeId
 
     def __hash__(self):
-        return hash(self.code)
+        return hash(self.typeId)

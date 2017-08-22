@@ -1,5 +1,7 @@
 import unittest
 
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Tense import Tense
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.ComplexFormulaOT import ComplexFormulaOT
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.IdentifyingMetaCognition.IndividualModel import IndividualModel
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.IdentifyingMetaCognition.ObjectType import ObjectType
 from src.sc.pwr.inz.memory.LongTermMemory.holons.Grounder import Grounder
@@ -80,13 +82,18 @@ class GrounderTest(unittest.TestCase):
         self.dk3 = DistributedKnowledge(self.sf1, [self.bp4])
         self.dk4 = DistributedKnowledge(self.sf3, [self.bp3], 12)
 
-        self.dk5 = DistributedKnowledge(self.sf4, [self.bp6,self.bp4], 12)
+        self.dk5 = DistributedKnowledge(self.sf4, [self.bp6, self.bp4], 12)
 
         self.dk6 = DistributedKnowledge(self.cf1, [self.bp5], 12)
 
         self.dk7 = DistributedKnowledge(self.cf3, [self.bp7], 121)
 
         self.dk8 = DistributedKnowledge(self.cf4, [self.bp8], 11)
+
+        self.cfot1 = ComplexFormulaOT([self.object_type, self.object_type2], [self.s2, self.s3], LogicalOperator.AND)
+        self.cfot2 = ComplexFormulaOT([self.object_type, self.object_type2], [self.s1, self.s2], LogicalOperator.OR,
+                                      Tense.FUTURE)
+        self.dk9 = DistributedKnowledge(self.cfot1, [self.bp3], 11)
 
     def test_determine_fulfilment(self):
         self.assertEqual(Grounder.determine_fulfilment(self.dk3, self.sf1), 0)
@@ -103,6 +110,9 @@ class GrounderTest(unittest.TestCase):
     def test_determine_fulfilment_xor(self):
         self.assertEqual(Grounder.determine_fulfilment_cf(self.dk1, self.cf1), 0)
         self.assertEqual(Grounder.determine_fulfilment_cf(self.dk8, self.cf4), 1)
+
+    def test_determine_fulfilment_ot(self):
+        self.assertEqual(Grounder.determine_fulfilment_ot(self.dk9, self.cfot1), 1)
 
     def tearDown(self):
         self.traits2 = None

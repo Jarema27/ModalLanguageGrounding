@@ -23,7 +23,7 @@ class DistributedKnowledge:
             self.timestamp = int(time())
         else:
             self.timestamp = timestamp
-        if formula.get_type == TypeOfFormula.OT:
+        if formula.get_type() == TypeOfFormula.OT:
             for bp in self.bpset:
                 for sub in formula.get_subjects():
                     if sub in bp.give_im_involved():

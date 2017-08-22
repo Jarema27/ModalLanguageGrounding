@@ -75,7 +75,7 @@ class ComplexFormulaOT(Formula):
 
     def __eq__(self, other):
         return self.get_states() == other.get_states() and self.get_logical_operator() == other.get_logical_operator() \
-               and self.get_subjects() == other.get_subjects() and self.get_tense() == other.get_tense()
+            and self.get_subjects() == other.get_subjects() and self.get_tense() == other.get_tense()
 
     def __hash__(self):
         return hash(self.state[0]) * sum(list((hash(x) for x in self.subjects)))
