@@ -63,7 +63,7 @@ class ComplexFormulaOT(Formula):
         """
         return [ComplexFormulaOT(self.subjects, [State.IS, State.IS], self.LO, self.tense),
                 ComplexFormulaOT(self.subjects, [State.IS, State.IS_NOT], self.LO, self.tense),
-                ComplexFormulaOT(self.subjects, [State.IS_NOT, State.IS], self.LO), self.tense,
+                ComplexFormulaOT(self.subjects, [State.IS_NOT, State.IS], self.LO, self.tense),
                 ComplexFormulaOT(self.subjects, [State.IS_NOT, State.IS_NOT], self.LO, self.tense)]
 
     @staticmethod

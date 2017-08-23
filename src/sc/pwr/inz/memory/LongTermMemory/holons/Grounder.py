@@ -48,6 +48,7 @@ class Grounder:
                     if formula.get_subjects()[0] in bp.give_im_involved() or formula.get_subjects()[1] in \
                             bp.give_im_involved():
                         count += 1
+            return count
 
     @staticmethod
     def determine_fulfilment_cf(dk, formula, context=None):

@@ -90,10 +90,11 @@ class GrounderTest(unittest.TestCase):
 
         self.dk8 = DistributedKnowledge(self.cf4, [self.bp8], 11)
 
-        self.cfot1 = ComplexFormulaOT([self.object_type, self.object_type2], [self.s2, self.s3], LogicalOperator.AND)
-        self.cfot2 = ComplexFormulaOT([self.object_type, self.object_type2], [self.s1, self.s2], LogicalOperator.OR,
+        self.cfot1 = ComplexFormulaOT([self.ident1, self.ident2], [self.s2, self.s1], LogicalOperator.AND)
+        self.cfot2 = ComplexFormulaOT([self.ident1, self.ident3], [self.s1, self.s2], LogicalOperator.OR,
                                       Tense.FUTURE)
-        self.dk9 = DistributedKnowledge(self.cfot1, [self.bp3], 11)
+        self.dk9 = DistributedKnowledge(self.cfot1, [self.bp4], 11)
+        self.dk10 = DistributedKnowledge(self.cfot2, [self.bp3, self.bp2], 1321)
 
     def test_determine_fulfilment(self):
         self.assertEqual(Grounder.determine_fulfilment(self.dk3, self.sf1), 0)
@@ -112,7 +113,8 @@ class GrounderTest(unittest.TestCase):
         self.assertEqual(Grounder.determine_fulfilment_cf(self.dk8, self.cf4), 1)
 
     def test_determine_fulfilment_ot(self):
-        self.assertEqual(Grounder.determine_fulfilment_ot(self.dk9, self.cfot1), 1)
+        self.assertEqual(Grounder.determine_fulfilment_ot(self.dk9, self.cfot1), 0)
+        self.assertEqual(Grounder.determine_fulfilment_ot(self.dk10, self.cfot2), 2)
 
     def tearDown(self):
         self.traits2 = None

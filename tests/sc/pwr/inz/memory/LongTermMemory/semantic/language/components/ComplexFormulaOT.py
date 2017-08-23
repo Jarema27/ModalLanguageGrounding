@@ -44,6 +44,12 @@ class ComplexFormulaOTTest(unittest.TestCase):
         self.assertEqual(self.cf1.get_complementary_formulas()[2], ComplexFormulaOT([self.object_type, self.object_type2],
                                                                                     [self.s2, self.s1], LogicalOperator.
                                                                                     AND))
+        self.assertEqual(self.cf1.get_complementary_formulas()[1], ComplexFormulaOT([self.object_type, self.object_type2],
+                                                                                    [self.s1, self.s2], LogicalOperator.
+                                                                                    AND))
+        self.assertEqual(self.cf1.get_complementary_formulas()[3], ComplexFormulaOT([self.object_type, self.object_type2],
+                                                                                    [self.s2, self.s2], LogicalOperator.
+                                                                                    AND))
 
     def test_get_tense(self):
         self.assertEqual(self.cf2.get_tense(), Tense.FUTURE)
