@@ -23,7 +23,7 @@ Tulving:
 
 
 
-
+#   todo give_subjects_involved obecnie dla id,w przyszlosci im a moze nawet i OBJECT TYPE TAK JAK BYLO ZAKLADANE
 
 Object Type winien dziedziczyc po sobie Ryba,Rekin etc. ka?dy ma nowe cechy.
 

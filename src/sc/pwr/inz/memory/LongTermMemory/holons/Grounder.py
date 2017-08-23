@@ -1,3 +1,4 @@
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.State import State
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.LogicalOperator import LogicalOperator
 
 """
@@ -39,14 +40,24 @@ class Grounder:
                 bloop = context
             else:
                 bloop = dk.get_bpset()
+            is1 = None
+            is2 = None
+            if formula.get_states()[0] == State.IS:
+                is1 = True
+            else:
+                is1 = False
+            if formula.get_states()[1] == State.IS:
+                is2 = True
+            else:
+                is2 = False
             for bp in bloop:
                 if formula.get_logical_operator() == LogicalOperator.AND:
-                    if formula.get_subjects()[0] in bp.give_im_involved() and formula.get_subjects()[1] in \
-                            bp.give_im_involved():
+                    if ((formula.get_subjects()[0] in bp.give_subjects_involved()) == is1) and \
+                            ((formula.get_subjects()[1] in bp.give_subjects_involved()) == is2):
                         count += 1
                 if formula.get_logical_operator() == LogicalOperator.OR:
-                    if formula.get_subjects()[0] in bp.give_im_involved() or formula.get_subjects()[1] in \
-                            bp.give_im_involved():
+                    if ((formula.get_subjects()[0] in bp.give_subjects_involved()) == is1) or\
+                            ((formula.get_subjects()[1] in bp.give_subjects_involved()) == is2):
                         count += 1
             return count
 

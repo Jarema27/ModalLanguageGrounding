@@ -147,7 +147,7 @@ class BaseProfile:
                 out.append(tuptup[0])
         return list(set(out))
 
-    def give_im_involved(self):
+    def give_subjects_involved(self):
         """
         :return list(Trait): list of traits which were observed
         """

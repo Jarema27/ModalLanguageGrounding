@@ -90,18 +90,22 @@ class TestNonBinaryHolon(unittest.TestCase):
         self.nbholon6 = NonBinaryHolon(self.dk6, self.CC2.get_contextualized_bpset())
         self.nbholon7 = NonBinaryHolon(self.dk6, self.CC3.get_contextualized_bpset())
 
-        self.cfot1 = ComplexFormulaOT([self.object_type, self.object_type2], [self.s2, self.s3], LogicalOperator.AND)
-        self.cfot2 = ComplexFormulaOT([self.object_type, self.object_type2], [self.s1, self.s2], LogicalOperator.OR,
+        self.cfot1 = ComplexFormulaOT([self.ident1, self.ident2], [self.s2, self.s1], LogicalOperator.AND)
+        self.cfot2 = ComplexFormulaOT([self.ident1, self.ident3], [self.s1, self.s2], LogicalOperator.OR,
                                       Tense.FUTURE)
-
-        self.dk7 = DistributedKnowledge(self.cf1, [self.bp4, self.bp5, self.bp6, self.bp7], 2)
-        self.nbholon8 = NonBinaryHolon(self.dk7)
+        self.dk9 = DistributedKnowledge(self.cfot1, [self.bp4], 11)
+        self.dk10 = DistributedKnowledge(self.cfot2, [self.bp3, self.bp2], 1321)
+        self.nbholon8 = NonBinaryHolon(self.dk10)
 
     def test_get_tao(self):
         self.assertEqual(self.nbholon1.get_tao(), [0.0, 0.0, 0.0, 0.0])
         self.assertEqual(self.nbholon2.get_tao(), [0, 0, 0, 0])
         self.assertEqual(self.nbholon3.get_tao(), [0.0, 0.0, 0.0, 0.0])
         self.assertEqual(self.nbholon4.get_tao(), [0.25, 0.25, 0.25, 0.25])
+        self.assertEqual(self.nbholon8.get_tao(), [0.3333333333333333,
+                                                   0.3333333333333333,
+                                                   0.16666666666666666,
+                                                   0.16666666666666666])
 
     def test_get_complementary_formulas(self):
         self.assertEqual(self.nbholon4.get_complementary_formulas(), self.cf4.get_complementary_formulas())
