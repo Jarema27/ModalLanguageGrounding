@@ -3,7 +3,7 @@ from time import time
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Formula import TypeOfFormula
 
 """
-Distributed Knowledge module serves us to create Holon's later on, it contains formula, list of BProfiles and timestamp
+Distributed Knowledge module serves us to create Holon's later on, it contains formula, list of BProfiles and episode
 """
 
 
@@ -11,10 +11,10 @@ class DistributedKnowledge:
 
     def __init__(self, formula, bpset, timestamp=None):
         """
-        formula and BProfile list are mandatory, timestamp will be current time if not set manually
+        formula and BProfile list are mandatory, episode will be current time if not set manually
         :param formula (Formula): Formula of this Distributed Knowledge
         :param bpset list(BaseProfile): List containing all BProfiles later used to establish tao in Holon
-        :param timestamp (int): timestamp serves us to connect DK with a moment in time
+        :param episode (int): episode serves us to connect DK with a moment in time
         """
         self.formula = formula
         self.bpset = bpset
@@ -48,7 +48,7 @@ class DistributedKnowledge:
 
     def get_timestamp(self):
         """
-        :return int: timestamp
+        :return int: episode
         """
         return self.timestamp
 

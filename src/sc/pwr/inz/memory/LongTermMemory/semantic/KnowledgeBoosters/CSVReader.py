@@ -6,7 +6,7 @@ import os
 Class used specifically to extract observations from csv file.
 Format of observation is:
 position 0 , Identificator of observation
-last position - timestamp
+last position - episode
 all inbetween - pair of trait index and State (1 - IS, 2 - IS_NOT, 3 - MAYHAPS)
 """
 

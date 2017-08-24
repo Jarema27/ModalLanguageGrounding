@@ -1,5 +1,6 @@
 from time import time
 
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.identifiers import Identifier
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Formula import TypeOfFormula
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.constructs.Declarative import Declarative
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.LogicalOperator import LogicalOperator
@@ -17,7 +18,7 @@ Sentence ,which serves purpose of acquiring data, usually ends up with ? and hig
 class Interrogative(Sentence):
 
     def __init__(self, subject=None, traits=None, states=None, logicaloperator=None, plaintext=None, memory=None,
-                 timestamp=None):
+                 episode=None):
         """
         Again, names of attributes are pretty self explanatory
         :param subject (IndividualModel): subject
@@ -27,36 +28,46 @@ class Interrogative(Sentence):
         :param plaintext (str): Interesting option to build question from plain text, must follow strict rules.
         a.e ' is QRCode{id=1} Sowiecki ?' or 'is QRCode{id=2} Konieczny and is_not Bolszoj ?'
         :param memory (WokeMemory): memory we associate this question with
-        :param timestamp (int): Moment in time when question was asked
+        :param episode (int): Moment in time when question was asked
         """
-        self.dict = {'is': State.IS, 'is_not': State.IS_NOT, 'might_be': State.MAYHAPS,
-                     'and': LogicalOperator.AND, 'or': LogicalOperator.OR}
-        if timestamp is None:
-            self.timestamp = time()
-        else:
-            self.timestamp = timestamp
-        if subject is not None and traits is not None:
+        if traits is not None or plaintext is not None:
+            self.dict = {'is': State.IS, 'is_not': State.IS_NOT, 'might_be': State.MAYHAPS,
+                         'and': LogicalOperator.AND, 'or': LogicalOperator.OR}
+            self.traditional = True
+            if episode is None:
+                self.episode = time()
+            else:
+                self.episode = episode
+            if subject is not None and traits is not None:
+                self.subject = subject
+                self.traits = traits
+                self.states = states
+                self.memory = memory
+                if len(traits) > 1:
+                    self.LO = logicaloperator
+            else:
+                self.memory = memory
+                acquired = self.build_from_scraps(plaintext)
+                self.subject = acquired[0]
+                self.traits = acquired[1]
+                self.states = acquired[2]
+                if len(self.traits) > 1:
+                    self.LO = acquired[3]
+            if self.subject is None or self.traits is None or self.states is None:
+                raise ValueError("What are you on about ? Can't really understand you mate")
+            if len(self.traits) > 0:
+                if len(self.traits) == 1:
+                    self.formula = SimpleFormula(self.subject, self.traits[0], self.states[0])
+                elif len(self.traits) == 2:
+                    self.formula = ComplexFormula(self.subject, self.traits, self.states, self.LO)
+        elif isinstance(subject, list):
+            self.traditional = False
+            if episode is None:
+                self.episode = time()
             self.subject = subject
-            self.traits = traits
             self.states = states
             self.memory = memory
-            if len(traits) > 1:
-                self.LO = logicaloperator
-        else:
-            self.memory = memory
-            acquired = self.build_from_scraps(plaintext)
-            self.subject = acquired[0]
-            self.traits = acquired[1]
-            self.states = acquired[2]
-            if len(self.traits) > 1:
-                self.LO = acquired[3]
-        if self.subject is None or self.traits is None or self.states is None:
-            raise ValueError("What are you on about ? Can't really understand you mate")
-        if len(self.traits) > 0:
-            if len(self.traits) == 1:
-                self.formula = SimpleFormula(self.subject, self.traits[0], self.states[0])
-            elif len(self.traits) == 2:
-                self.formula = ComplexFormula(self.subject, self.traits, self.states, self.LO)
+            self.LO = logicaloperator
 
     def get_kind(self):
         """
@@ -70,18 +81,18 @@ class Interrogative(Sentence):
         """
         return self.subject
 
-    def get_timestamp(self):
+    def get_episode(self):
         """
-        :return (int): timestamp
+        :return (int): episode
         """
-        return self.timestamp
+        return self.episode
 
-    def set_timestamp(self, other):
+    def set_episode(self, other):
         """
-        set timestamp
-        :param other : int: other timestamp
+        set episode
+        :param other : int: other episode
         """
-        self.timestamp = other
+        self.episode = other
 
     def __str__(self):
         if len(self.traits) == 1:
@@ -96,7 +107,7 @@ class Interrogative(Sentence):
         modal operator and in the end builds Declarative based on acquired data
         :return (Declarative): as answer to asked question
         """
-        epistemic_values = self.memory.get_holon_by_formula(self.formula, self.timestamp)
+        epistemic_values = self.memory.get_holon_by_formula(self.formula, self.episode)
         pass_responsibility = self.get_epistemic_conclusion(epistemic_values)
         if hasattr(self, 'LO'):
             return Declarative(self.subject, self.traits, self.states, self.LO, pass_responsibility[0])

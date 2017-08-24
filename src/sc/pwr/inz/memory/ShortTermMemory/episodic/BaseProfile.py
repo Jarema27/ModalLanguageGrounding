@@ -16,7 +16,7 @@ class BaseProfile:
     def __init__(self, timestamp=None, observations=None):
         """
         Initial method, creates dictionaries for observations depending on states it contains and trait it involves.
-        :param timestamp (int): Value describing time, might or might not be provided, if not, system time will be set
+        :param episode (int): Value describing time, might or might not be provided, if not, system time will be set
         :param observations list(observations):list of observations associated with this specific BP, might be None,
             if so, default empty list shall be provided.
         """
@@ -70,7 +70,7 @@ class BaseProfile:
 
     def get_timestamp(self):
         """
-        :return int : timestamp
+        :return int : episode
         """
         return self.timestamp
 

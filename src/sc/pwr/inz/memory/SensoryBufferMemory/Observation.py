@@ -13,7 +13,7 @@ class Observation:
          try to establish one based on traits
         :param observed: list(Trait): list of observed traits in context of given Identifier if None agent will try
          to deduce traits based on IndividualModel
-        :param timestamp (int): timestamp
+        :param episode (int): episode
         """
         if identifier is not None:
             self.identifier = identifier
@@ -42,7 +42,7 @@ class Observation:
 
     def get_timestamp(self):
         """
-        :return int : timestamp
+        :return int : episode
         """
         return self.timestamp
 

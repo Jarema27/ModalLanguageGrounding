@@ -57,13 +57,13 @@ class Preparations:
             out.append(IndividualModel(self.identifiers[i], self.object_type[i]))
         return out
 
-    def get_observations_with_timestamp(self, timestamp):
+    def get_observations_with_episode(self, episode):
         """
 
-        :param timestamp: Point in time
-        :return: list(Observation): with given timestamp or empty list
+        :param episode: Point in time
+        :return: list(Observation): with given episode or empty list
         """
-        return list(x for x in self.observations if int(x.get_timestamp()) == timestamp)
+        return list(x for x in self.observations if int(x.get_timestamp()) == episode)
 
     @staticmethod
     def properly_prepare_identifiers():
@@ -77,10 +77,10 @@ class Preparations:
         return out
 
     @staticmethod
-    def prepare_bps(timestamp, observations):
+    def prepare_bps(episode, observations):
         """
-        :param timestamp: point in time
+        :param episode: point in time
         :param observations: observations from x=csv
-        :return: BaseProfile : made from given timestamp and observations
+        :return: BaseProfile : made from given episode and observations
         """
-        return BaseProfile(timestamp, observations)
+        return BaseProfile(episode, observations)

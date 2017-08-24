@@ -12,7 +12,7 @@ class BinaryHolon(Holon):
 
     def get_timestamp(self):
         """
-        :return int: timestamp
+        :return int: episode
         """
         return self.timestamp
 

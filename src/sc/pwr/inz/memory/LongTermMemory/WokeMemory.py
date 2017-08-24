@@ -37,9 +37,9 @@ class WokeMemory:
 
     def get_holon_by_formula(self, formula, timestamp):
         """
-        Method checks if holon is in our memory,if it is and timestamp is valid (holon doesn't require update)
+        Method checks if holon is in our memory,if it is and episode is valid (holon doesn't require update)
         it will return holon,otherwise it will update holon, otherwise it will create new holon for given formula and
-        timestamp.
+        episode.
         :param formula : Formula, for which we want to find or create holon.
         :param timestamp: int, measure of time, used to specify which BPs and Observations we use
         :return    Holon, with freshly created tao
@@ -65,7 +65,7 @@ class WokeMemory:
     def get_distributed_knowledge(self, formula, timestamp, point):
         """
         Builds DistributedKnowledge based on formula and two points in time,point which is minimal value in range
-        we take into consideration and timestamp which is maximal value in mentioned range.
+        we take into consideration and episode which is maximal value in mentioned range.
         :param formula:  Formula, around which we build DistributedKnowledge
         :param timestamp: Integer, maximal value in range of time
         :param point:   Integer, minimal value in range of time
@@ -103,25 +103,25 @@ class WokeMemory:
 
     def get_timestamp(self):
         """
-        Returns timestamp of WokeMemory which is last time it was used
-        :return int: timestamp
+        Returns episode of WokeMemory which is last time it was used
+        :return int: episode
         """
         return self.timestamp
 
     def update_em_all(self, timestamp):
         """
-        Updates all stored holons based on new timestamp
-        :param timestamp: int: timestamp used to determine moment of time we take into consideration
+        Updates all stored holons based on new episode
+        :param timestamp: int: episode used to determine moment of time we take into consideration
         """
         for h in self.holons:
             h.update(self.get_distributed_knowledge(h.get_formula(), timestamp, self.point_of_no_return))
 
     def get_bp_with_timestamp(self, point, timestamp):
         """
-        Method collecting all bp which timestamps are in range(point, timestamp)
+        Method collecting all bp which timestamps are in range(point, episode)
         :param point: int: minimal value of time we take into consideration
         :param timestamp: int: maximal value of time we take into consideration
-        :return list(BProfiles): BProfiles with timestamp in range (point, timestamp)
+        :return list(BProfiles): BProfiles with episode in range (point, episode)
         """
         return list(x for x in self.bpcollective if timestamp >= int(x.get_timestamp()) >= point)
 

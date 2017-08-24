@@ -156,10 +156,10 @@ class MultiThreadCycle:
     def capture_observations(self, timer):
         """
         Captures observations in given moment
-        :param timer: timestamp which we use to acquire observations from
+        :param timer: episode which we use to acquire observations from
         """
         print("Receiving observations")
-        self.obs = self.preparations.get_observations_with_timestamp(timer)
+        self.obs = self.preparations.get_observations_with_episode(timer)
         if len(self.obs) == 0:
             print("No observations at " + str(timer))
         else:

@@ -66,10 +66,10 @@ class SingleThreadCycle:
     def capture_observations(self, timer):
         """
         :param timer: int: point in time
-        :return: Observations with given timestamp
+        :return: Observations with given episode
         """
         print("Receiving observations")
-        obs = self.preparations.get_observations_with_timestamp(timer)
+        obs = self.preparations.get_observations_with_episode(timer)
         if len(obs) == 0:
             print("No observations at " + str(timer))
         else:
