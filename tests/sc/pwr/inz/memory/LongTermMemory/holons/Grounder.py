@@ -112,9 +112,9 @@ class GrounderTest(unittest.TestCase):
         self.assertEqual(Grounder.determine_fulfilment_cf(self.dk1, self.cf1), 0)
         self.assertEqual(Grounder.determine_fulfilment_cf(self.dk8, self.cf4), 1)
 
-    def test_determine_fulfilment_ot(self):
-        self.assertEqual(Grounder.determine_fulfilment_ot(self.dk9, self.cfot1), 0)
-        self.assertEqual(Grounder.determine_fulfilment_ot(self.dk10, self.cfot2), 0)
+    def test_determine_fulfilment_ident(self):
+        self.assertEqual(Grounder.determine_fulfilment_ident(self.dk9, self.cfot1), 0)
+        self.assertEqual(Grounder.determine_fulfilment_ident(self.dk10, self.cfot2), 0)
 
     def tearDown(self):
         self.traits2 = None

@@ -45,14 +45,14 @@ class NonBinaryHolon(Holon):
         self.dk = dk
         if dk.get_formula().get_type() is not TypeOfFormula.CF:
             if dk.get_formula().get_type() is TypeOfFormula.OT:
-                self.tao[0] += Grounder.determine_fulfilment_ot(self.dk, self.dk.get_complementary_formulas()[0],
-                                                                self.context)
-                self.tao[1] += Grounder.determine_fulfilment_ot(self.dk, self.dk.get_complementary_formulas()[1],
-                                                                self.context)
-                self.tao[2] += Grounder.determine_fulfilment_ot(self.dk, self.dk.get_complementary_formulas()[2],
-                                                                self.context)
-                self.tao[3] += Grounder.determine_fulfilment_ot(self.dk, self.dk.get_complementary_formulas()[3],
-                                                                self.context)
+                self.tao[0] += Grounder.determine_fulfilment_ident(self.dk, self.dk.get_complementary_formulas()[0],
+                                                                   self.context)
+                self.tao[1] += Grounder.determine_fulfilment_ident(self.dk, self.dk.get_complementary_formulas()[1],
+                                                                   self.context)
+                self.tao[2] += Grounder.determine_fulfilment_ident(self.dk, self.dk.get_complementary_formulas()[2],
+                                                                   self.context)
+                self.tao[3] += Grounder.determine_fulfilment_ident(self.dk, self.dk.get_complementary_formulas()[3],
+                                                                   self.context)
                 self.suma = sum(self.tao)
                 if self.suma > 0:
                     self.tao = [self.tao[0]/self.suma, self.tao[1]/self.suma, self.tao[2]/self.suma,
