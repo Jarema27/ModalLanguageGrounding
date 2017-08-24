@@ -93,6 +93,10 @@ class TestNonBinaryHolon(unittest.TestCase):
         self.cfot1 = ComplexFormulaOT([self.ident1, self.ident2], [self.s2, self.s1], LogicalOperator.AND)
         self.cfot2 = ComplexFormulaOT([self.ident1, self.ident3], [self.s1, self.s2], LogicalOperator.OR,
                                       Tense.FUTURE)
+        self.cfot3 = ComplexFormulaOT([self.ident1, self.ident3], [self.s1, self.s1], LogicalOperator.AND,
+                                      Tense.PRESENT)
+        self.dk11 = DistributedKnowledge(self.cfot3, [self.bp4], 11)
+        self.nbholon9 = NonBinaryHolon(self.dk11)
         self.dk9 = DistributedKnowledge(self.cfot1, [self.bp4], 11)
         self.dk10 = DistributedKnowledge(self.cfot2, [self.bp3, self.bp2], 1321)
         self.nbholon8 = NonBinaryHolon(self.dk10)

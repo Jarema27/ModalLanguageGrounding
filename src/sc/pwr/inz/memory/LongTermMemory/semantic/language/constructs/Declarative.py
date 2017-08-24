@@ -1,3 +1,4 @@
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.ComplexFormulaOT import ComplexFormulaOT
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.ModalOperator import ModalOperator
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Trait import Trait
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.ComplexFormula import ComplexFormula
@@ -12,7 +13,7 @@ Declarative is one of types of Sentence. As example 'Carl indeed was white' or '
 
 class Declarative(Sentence):
 
-    def __init__(self, subject=None, traits=None, states=None, logicaloperator=None, modal_operator=None):
+    def __init__(self, subject=None, traits=None, states=None, logicaloperator=None, modal_operator=None, tense=None):
         """
         I really don't have any desire in explaining basic english
         :param subject (IndividualModel): subject
@@ -28,11 +29,16 @@ class Declarative(Sentence):
                                ModalOperator.KNOW: 'I definitely know that'}
         self.traits = traits
         self.states = states
-        if isinstance(traits, Trait):
-            self.formula = SimpleFormula(subject, traits, states)
-        elif len(traits) > 1:
+        if traits is not None:
+            if isinstance(traits, Trait):
+                self.formula = SimpleFormula(subject, traits, states)
+            elif len(traits) > 1:
+                self.logicaloperator = logicaloperator
+                self.formula = ComplexFormula(subject, traits, states, logicaloperator)
+        elif tense is not None:
+            self.formula = ComplexFormulaOT(subject, states, logicaloperator, tense)
+            self.tense = tense
             self.logicaloperator = logicaloperator
-            self.formula = ComplexFormula(subject, traits, states, logicaloperator)
         if modal_operator is not None:
             self.modaloperator = modal_operator
 
@@ -54,4 +60,10 @@ class Declarative(Sentence):
                    str(self.states) + " " + str(self.traits)
 
         elif self.formula.get_type() == TypeOfFormula.CF:
-            return self.gentleman_dict.get(self.modaloperator) + " " + str(self.subject) + " " + str(self.states[0]) + "" + str(self.traits[0]) + " " + str(self.logicaloperator) + " " + str(self.states[1]) + str(self.traits[1]) + "."
+            return self.gentleman_dict.get(self.modaloperator) + " " + str(self.subject) + " " + str(self.states[0]) +\
+                   "" + str(self.traits[0]) + " " + str(self.logicaloperator) + " " + \
+                   str(self.states[1]) + str(self.traits[1]) + "."
+        elif self.formula.get_type() == TypeOfFormula.OT:
+            return self.gentleman_dict.get(self.modaloperator) + " " + str(self.subject[0]) + "" + \
+                   str(self.states[0]) + " " + str(self.logicaloperator) + " " + \
+                   str(self.subject[1]) + "" + str(self.states[1])

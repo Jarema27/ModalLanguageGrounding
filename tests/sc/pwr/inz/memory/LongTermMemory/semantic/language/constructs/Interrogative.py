@@ -1,5 +1,7 @@
 import unittest
 
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.ComplexFormulaOT import ComplexFormulaOT
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Tense import Tense
 from src.sc.pwr.inz.memory.LongTermMemory.WokeMemory import WokeMemory
 from src.sc.pwr.inz.memory.LongTermMemory.holons.BinaryHolon import BinaryHolon
 from src.sc.pwr.inz.memory.LongTermMemory.holons.NonBinaryHolon import NonBinaryHolon
@@ -98,6 +100,20 @@ class TestInterrogative(unittest.TestCase):
         self.interr = Interrogative(self.im1, [self.traits[1]], [State.IS], None, None, self.wM2)
         self.interr2 = Interrogative(self.im2, [self.traits2[1], self.traits2[2]], [State.IS, State.IS_NOT],
                                      LogicalOperator.AND, None, self.wM2)
+        self.cfot2 = ComplexFormulaOT([self.ident1, self.ident3], [self.s1, self.s2], LogicalOperator.OR,
+                                      Tense.FUTURE)
+        self.dk10 = DistributedKnowledge(self.cfot2, [self.bp3, self.bp2], 1321)
+        self.nbholon8 = NonBinaryHolon(self.dk10)
+        self.interr3 = Interrogative([self.ident1, self.ident3], None, [self.s1, self.s2], LogicalOperator.OR, None,
+                                     self.wM2, 1, Tense.PRESENT)
+        self.interr4 = Interrogative([self.ident1, self.ident3], None, [self.s1, self.s2], LogicalOperator.OR, None,
+                                     self.wM2, 1, Tense.PAST)
+        self.interr5 = Interrogative([self.ident1, self.ident3], None, [self.s1, self.s2], LogicalOperator.OR, None,
+                                     self.wM2, 1, Tense.FUTURE)
+        self.cfot3 = ComplexFormulaOT([self.ident1, self.ident3], [self.s1, self.s1], LogicalOperator.AND,
+                                      Tense.PRESENT)
+        self.dk11 = DistributedKnowledge(self.cfot3, [self.bp4], 11)
+        self.nbholon9 = NonBinaryHolon(self.dk11)
 
     def test_get_kind(self):
         self.assertEqual(self.interr.get_kind(), SentenceType.Int)
@@ -111,6 +127,9 @@ class TestInterrogative(unittest.TestCase):
         self.assertEqual(str(self.interr), " is  IndividualModel{identifier=QRCode{id=1}} Krasny?")
         self.assertEqual(str(self.interr2), " is  IndividualModel{identifier=QRCode{id=2}}"
                                             " Konieczny and is_not Bolszoj?")
+        self.assertEqual(str(self.interr3), "Do you see that QRCode{id=1} is and QRCode{id=-231} is_not ?")
+        self.assertEqual(str(self.interr4), "Have you ever seen QRCode{id=1} is and QRCode{id=-231} is_not ?")
+        self.assertEqual(str(self.interr5), "Do think you will see that QRCode{id=1} is and QRCode{id=-231} is_not ?")
 
     def test_check_epistemic_scope(self):
         self.assertEqual(Interrogative.check_epistemic_scope([0.15, 0.75, 0.85]),
@@ -121,6 +140,8 @@ class TestInterrogative(unittest.TestCase):
     def test_get_epistemic_conclusion(self):
         self.assertEqual(self.interr.get_epistemic_conclusion(self.bholon1), [ModalOperator.NOIDEA])
         self.assertEqual(self.interr.get_epistemic_conclusion(self.nbholon4), [ModalOperator.NOIDEA])
+        self.assertEqual(self.interr5.get_epistemic_conclusion(self.nbholon8), [ModalOperator.NOIDEA])
+        self.assertEqual(self.interr5.get_epistemic_conclusion(self.nbholon9), [ModalOperator.NOIDEA])
 
     def test_build_from_scraps(self):
         self.assertEqual(self.interr.build_from_scraps("is QRCode{id=1} Sowiecki ?"), [self.im1, [self.traits[2]]
@@ -146,6 +167,7 @@ class TestInterrogative(unittest.TestCase):
                                              self.wM1)
         self.assertEqual(str(testowyinterrcomplex.ask()), "I cannot tell if  IndividualModel{identifier=QRCode{id=2}} "
                                                           " is Konieczny and  is_not Bolszoj.")
+        self.assertEqual(str(self.interr5.ask()), "I cannot tell if  QRCode{id=1} is  and QRCode{id=-231} is_not")
 
     def tearDown(self):
         self.interr = None

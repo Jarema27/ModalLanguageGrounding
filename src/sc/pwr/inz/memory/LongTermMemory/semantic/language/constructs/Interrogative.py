@@ -1,6 +1,7 @@
 from time import time
 
-from src.sc.pwr.inz.memory.LongTermMemory.semantic.identifiers import Identifier
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.ComplexFormulaOT import ComplexFormulaOT
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Tense import Tense
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Formula import TypeOfFormula
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.constructs.Declarative import Declarative
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.LogicalOperator import LogicalOperator
@@ -18,7 +19,7 @@ Sentence ,which serves purpose of acquiring data, usually ends up with ? and hig
 class Interrogative(Sentence):
 
     def __init__(self, subject=None, traits=None, states=None, logicaloperator=None, plaintext=None, memory=None,
-                 episode=None):
+                 episode=None, tense=None):
         """
         Again, names of attributes are pretty self explanatory
         :param subject (IndividualModel): subject
@@ -31,6 +32,7 @@ class Interrogative(Sentence):
         :param episode (int): Moment in time when question was asked
         """
         if traits is not None or plaintext is not None:
+            self.tense = None
             self.dict = {'is': State.IS, 'is_not': State.IS_NOT, 'might_be': State.MAYHAPS,
                          'and': LogicalOperator.AND, 'or': LogicalOperator.OR}
             self.traditional = True
@@ -60,13 +62,18 @@ class Interrogative(Sentence):
                     self.formula = SimpleFormula(self.subject, self.traits[0], self.states[0])
                 elif len(self.traits) == 2:
                     self.formula = ComplexFormula(self.subject, self.traits, self.states, self.LO)
-        elif isinstance(subject, list):
+        elif tense is not None:
             self.traditional = False
+            self.traits = None
             if episode is None:
                 self.episode = time()
+            else:
+                self.episode = episode
             self.subject = subject
             self.states = states
             self.memory = memory
+            self.formula = ComplexFormulaOT(subject, states, logicaloperator, tense)
+            self.tense = tense
             self.LO = logicaloperator
 
     def get_kind(self):
@@ -95,11 +102,22 @@ class Interrogative(Sentence):
         self.episode = other
 
     def __str__(self):
-        if len(self.traits) == 1:
-            return str(self.states[0]) + " " + str(self.subject) + " " + str(self.traits[0]) + "?"
+        if self.traits is not None:
+            if len(self.traits) == 1:
+                return str(self.states[0]) + " " + str(self.subject) + " " + str(self.traits[0]) + "?"
+            else:
+                return str(self.states[0]) + " " + str(self.subject) + " " + str(self.traits[0]) + " " \
+                       + str(self.LO) + "" + str(self.states[1]) + "" + str(self.traits[1]) + "?"
         else:
-            return str(self.states[0]) + " " + str(self.subject) + " " + str(self.traits[0]) + " " \
-                   + str(self.LO) + "" + str(self.states[1]) + "" + str(self.traits[1]) + "?"
+            if self.tense == Tense.PRESENT:
+                return "Do you see that " + str(self.subject[0]) + "" + str(self.states[0]) + "" + str(self.LO) + " " \
+                       + str(self.subject[1]) + "" + str(self.states[1]) + "?"
+            elif self.tense == Tense.PAST:
+                return "Have you ever seen " + str(self.subject[0]) + "" + str(self.states[0]) + "" + \
+                       str(self.LO) + " " + str(self.subject[1]) + "" + str(self.states[1]) + "?"
+            elif self.tense == Tense.FUTURE:
+                return "Do think you will see that " + str(self.subject[0]) + "" + str(self.states[0]) +\
+                 "" + str(self.LO) + " " + str(self.subject[1]) + "" + str(self.states[1]) + "?"
 
     def ask(self):
         """
@@ -109,10 +127,12 @@ class Interrogative(Sentence):
         """
         epistemic_values = self.memory.get_holon_by_formula(self.formula, self.episode)
         pass_responsibility = self.get_epistemic_conclusion(epistemic_values)
-        if hasattr(self, 'LO'):
-            return Declarative(self.subject, self.traits, self.states, self.LO, pass_responsibility[0])
+        if self.tense is not None:
+            return Declarative(self.subject, None, self.states, self.LO, pass_responsibility[0], self.tense)
+        elif hasattr(self, 'LO'):
+            return Declarative(self.subject, self.traits, self.states, self.LO, pass_responsibility[0], None)
         else:
-            return Declarative(self.subject, self.traits[0], self.states[0], None, pass_responsibility[0])
+            return Declarative(self.subject, self.traits[0], self.states[0], None, pass_responsibility[0], None)
 
     def build_from_scraps(self, plaintext):
         """
@@ -159,7 +179,7 @@ class Interrogative(Sentence):
         values = 0
         if holon.get_formula().get_type() == TypeOfFormula.SF:
             values = holon.get_tao_for_state(self.formula.get_states()[0])
-        elif holon.get_formula().get_type() == TypeOfFormula.CF:
+        elif holon.get_formula().get_type() == TypeOfFormula.CF or holon.get_formula().get_type() == TypeOfFormula.OT:
             if len(self.formula.get_states()) > 1:
                 values = holon.get_tao_for_state(self.formula.get_states()[0], self.formula.get_states()[1])
             else:
