@@ -13,17 +13,17 @@ Base Profile contains all of those observations, the most important fact is the 
 
 class BaseProfile:
 
-    def __init__(self, timestamp=None, observations=None):
+    def __init__(self, episode=None, observations=None):
         """
         Initial method, creates dictionaries for observations depending on states it contains and trait it involves.
         :param episode (int): Value describing time, might or might not be provided, if not, system time will be set
         :param observations list(observations):list of observations associated with this specific BP, might be None,
             if so, default empty list shall be provided.
         """
-        if timestamp is None:
-            self.timestamp = time()
+        if episode is None:
+            self.episode = time()
         else:
-            self.timestamp = timestamp
+            self.episode = episode
         if observations is None:
             self.observations = []
             self.observationsIS = {}
@@ -68,11 +68,11 @@ class BaseProfile:
         """
         return self.observationsMAYHAPS
 
-    def get_timestamp(self):
+    def get_episode(self):
         """
         :return int : episode
         """
-        return self.timestamp
+        return self.episode
 
     def add_observations_is(self, o):
         """
@@ -157,6 +157,6 @@ class BaseProfile:
         return list(set(out))
 
     def __eq__(self, other):
-        return self.timestamp == other.timestamp and self.observationsIS == other.observationsIS and \
+        return self.episode == other.get_episode and self.observationsIS == other.observationsIS and \
                self.observationsIS_NOT == other.observationsIS_NOT and self.observationsMAYHAPS == \
                other.observationsMAYHAPS

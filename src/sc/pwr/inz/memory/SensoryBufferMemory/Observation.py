@@ -7,7 +7,7 @@ As example 'Carpet is Red' -> Identifier, Trait, Trait.State
 
 class Observation:
 
-    def __init__(self, identifier=None, observed=None, timestamp=None):
+    def __init__(self, identifier=None, observed=None, episode=None):
         """
         :param identifier: (Identifier): Identifier such as QRCode or UniqueName, if None agent will
          try to establish one based on traits
@@ -23,10 +23,10 @@ class Observation:
             self.observed = observed
         else:
             self.observed = self.deduce_traits()
-        if timestamp is None:
-            self.timestamp = int(time.time())
+        if episode is None:
+            self.episode = int(time.time())
         else:
-            self.timestamp = timestamp
+            self.episode = episode
 
     def get_identifier(self):
         """
@@ -40,11 +40,11 @@ class Observation:
         """
         return self.observed
 
-    def get_timestamp(self):
+    def get_episode(self):
         """
         :return int : episode
         """
-        return self.timestamp
+        return self.episode
 
     def set_identifier(self, identifier):
         """
@@ -86,7 +86,7 @@ class Observation:
 
     def __str__(self):
         return "{" + str(self.identifier) + " " + str(list((str(x[0]) + " " + str(x[1]) for x in self.observed))) +\
-               " observed: " + str(self.timestamp) + "}"
+               " observed: " + str(self.episode) + "}"
 
     def __eq__(self, other):
         return self.identifier == other.identifier and len(list((x for x in other.get_observed() if x in

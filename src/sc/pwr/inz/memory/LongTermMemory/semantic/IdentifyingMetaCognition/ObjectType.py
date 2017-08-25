@@ -5,7 +5,6 @@ from src.sc.pwr.inz.memory.LongTermMemory.semantic.KnowledgeBoosters.XMLReader i
 Type of Object ,as example Tree is type of object, as well as Oak, so I might want to sit down to it and implement
 self inheritance which would perfectly involve subtle beauty of diversity in our world
 """
-#   todo pomyslec o OT ktore sa w jakis sposob powiazane z danym,przydatne w dedukcji.
 
 
 class ObjectType:

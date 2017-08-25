@@ -51,7 +51,7 @@ class Holon(ABC):
         pass
 
     @abstractmethod
-    def get_timestamp(self):
+    def get_episode(self):
         pass
 
 

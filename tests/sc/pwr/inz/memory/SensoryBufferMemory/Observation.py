@@ -44,7 +44,7 @@ class ObservationsTest(unittest.TestCase):
                                                                                                            self.s2)])
 
     def test_get_timestamp(self):
-        self.assertEqual(self.o2.get_timestamp(), 1)
+        self.assertEqual(self.o2.get_episode(), 1)
 
     def test_eq(self):
         self.assertEqual(self.o1, self.o1)

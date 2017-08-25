@@ -10,11 +10,11 @@ Holon, specific case of dealing with SimpleFormula
 
 class BinaryHolon(Holon):
 
-    def get_timestamp(self):
+    def get_episode(self):
         """
         :return int: episode
         """
-        return self.timestamp
+        return self.episode
 
     def __init__(self, dk, context=None):
         """
@@ -22,7 +22,7 @@ class BinaryHolon(Holon):
         """
         super().__init__()
         self.formula = dk.get_formula()
-        self.timestamp = dk.get_timestamp()
+        self.episode = dk.get_episode()
         self.dk = dk
         self.context = context
         self.tao = [0, 0]
@@ -33,7 +33,7 @@ class BinaryHolon(Holon):
         To be accurate ,holon needs to be updated with valid data
         :param  dk :(DistributedKnowledge) : Nicely packed data which is needed to properly establish holon.
         """
-        self.timestamp = dk.get_timestamp()
+        self.episode = dk.get_episode()
         self.dk = dk
         if dk.get_formula().get_type() is not TypeOfFormula.SF:
             raise TypeError("Wrong type of formula has been provided, I only take simple ones")
@@ -95,4 +95,4 @@ class BinaryHolon(Holon):
             return False
 
     def __eq__(self, other):
-        return self.formula == other.formula and self.timestamp == other.timestamp and self.dk == other.dk
+        return self.formula == other.formula and self.episode == other.get_episode and self.dk == other.dk

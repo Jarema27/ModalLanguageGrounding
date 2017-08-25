@@ -90,7 +90,7 @@ class TestWokeMemory(unittest.TestCase):
     def test_get_distributed_knowledge(self):
         dk = self.wM1.get_distributed_knowledge(self.cf4, 20, 0)
         self.assertEqual(dk, DistributedKnowledge(self.cf4, [self.bp4, self.bp5, self.bp6, self.bp7],
-                                                  dk.get_timestamp()))
+                                                  dk.get_episode()))
 
     def test_get_holon_by_formula(self):
         self.assertEqual(self.wM1.get_holon_by_formula(self.cf2, 1), self.nbholon2)

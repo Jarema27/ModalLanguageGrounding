@@ -74,7 +74,7 @@ class MultiThreadCycle:
                     self.semaphore[1] = 0
                 else:
                     for answer in self.answers:
-                        print("Based on observations taken in moment of " + str(self.memory.get_timestamp()) + " "
+                        print("Based on observations taken in moment of " + str(self.memory.get_episode()) + " "
                               + answer)
                         self.answers.remove(answer)
                     self.semaphore[1] = 0

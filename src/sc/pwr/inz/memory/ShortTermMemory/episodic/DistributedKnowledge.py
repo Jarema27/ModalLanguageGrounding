@@ -9,7 +9,7 @@ Distributed Knowledge module serves us to create Holon's later on, it contains f
 
 class DistributedKnowledge:
 
-    def __init__(self, formula, bpset, timestamp=None):
+    def __init__(self, formula, bpset, episode=None):
         """
         formula and BProfile list are mandatory, episode will be current time if not set manually
         :param formula (Formula): Formula of this Distributed Knowledge
@@ -19,10 +19,10 @@ class DistributedKnowledge:
         self.formula = formula
         self.bpset = bpset
         self.groundingsets = {}
-        if timestamp is None:
-            self.timestamp = int(time())
+        if episode is None:
+            self.episode = int(time())
         else:
-            self.timestamp = timestamp
+            self.episode = episode
         if formula.get_type() == TypeOfFormula.OT:
             for bp in self.bpset:
                 for sub in formula.get_subjects():
@@ -46,11 +46,11 @@ class DistributedKnowledge:
         """
         return self.groundingsets
 
-    def get_timestamp(self):
+    def get_episode(self):
         """
         :return int: episode
         """
-        return self.timestamp
+        return self.episode
 
     def get_bpset(self):
         """
@@ -81,4 +81,4 @@ class DistributedKnowledge:
 
     def __eq__(self, other):
         return self.formula == other.formula and self.groundingsets == other.groundingsets and \
-               self.timestamp == other.timestamp
+               self.episode == other.episode

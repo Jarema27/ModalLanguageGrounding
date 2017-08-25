@@ -66,9 +66,9 @@ class TestDistributedKnowledge(unittest.TestCase):
         self.assertEqual(self.dk3.get_formula(), self.sf1)
 
     def test_get_timestamp(self):
-        self.assertEqual(self.dk1.get_timestamp(), 1)
-        self.assertEqual(self.dk2.get_timestamp(), 2)
-        self.assertEqual(self.dk4.get_timestamp(), 12)
+        self.assertEqual(self.dk1.get_episode(), 1)
+        self.assertEqual(self.dk2.get_episode(), 2)
+        self.assertEqual(self.dk4.get_episode(), 12)
 
     def test_get_bpset(self):
         self.assertEqual(self.dk1.get_bpset(), [self.bp1, self.bp4])

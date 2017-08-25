@@ -63,7 +63,7 @@ class Preparations:
         :param episode: Point in time
         :return: list(Observation): with given episode or empty list
         """
-        return list(x for x in self.observations if int(x.get_timestamp()) == episode)
+        return list(x for x in self.observations if int(x.get_episode()) == episode)
 
     @staticmethod
     def properly_prepare_identifiers():

@@ -37,9 +37,9 @@ class BaseProfileTest(unittest.TestCase):
         self.bp4 = BaseProfile(3, [self.o5])
 
     def test_get_timestamp(self):
-        self.assertEqual(self.bp1.get_timestamp(), 1)
-        self.assertEqual(self.bp2.get_timestamp(), 2)
-        self.assertEqual(self.bp3.get_timestamp(), 3)
+        self.assertEqual(self.bp1.get_episode(), 1)
+        self.assertEqual(self.bp2.get_episode(), 2)
+        self.assertEqual(self.bp3.get_episode(), 3)
 
     def test_get_observations_is(self):
         self.assertEqual(self.bp4.get_observations_is(), {self.traits[1]: self.o5})
