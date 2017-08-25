@@ -17,12 +17,8 @@ class Observation:
         """
         if identifier is not None:
             self.identifier = identifier
-        else:
-            self.identifier = self.establish_identifier()
         if observed is not None:
             self.observed = observed
-        else:
-            self.observed = self.deduce_traits()
         if episode is None:
             self.episode = int(time.time())
         else:
@@ -57,32 +53,6 @@ class Observation:
         :param traits: traits you wish to establish for this specific observation
         """
         self.observed = traits
-
-    def establish_identifier(self):
-        """
-        Method tries to find individual model with similar traits and alike object_type
-        those we observed,if it finds nothing like that,it
-         creates brand new IndividualModel
-        :return (IndividualModel):
-        """
-        #   todo Implement
-        return self.identifier + None
-
-    def establish_object_type(self):
-        """
-        Method tries to establish object type by it's traits
-        :return:
-        """
-        #   todo Implement
-        return self.identifier + None
-
-    def deduce_traits(self):
-        """
-        Having object type or/and Individual model we're able to deduce proper traits of model.
-        :return:
-        """
-        #   todo Implement
-        return self.identifier + None
 
     def __str__(self):
         return "{" + str(self.identifier) + " " + str(list((str(x[0]) + " " + str(x[1]) for x in self.observed))) +\

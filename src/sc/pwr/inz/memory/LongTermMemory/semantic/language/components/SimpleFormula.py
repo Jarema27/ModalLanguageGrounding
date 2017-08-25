@@ -41,12 +41,13 @@ class SimpleFormula(Formula):
     def __eq__(self, other):
         return self.state == other.state and self.indiv_model == other.indiv_model and self.trait == other.trait
 
-    def __init__(self, im, trait, state):
+    def __init__(self, im, trait, state, tense=None):
         if not isinstance(trait, Trait):
             raise TypeError("Given trait ain't instance of Trait")
         if im is not None and trait is not None:
             if trait in im.get_object_type().get_traits():
                 self.indiv_model = im
+                self.tense = tense
                 self.trait = trait
                 if state is None:
                     self.state = State.IS_NOT

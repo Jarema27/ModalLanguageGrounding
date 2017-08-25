@@ -11,7 +11,7 @@ from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Trait imp
 
 class ComplexFormula(Formula):
 
-    def __init__(self, im, traits, states, log):
+    def __init__(self, im, traits, states, log, tense=None):
         """
         :param im (IndividualModel): IM which is subject of out formula
         :param traits list(Trait): list of two traits, in order in which we want to form formula
@@ -28,6 +28,7 @@ class ComplexFormula(Formula):
                 self.traits = traits
                 self.state = states
                 self.LO = log
+                self.tense = tense
         else:
             raise Exception("Obligatory fields include variables with None value")
 

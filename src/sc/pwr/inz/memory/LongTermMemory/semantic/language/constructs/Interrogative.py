@@ -32,7 +32,7 @@ class Interrogative(Sentence):
         :param episode (int): Moment in time when question was asked
         """
         if traits is not None or plaintext is not None:
-            self.tense = None
+            self.tense = tense
             self.dict = {'is': State.IS, 'is_not': State.IS_NOT, 'might_be': State.MAYHAPS,
                          'and': LogicalOperator.AND, 'or': LogicalOperator.OR}
             self.traditional = True
@@ -62,7 +62,7 @@ class Interrogative(Sentence):
                     self.formula = SimpleFormula(self.subject, self.traits[0], self.states[0])
                 elif len(self.traits) == 2:
                     self.formula = ComplexFormula(self.subject, self.traits, self.states, self.LO)
-        elif tense is not None:
+        elif isinstance(subject, list):
             self.traditional = False
             self.traits = None
             if episode is None:
@@ -127,12 +127,12 @@ class Interrogative(Sentence):
         """
         epistemic_values = self.memory.get_holon_by_formula(self.formula, self.episode)
         pass_responsibility = self.get_epistemic_conclusion(epistemic_values)
-        if self.tense is not None:
+        if isinstance(self.subject, list):
             return Declarative(self.subject, None, self.states, self.LO, pass_responsibility[0], self.tense)
         elif hasattr(self, 'LO'):
-            return Declarative(self.subject, self.traits, self.states, self.LO, pass_responsibility[0], None)
+            return Declarative(self.subject, self.traits, self.states, self.LO, pass_responsibility[0], self.tense)
         else:
-            return Declarative(self.subject, self.traits[0], self.states[0], None, pass_responsibility[0], None)
+            return Declarative(self.subject, self.traits[0], self.states[0], None, pass_responsibility[0], self.tense)
 
     def build_from_scraps(self, plaintext):
         """

@@ -167,7 +167,7 @@ class TestInterrogative(unittest.TestCase):
                                              self.wM1)
         self.assertEqual(str(testowyinterrcomplex.ask()), "I cannot tell if  IndividualModel{identifier=QRCode{id=2}} "
                                                           " is Konieczny and  is_not Bolszoj.")
-        self.assertEqual(str(self.interr5.ask()), "I cannot tell if  QRCode{id=1} is  and QRCode{id=-231} is_not")
+        self.assertEqual(str(self.interr5.ask()), "I cannot tell if  QRCode{id=1} is  and QRCode{id=-231} is_not ")
 
     def tearDown(self):
         self.interr = None

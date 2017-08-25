@@ -64,7 +64,7 @@ class ObjectType:
         """
         self.superphylium.append(typ)
 
-    def add_inferior(self,typ):
+    def add_inferior(self, typ):
         """
         :param typ: ObjectType we want to append to infraphylium
         """

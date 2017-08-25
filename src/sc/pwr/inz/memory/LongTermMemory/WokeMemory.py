@@ -1,3 +1,4 @@
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Tense import Tense
 from src.sc.pwr.inz.memory.LongTermMemory.holons.NonBinaryHolon import NonBinaryHolon
 from src.sc.pwr.inz.memory.ShortTermMemory.episodic.DistributedKnowledge import DistributedKnowledge
 from src.sc.pwr.inz.memory.LongTermMemory.holons.BinaryHolon import BinaryHolon
@@ -10,7 +11,7 @@ Module representing memory of agent. It's woke memory,which means that agent is 
 
 class WokeMemory:
 
-    def __init__(self, holons=None, bpcollective=None, imodels=None):
+    def __init__(self, holons=None, bpcollective=None, imodels=None, clusters=None):
         """
         :param holons (list(Holon)):List of holons which will be established as initial list ,used later in using memory.
             Might be none,in that case, default empty list will be created.
@@ -34,32 +35,42 @@ class WokeMemory:
             self.indiv = imodels
         self.point_of_no_return = 0
         self.episode = 0
+        self.clusters = clusters
 
-    def get_holon_by_formula(self, formula, episode):
+    def get_holon_by_formula(self, formula, episode, tense=None):
         """
         Method checks if holon is in our memory,if it is and episode is valid (holon doesn't require update)
         it will return holon,otherwise it will update holon, otherwise it will create new holon for given formula and
         episode.
         :param formula : Formula, for which we want to find or create holon.
         :param episode: int, measure of time, used to specify which BPs and Observations we use
+        :param tense: Tense, shows us to what period of time sentence refers
+        Case of past,means that method take all episods to this one into consideration (including given one),
+        Present means that method build a new holon of current episode. That holon won't be added to holon collection
+        Future - ? todo.
         :return    Holon, with freshly created tao
         """
-        self.episode = episode
-        for holon in self.holons:
-            if holon.is_applicable(formula) and episode == holon.get_episode():
-                return holon
-            elif holon.is_applicable(formula):
-                holon.update(self.get_distributed_knowledge(holon.get_formula(), episode, holon.get_episode()))
-                return holon
-        if formula.get_type() == TypeOfFormula.SF:
-            dk = self.get_distributed_knowledge(formula, episode, self.point_of_no_return)
-            new_holon = BinaryHolon(dk)
-            self.holons.append(new_holon)
-            return new_holon
-        else:
+        if tense is None or tense == Tense.PAST:
+            self.episode = episode
+            for holon in self.holons:
+                if holon.is_applicable(formula) and episode == holon.get_episode():
+                    return holon
+                elif holon.is_applicable(formula):
+                    holon.update(self.get_distributed_knowledge(holon.get_formula(), episode, holon.get_episode()))
+                    return holon
+            if formula.get_type() == TypeOfFormula.SF:
+                dk = self.get_distributed_knowledge(formula, episode, self.point_of_no_return)
+                new_holon = BinaryHolon(dk)
+                self.holons.append(new_holon)
+                return new_holon
+            else:
+                dk = self.get_distributed_knowledge(formula, episode, self.point_of_no_return)
+                new_holon = NonBinaryHolon(dk)
+                self.holons.append(new_holon)
+                return new_holon
+        if tense == Tense.PRESENT:
             dk = self.get_distributed_knowledge(formula, episode, self.point_of_no_return)
             new_holon = NonBinaryHolon(dk)
-            self.holons.append(new_holon)
             return new_holon
 
     def get_distributed_knowledge(self, formula, episode, point):
@@ -86,6 +97,19 @@ class WokeMemory:
         :return list(Holon): list of Holons stored in memory
         """
         return self.holons
+
+    def get_clusters(self):
+        """
+        Returns list of clusters from memory
+        :return list(Holon): list of Holons stored in memory
+        """
+        return self.clusters
+
+    def set_clusters(self, clusters):
+        """
+        Sets clusters
+        """
+        self.clusters = clusters
 
     def get_bpcollective(self):
         """
