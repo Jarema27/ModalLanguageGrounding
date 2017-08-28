@@ -11,8 +11,8 @@ class Observation:
         """
         :param identifier: (Identifier): Identifier such as QRCode or UniqueName, if None agent will
          try to establish one based on traits
-        :param observed: list(Trait): list of observed traits in context of given Identifier if None agent will try
-         to deduce traits based on IndividualModel
+        :param observed: list(Tuple(Trait,State)): list of observed traits in context of given Identifier if None
+         agent will try to deduce traits based on IndividualModel
         :param episode (int): episode
         """
         if identifier is not None:
