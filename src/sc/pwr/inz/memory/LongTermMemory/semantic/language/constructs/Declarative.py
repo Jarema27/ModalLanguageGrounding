@@ -50,7 +50,7 @@ class Declarative(Sentence):
 
     def get_subject(self):
         """
-        :return IndividualModel: IM of this setnence
+        :return IndividualModel: IM of this sentence
         """
         return self.subject
 

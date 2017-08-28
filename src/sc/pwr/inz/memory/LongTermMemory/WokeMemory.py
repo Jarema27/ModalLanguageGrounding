@@ -168,6 +168,7 @@ class WokeMemory:
         :param state_dos: (State) : State which we look for in the deduced subject
         :return: Most likely outcome ,might be better to include top 5 so agent appears to be smartass
         """
+        # todo
         out = 0
         indie = None
         for holon in self.holons:

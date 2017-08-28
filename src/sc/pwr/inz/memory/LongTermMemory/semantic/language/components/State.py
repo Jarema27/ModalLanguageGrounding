@@ -12,7 +12,7 @@ class State(Enum):
     IS_NOT = 2
     MAYHAPS = 0
 
-    def andS(fst, sec):
+    def andS(self, fst, sec):
         possible_answers = {(State.IS, State.IS): State.IS,
                             (State.IS, State.IS_NOT): State.MAYHAPS,
                             (State.IS, State.MAYHAPS): State.MAYHAPS,
@@ -22,9 +22,9 @@ class State(Enum):
         return possible_answers.get((fst, sec)) if not possible_answers.get((fst, sec)) is None else \
             possible_answers.get((sec, fst))
 
-    def orS(fst,sec):
+    def orS(self, fst, sec):
         possible_answers = {(State.IS, State.IS): State.IS,
-                            (State.IS, State.IS_NOT): State.MAYHAPS,
+                            (State.IS, State.IS_NOT): State.IS,
                             (State.IS, State.MAYHAPS): State.IS,
                             (State.IS_NOT, State.IS_NOT): State.IS_NOT,
                             (State.MAYHAPS, State.MAYHAPS): State.MAYHAPS,
@@ -32,7 +32,7 @@ class State(Enum):
         return possible_answers.get((fst, sec)) if not possible_answers.get((fst, sec)) is None else \
             possible_answers.get((sec, fst))
 
-    def notS(giv):
+    def notS(self, giv):
         if giv == State.IS:
             return State.IS_NOT
         if giv == State.IS_NOT:
@@ -40,10 +40,10 @@ class State(Enum):
         if giv == State.MAYHAPS:
             return State.MAYHAPS
 
-    def __str__(giv):
-        if giv == State.IS:
+    def __str__(self, other):
+        if other == State.IS:
             return " is "
-        if giv == State.IS_NOT:
+        if other == State.IS_NOT:
             return " is_not "
-        if giv == State.MAYHAPS:
+        if other == State.MAYHAPS:
             return " might_be "

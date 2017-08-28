@@ -20,4 +20,3 @@ class ModalOperator(Enum):
             return "Possible"
         if self.NOIDEA:
             return "I don't know, really"
-

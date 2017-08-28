@@ -9,7 +9,7 @@ As it seems this old 500loc module wasn't so necessary after all.
 
 class Grounder:
     @staticmethod
-    def determine_fulfilment(dk, formula, context = None):
+    def determine_fulfilment(dk, formula, context=None):
         """
         Method determines fulfilment for SimpleFormula it basically counts appearances of Observations in which
         formula was fulfilled a.e when carpet indeed was red.
