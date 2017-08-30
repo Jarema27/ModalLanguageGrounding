@@ -3,6 +3,8 @@ from time import time
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Formula import TypeOfFormula
 
 """
+Distributed knowledge is approximately what "a wise man knows" or what someone who has complete knowledge of what each 
+member of the community knows knows. For now DK focuses on own observations.
 Distributed Knowledge module serves us to create Holon's later on, it contains formula, list of BProfiles and episode
 """
 

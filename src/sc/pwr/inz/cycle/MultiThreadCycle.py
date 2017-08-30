@@ -31,16 +31,16 @@ class MultiThreadCycle:
         self.semaphore[3] = 1
         self.semaphore[0] = 1
 
-        if self.timer % 5 == 0:
+        if self.episoder % 5 == 0:
             self.semaphore[2] = 1
         question = Interrogative(None, None, None, None, "is RJ45 Bloody and is Twisted ?",
-                                 self.memory, self.timer)
+                                 self.memory, self.episoder)
         self.active_questions.append(question)
 
         time.sleep(2)
 
         question = Interrogative(None, None, None, None, "is RJ45 Bloody and is Twisted ?",
-                                 self.memory, self.timer)
+                                 self.memory, self.episoder)
         self.active_questions.append(question)
 
     def listening_service(self):
@@ -55,7 +55,7 @@ class MultiThreadCycle:
                 if len(self.active_questions) > 0:
                     for question in self.active_questions:
                         print(question)
-                        question.set_timestamp(self.timer)
+                        question.set_timestamp(self.episoder)
                     self.semaphore[2] = 1
             else:
                 time.sleep(3)
@@ -92,13 +92,13 @@ class MultiThreadCycle:
             logging.debug(" thinking... ")
             if self.semaphore[2] == 1:
                 if self.new_observations_flag:
-                    bp = self.preparations.prepare_bps(self.timer, self.obs)
+                    bp = self.preparations.prepare_bps(self.episoder, self.obs)
                     self.memory.add_bp(bp)
                     self.new_observations_flag = False
                     print("Observations have been transformed into properly built base profiles")
                 self.semaphore[2] = 0
-                if self.timer % 5 == 0:
-                    self.memory.update_em_all(self.timer)
+                if self.episoder % 5 == 0:
+                    self.memory.update_em_all(self.episoder)
 
                 if len(self.active_questions) == 0:
                     self.semaphore[2] = 0
@@ -111,7 +111,7 @@ class MultiThreadCycle:
 
             else:
                 time.sleep(2)
-                self.timer += 1
+                self.episoder += 1
         #    logging.debug(" Falling asleep ")
 
     def capture(self):
@@ -123,8 +123,8 @@ class MultiThreadCycle:
         while True:
             logging.debug(" Watching ")
             if self.semaphore[3] == 1:
-                if inner_timer < self.timer:
-                    self.capture_observations(self.timer)
+                if inner_timer < self.episoder:
+                    self.capture_observations(self.episoder)
                     time.sleep(1)
                     self.new_observations_flag = True
             #       self.semaphore[3] = 0
@@ -147,7 +147,7 @@ class MultiThreadCycle:
         self.thread_capturing = threading.Thread(name=' Gathering data for collective', target=self.capture)
         self.obs = []
         self.active_questions = []
-        self.timer = 0
+        self.episoder = 0
         self.new_observations_flag = False
         self.answers = []
         self.semaphore = [0, 0, 0, 0]
@@ -164,10 +164,12 @@ class MultiThreadCycle:
             print("No observations at " + str(timer))
         else:
             self.is_busy = True
-            print("Captured " + str(len(self.obs)) + " observations at " + str(self.timer))
+            print("Captured " + str(len(self.obs)) + " observations at " + str(self.episoder))
             self.is_busy = False
             self.new_observations_flag = True
 
 if __name__ == "__main__":
     a = MultiThreadCycle()
     a.main()
+
+

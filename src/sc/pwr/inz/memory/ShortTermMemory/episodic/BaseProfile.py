@@ -3,11 +3,11 @@ from time import time
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.State import State
 
 """
-Base Profile represents a point in time, single frame in time ,containing observations.
+Base Profile represents a single frame in time ,containing observations.
 Photo is good metaphor of Base Profile ,let's take
 https://funalive.com/uploads/files/article/images/funny-interesting-pictures_24sep16-4.jpg
 Observations - Shark is close to human, human is calm, human has black suit, human's feet are funny
-Base Profile contains all of those observations, the most important fact is the time they share.
+Base Profile contains all of those observations, the most important fact is the episode they share.
 """
 
 
