@@ -55,7 +55,7 @@ class MultiThreadCycle:
                 if len(self.active_questions) > 0:
                     for question in self.active_questions:
                         print(question)
-                        question.set_timestamp(self.episoder)
+                        question.set_episode(self.episoder)
                     self.semaphore[2] = 1
             else:
                 time.sleep(3)

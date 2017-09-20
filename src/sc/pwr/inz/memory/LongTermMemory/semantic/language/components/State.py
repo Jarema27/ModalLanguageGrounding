@@ -40,10 +40,10 @@ class State(Enum):
         if giv == State.MAYHAPS:
             return State.MAYHAPS
 
-    def __str__(self, other):
-        if other == State.IS:
+    def __str__(self):
+        if self == State.IS:
             return " is "
-        if other == State.IS_NOT:
+        if self == State.IS_NOT:
             return " is_not "
-        if other == State.MAYHAPS:
+        if self == State.MAYHAPS:
             return " might_be "

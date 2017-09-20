@@ -54,7 +54,9 @@ class Preparations:
         """
         out = []
         for i in range(0, min(len(self.identifiers), len(self.object_type))):
-            out.append(IndividualModel(self.identifiers[i], self.object_type[i]))
+            for j in self.object_type:
+                if int(j.get_type_id()) - 1 == i:
+                    out.append(IndividualModel(self.identifiers[i], j))
         return out
 
     def get_observations_with_episode(self, episode):

@@ -29,8 +29,8 @@ class ComplexFormula(Formula):
                 self.state = states
                 self.LO = log
                 self.tense = tense
-        else:
-            raise Exception("Obligatory fields include variables with None value")
+            else:
+                raise Exception("Obligatory fields include variables with None value")
 
     def get_states(self):
         """

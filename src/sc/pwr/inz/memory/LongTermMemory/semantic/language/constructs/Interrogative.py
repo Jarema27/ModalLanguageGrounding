@@ -157,14 +157,16 @@ class Interrogative(Sentence):
             imfound = None
             trait1 = None
             trait2 = None
+            #   todo usunac workaround na temat modeli indywidualnych
             for im in self.memory.get_indivmodels():
                 if shattered[1] == str(im.get_identifier()):
                     imfound = im
-            for trait in imfound.get_object_type().get_traits():
-                if shattered[2] == trait.name:
-                    trait1 = trait
-                if shattered[5] == trait.name:
-                    trait2 = trait
+            for im in self.memory.get_indivmodels():
+                for trait in im.get_object_type().get_traits():
+                    if shattered[2] == trait.name:
+                        trait1 = trait
+                    if shattered[5] == trait.name:
+                        trait2 = trait
             return [imfound, [trait1, trait2], [self.dict.get(shattered[0]), self.dict.get(shattered[4])],
                     self.dict.get(shattered[3])]
         else:
