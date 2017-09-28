@@ -35,6 +35,9 @@ class Interrogative(Sentence):
             self.tense = tense
             self.dict = {'is': State.IS, 'is_not': State.IS_NOT, 'might_be': State.MAYHAPS,
                          'and': LogicalOperator.AND, 'or': LogicalOperator.OR}
+            self.tense_dict = {State.IS: 'was',
+                               State.IS_NOT: 'was not',
+                               State.MAYHAPS: 'might have been'}
             self.traditional = True
             if episode is None:
                 self.episode = time()
@@ -53,15 +56,16 @@ class Interrogative(Sentence):
                 self.subject = acquired[0]
                 self.traits = acquired[1]
                 self.states = acquired[2]
+                self.tense = acquired[3]
                 if len(self.traits) > 1:
                     self.LO = acquired[3]
             if self.subject is None or self.traits is None or self.states is None:
                 raise ValueError("What are you on about ? Can't really understand you mate")
             if len(self.traits) > 0:
                 if len(self.traits) == 1:
-                    self.formula = SimpleFormula(self.subject, self.traits[0], self.states[0])
+                    self.formula = SimpleFormula(self.subject, self.traits[0], self.states[0], self.tense)
                 elif len(self.traits) == 2:
-                    self.formula = ComplexFormula(self.subject, self.traits, self.states, self.LO)
+                    self.formula = ComplexFormula(self.subject, self.traits, self.states, self.LO, self.tense)
         elif isinstance(subject, list):
             self.traditional = False
             self.traits = None
@@ -104,7 +108,10 @@ class Interrogative(Sentence):
     def __str__(self):
         if self.traits is not None:
             if len(self.traits) == 1:
-                return str(self.states[0]) + " " + str(self.subject) + " " + str(self.traits[0]) + "?"
+                if self.tense == Tense.PRESENT or self.tense is None:
+                    return str(self.states[0]) + " " + str(self.subject) + " " + str(self.traits[0]) + "?"
+                if self.tense == Tense.PAST:
+                    return str(self.tense_dict.get(self.states[0])) + " " + str(self.subject) + " " + str(self.traits[0]) + "?"
             else:
                 return str(self.states[0]) + " " + str(self.subject) + " " + str(self.traits[0]) + " " \
                        + str(self.LO) + "" + str(self.states[1]) + "" + str(self.traits[1]) + "?"
@@ -151,8 +158,11 @@ class Interrogative(Sentence):
             for trait in imfound.get_object_type().get_traits():
                 if shattered[2] == trait.name:
                     traitfound = trait
-
-            return [imfound, [traitfound], [self.dict.get(shattered[0])]]
+            tense = None
+            if shattered[0] == 'was':
+                tense = Tense.PAST
+                shattered[0] = 'is'
+            return [imfound, [traitfound], [self.dict.get(shattered[0])], tense]
         elif len(shattered) == 7:
             imfound = None
             trait1 = None
@@ -199,7 +209,7 @@ class Interrogative(Sentence):
         out = []
         for val in vallist:
             if float(ranges[0]) <= val <= float(ranges[1]):
-                out.append(ModalOperator.NOIDEA)
+                out.append(ModalOperator.KNOWNOT)
             elif float(ranges[2]) <= val <= float(ranges[3]):
                 out.append(ModalOperator.POS)
             elif float(ranges[4]) <= val <= float(ranges[5]):

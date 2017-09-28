@@ -1,15 +1,35 @@
 <?xml version="1.0"?>
 <data>
-    <trait id="1">
-        <traitname>Red</traitname>
-        <traitname>Bolszoj</traitname>
-    </trait>
-    <trait id="2">
-        <traitname>Juicy</traitname>
-        <traitname>Wealthy</traitname>
-    </trait>
-    <trait id="3">
-        <traitname>Bloody</traitname>
-        <traitname>Twisted</traitname>
-    </trait>
+    <traitset id="1">
+        <traitname>Wełniste</traitname>
+        <traitname>Żywe</traitname>
+        <traitname>Kompletne</traitname>
+        <traitname>Głośne</traitname>
+    </traitset>
+    <traitset id="2">
+        <traitname>Szary</traitname>
+        <traitname>Majestatyczny</traitname>
+        <traitname>Zębiczny</traitname>
+        <traitname>Drapieżny</traitname>
+    </traitset>
+    <traitset id="3">
+        <traitname>Człowiekowaty</traitname>
+        <traitname>Biały</traitname>
+        <traitname>Uzbrojony</traitname>
+        <traitname>Wysoki</traitname>
+    </traitset>
+    <traitset id="4">
+        <traitname>Rosyjski</traitname>
+        <traitname>Długolufowy</traitname>
+    </traitset>
+    <traitset id="5">
+        <traitname>Brytyjski</traitname>
+        <traitname>Wielkokolbowy</traitname>
+    </traitset>
+
+    <traitset id="6">
+        <traitname>Niemiecki</traitname>
+        <traitname>Orzechowy</traitname>
+    </traitset>
+
 </data>

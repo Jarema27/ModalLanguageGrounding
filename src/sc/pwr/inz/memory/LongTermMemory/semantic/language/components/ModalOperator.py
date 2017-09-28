@@ -9,7 +9,7 @@ class ModalOperator(Enum):
     BEL = 'BEL'
     POS = 'POS'
     KNOW = 'KNOW'
-    NOIDEA = 'XD'
+    KNOWNOT = 'Know it is not'
 
     def __str__(self):
         if self.KNOW:
@@ -18,5 +18,5 @@ class ModalOperator(Enum):
             return "Believe"
         if self.POS:
             return "Possible"
-        if self.NOIDEA:
-            return "I don't know, really"
+        if self.KNOWNOT:
+            return "I know it is not"

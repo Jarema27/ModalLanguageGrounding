@@ -29,5 +29,5 @@ class CSVReader:
                     for i in range(1, len(row)-1):
                         if i % 2 == 1:
                             traitsNstates.append((row[i], row[i+1]))
-                    out.append((ident,traitsNstates,timestamp))
+                    out.append((ident, traitsNstates, timestamp))
             return out

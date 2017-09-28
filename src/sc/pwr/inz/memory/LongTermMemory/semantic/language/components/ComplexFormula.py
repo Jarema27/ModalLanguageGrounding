@@ -72,6 +72,12 @@ class ComplexFormula(Formula):
         """
         return self.traits
 
+    def get_tense(self):
+        """
+        :return list(State) : one member list of State used in formula
+        """
+        return self.tense
+
     def __eq__(self, other):
         return self.indiv_model == other.get_model() and((self.traits[0], self.state[0]) == (other.traits[0],
                                                                                              other.state[0]) and

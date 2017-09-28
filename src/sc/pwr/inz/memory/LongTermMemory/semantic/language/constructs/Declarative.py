@@ -1,3 +1,5 @@
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.State import State
+from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Tense import Tense
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.ComplexFormulaOT import ComplexFormulaOT
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.ModalOperator import ModalOperator
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Trait import Trait
@@ -23,22 +25,26 @@ class Declarative(Sentence):
         :param modal_operator (ModalOperator): Modal Operator
         """
         self.subject = subject
-        self.gentleman_dict = {ModalOperator.NOIDEA: 'I cannot tell if ',
+        self.gentleman_dict = {ModalOperator.KNOWNOT: 'I am certain it is not true that ',
                                ModalOperator.POS: 'I think its absolutely possible that ',
                                ModalOperator.BEL: 'I deeply and truthfully believe that ',
                                ModalOperator.KNOW: 'I definitely know that'}
+        self.tense_dict = {State.IS: 'was',
+                           State.IS_NOT: 'was not',
+                           State.MAYHAPS: 'might have been'}
         self.traits = traits
+        self.tense = tense
         self.states = states
         if traits is not None:
             if isinstance(traits, Trait):
-                self.formula = SimpleFormula(subject, traits, states)
+                self.formula = SimpleFormula(subject, traits, states, tense)
             elif len(traits) > 1:
                 self.logicaloperator = logicaloperator
                 self.formula = ComplexFormula(subject, traits, states, logicaloperator)
-        elif tense is not None:
-            self.formula = ComplexFormulaOT(subject, states, logicaloperator, tense)
-            self.tense = tense
-            self.logicaloperator = logicaloperator
+        #   elif tense is not None:
+            #   self.formula = ComplexFormulaOT(subject, states, logicaloperator, tense)
+            #   self.tense = tense
+            #   self.logicaloperator = logicaloperator
         if modal_operator is not None:
             self.modaloperator = modal_operator
 
@@ -56,8 +62,12 @@ class Declarative(Sentence):
 
     def __str__(self):
         if self.formula.get_type() == TypeOfFormula.SF:
-            return self.gentleman_dict.get(self.modaloperator) + " " + str(self.subject) + " " + \
-                   str(self.states) + " " + str(self.traits)
+            if self.formula.get_tense() == Tense.PRESENT or self.tense is None:
+                return self.gentleman_dict.get(self.modaloperator) + " " + str(self.subject) + " " + \
+                       str(self.states) + " " + str(self.traits)
+            if self.formula.get_tense() == Tense.PAST:
+                return self.gentleman_dict.get(self.modaloperator) + " " + str(self.subject) + " " + \
+                       str(self.tense_dict.get(self.states)) + " " + str(self.traits)
 
         elif self.formula.get_type() == TypeOfFormula.CF:
             return self.gentleman_dict.get(self.modaloperator) + " " + str(self.subject) + " " + str(self.states[0]) +\

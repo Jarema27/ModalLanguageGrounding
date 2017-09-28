@@ -17,6 +17,12 @@ class SimpleFormula(Formula):
         """
         return [self.state]
 
+    def get_tense(self):
+        """
+        :return list(State) : one member list of State used in formula
+        """
+        return self.tense
+
     def get_model(self):
         """
         :return (IndividualModel): returns IM used to build this Formula

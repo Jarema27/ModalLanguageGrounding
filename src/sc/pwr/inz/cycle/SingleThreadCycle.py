@@ -12,51 +12,25 @@ class SingleThreadCycle:
         """
         Method in which we initialize time,capturing observations and asking questions along with computing them
         """
-        #       while True:
-        time = 1
-        self.capture_observations(time)
-        #   Not complementary segment of asking questions
-        question = Interrogative(None, None, None, None, "is RJ45 Bloody and is Twisted ?",
-                                 self.memory, time)
-        print("Proceeding with question: ")
-        print(question)
-        print(question.ask())
-        time += 1
-        self.capture_observations(time)
-        question = Interrogative(None, None, None, None, "is RJ45 Bloody and is Twisted ?",
-                                 self.memory, time)
-        print("Proceeding with question: ")
-        print(question)
-        print(question.ask())
-        time += 2
-        self.capture_observations(time)
-        question = Interrogative(None, None, None, None, "is RJ45 Bloody and is Twisted ?",
-                                 self.memory, time)
-        print("Proceeding with question: ")
-        print(question)
-        print(question.ask())
-        time += 2
-        self.capture_observations(time)
-        question = Interrogative(None, None, None, None, "is RJ45 Bloody and is Twisted ?",
-                                 self.memory, time)
-        print("Proceeding with question: ")
-        print(question)
-        print(question.ask())
-        time += 1
-        self.capture_observations(time)
-        question = Interrogative(None, None, None, None, "is RJ45 Bloody and is Twisted ?",
-                                 self.memory, time)
-        print("Proceeding with question: ")
-        print(question)
-        print(question.ask())
-        print("Agent has regained his sureness in object's state through continuously positive observations")
+        time = 0
+        while time < 11:
 
-        question2 = Interrogative(None, None, None, None, "is Gun Juicy ?",
-                                  self.memory, time)
+            self.capture_observations(time)
+            #   Not complementary segment of asking questions
+            time += 1
+
+        question = Interrogative(None, None, None, None, "was Stado Kompletne ?",
+                                 self.memory, time)
         print("Proceeding with question: ")
-        print(question2)
-        #   self.preparations.phonograph.read_something_up
-        print(question2.ask())
+        print(question)
+        print(question.ask())
+
+        question = Interrogative(None, None, None, None, "was Stado Głośne ?",
+                                 self.memory, time)
+        print("Proceeding with question: ")
+        print(question)
+        print(question.ask())
+        print('a')
 
     def __init__(self):
         self.preparations = Preparations()
