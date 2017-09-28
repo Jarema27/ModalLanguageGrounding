@@ -37,3 +37,21 @@ CPM - Cognitive Process Memory
 https://books.google.pl/books?id=HffVMHwi-EsC&pg=PA12&lpg=PA12&dq=subconscious+informatics&source=bl&ots=MTjdGq-mEJ&sig=ncuAwNMJgMDdqZAVFqWa-w7rYhQ&hl=pl&sa=X&ved=0ahUKEwjgkvGx9LrVAhUDxxQKHZBbDqIQ6AEIMTAC#v=onepage&q=subconscious%20informatics&f=false
 
 https://books.google.pl/books?hl=pl&lr=&id=SC4lDwAAQBAJ&oi=fnd&pg=PP1&dq=study+on+subconscious+cognitive&ots=LrtlsFjyQ7&sig=boId1qe0_ZWI_DOu2I-BatHA5HM&redir_esc=y#v=onepage&q&f=false
+
+
+
+
+
+n1
+Stado 0 1 1 1 3 1 2 1 1
+Stado 0 1 1 1 3 2 2 1 2
+Stado 0 3 1 1 3 2 2 1 3
+Stado 0 3 1 1 3 2 2 1 4
+Stado 0 3 1 1 3 2 2 1 5
+Stado 0 3 1 1 3 2 2 1 6
+Stado 0 3 1 1 3 2 2 1 7
+Stado 0 3 1 1 3 2 2 1 8
+Stado 0 3 1 1 3 2 2 1 9
+Stado 0 1 1 1 3 1 2 1 10
+
+n2
