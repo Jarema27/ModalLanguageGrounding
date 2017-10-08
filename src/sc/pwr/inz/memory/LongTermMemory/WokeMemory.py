@@ -1,3 +1,6 @@
+from src.sc.pwr.inz.memory.LongTermMemory.holons.Context.CompositeContext import CompositeContext
+from src.sc.pwr.inz.memory.LongTermMemory.holons.Context.Estimators.DistanceFunctions.DistanceEstimator import \
+    DistanceEstimator
 from src.sc.pwr.inz.memory.LongTermMemory.semantic.language.components.Tense import Tense
 from src.sc.pwr.inz.memory.LongTermMemory.holons.NonBinaryHolon import NonBinaryHolon
 from src.sc.pwr.inz.memory.ShortTermMemory.episodic.DistributedKnowledge import DistributedKnowledge
@@ -35,6 +38,7 @@ class WokeMemory:
             self.indiv = imodels
         self.point_of_no_return = 0
         self.episode = 0
+        self.contextualised = False
         self.clusters = clusters
 
     def get_holon_by_formula(self, formula, episode, tense=None):
@@ -60,10 +64,19 @@ class WokeMemory:
                     return holon
             if formula.get_type() == TypeOfFormula.SF:
                 if formula.get_tense() == Tense.PAST or formula.get_tense() is None:
-                    dk = self.get_distributed_knowledge(formula, episode, self.point_of_no_return)
-                    new_holon = BinaryHolon(dk)
-                    self.holons.append(new_holon)
-                    return new_holon
+                    if not self.contextualised :
+                        dk = self.get_distributed_knowledge(formula, episode, self.point_of_no_return)
+                        new_holon = BinaryHolon(dk)
+                        self.holons.append(new_holon)
+                        return new_holon
+                    else:
+                        dk = self.get_distributed_knowledge(formula, episode, self.point_of_no_return)
+                        dist_est = DistanceEstimator()
+                        compo_con = CompositeContext(dist_est, dk.get_bpset(), 2)
+                        new_holon = BinaryHolon(dk, compo_con.get_contextualized_bpset())
+                        self.holons.append(new_holon)
+                        return new_holon
+
                 if formula.get_tense() == Tense.PRESENT:
                     dk = self.get_distributed_knowledge(formula, episode, episode - 1)
                     new_holon = BinaryHolon(dk)
@@ -109,6 +122,12 @@ class WokeMemory:
         :return list(Holon): list of Holons stored in memory
         """
         return self.holons
+
+    def toggle_contextualised(self):
+        """
+        Toggles option of contextualisation
+        """
+        self.contextualised = True
 
     def get_clusters(self):
         """

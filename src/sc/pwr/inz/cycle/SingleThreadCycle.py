@@ -36,10 +36,12 @@ class SingleThreadCycle:
         print("Proceeding with question: ")
         print(question)
         print(question.ask())
+        print('m')
 
     def __init__(self):
         self.preparations = Preparations()
         self.memory = WokeMemory(None, None, self.preparations.ims)
+        self.memory.toggle_contextualised()
         self.is_busy = False
 
     def capture_observations(self, timer):
