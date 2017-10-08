@@ -33,20 +33,24 @@ class MultiThreadCycle:
 
         if self.episoder % 5 == 0:
             self.semaphore[2] = 1
-        question = Interrogative(None, None, None, None, "is RJ45 Bloody and is Twisted ?",
+
+        time.sleep(30)
+        question = Interrogative(None, None, None, None, "was Stado Kompletne ?",
                                  self.memory, self.episoder)
         self.active_questions.append(question)
-
-        time.sleep(2)
-
-        question = Interrogative(None, None, None, None, "is RJ45 Bloody and is Twisted ?",
+        time.sleep(5)
+        question = Interrogative(None, None, None, None, "was Partyzant Uzbrojony ?",
                                  self.memory, self.episoder)
+        self.active_questions.append(question)
+        time.sleep(5)
+        question = Interrogative(None, None, None, None, "was Bron Mauser_M1905 ?",
+                                 self.memory, time)
         self.active_questions.append(question)
 
     def listening_service(self):
         """
         Thread of agent which is always active, it waits for questions and even after receiving one,is still active.
-        Whenever question appears it changes answering_service's semaphore to 1 which allows it to work.
+        Whenever question appears it changes mind_service's semaphore to 1 which allows it to work.
         """
         logging.debug(" I'm able to listen")
         while True:
@@ -77,7 +81,8 @@ class MultiThreadCycle:
                         print("Based on observations taken in moment of " + str(self.memory.get_episode()) + " "
                               + answer)
                         self.answers.remove(answer)
-                    self.semaphore[1] = 0
+                    if len(self.answers) == 0:
+                        self.semaphore[1] = 0
             else:
                 time.sleep(3)
         #   logging.debug(" Exiting ")

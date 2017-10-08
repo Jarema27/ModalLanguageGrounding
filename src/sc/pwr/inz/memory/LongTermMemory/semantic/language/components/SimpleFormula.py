@@ -40,9 +40,7 @@ class SimpleFormula(Formula):
         Complementary formulas are all formulas which could be acquired from given set of IM and traits
         :return list(Formula): list of two formulas,mind the order.
         """
-        temp1 = SimpleFormula(self.indiv_model, self.trait, State.IS)
-        temp2 = SimpleFormula(self.indiv_model, self.trait, State.IS_NOT)
-        return [temp1, temp2]
+        return [SimpleFormula(self.indiv_model, self.trait, State.IS), SimpleFormula(self.indiv_model, self.trait, State.IS_NOT)]
 
     def __eq__(self, other):
         return self.state == other.state and self.indiv_model == other.indiv_model and self.trait == other.trait

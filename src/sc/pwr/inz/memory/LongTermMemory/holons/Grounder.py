@@ -21,10 +21,10 @@ class Grounder:
         if (dk.get_formula().get_type() == formula.get_type()) and (formula in dk.get_complementary_formulas()):
             count = 0
             if context is not None and len(context) != 0:
-                bloop = context
+                bpset = context
             else:
-                bloop = dk.get_bpset()
-            for bp in bloop:
+                bpset = dk.get_bpset()
+            for bp in bpset:
                 if bp.check_if_observed(formula.get_model().get_identifier(),
                                         formula.get_traits()[0], formula.get_states()[0]):
                     count += 1

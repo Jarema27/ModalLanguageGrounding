@@ -25,12 +25,17 @@ class SingleThreadCycle:
         print(question)
         print(question.ask())
 
-        question = Interrogative(None, None, None, None, "was Stado Głośne ?",
+        question = Interrogative(None, None, None, None, "was Partyzant Uzbrojony ?",
                                  self.memory, time)
         print("Proceeding with question: ")
         print(question)
         print(question.ask())
-        print('a')
+
+        question = Interrogative(None, None, None, None, "was Bron Mauser_M1905 ?",
+                                 self.memory, time)
+        print("Proceeding with question: ")
+        print(question)
+        print(question.ask())
 
     def __init__(self):
         self.preparations = Preparations()

@@ -38,11 +38,11 @@ class BinaryHolon(Holon):
         if dk.get_formula().get_type() is not TypeOfFormula.SF:
             raise TypeError("Wrong type of formula has been provided, I only take simple ones")
         else:
-            self.tao[0] += Grounder.determine_fulfilment(self.dk, self.dk.get_complementary_formulas()[0], self.context)
-            self.tao[1] += Grounder.determine_fulfilment(self.dk, self.dk.get_complementary_formulas()[1], self.context)
-            suma = sum(self.tao)
-            if suma > 0:
-                self.tao = [self.tao[0]/suma, self.tao[1]/suma]
+                self.tao[0] += Grounder.determine_fulfilment(self.dk, self.dk.get_complementary_formulas()[0], self.context)
+                self.tao[1] += Grounder.determine_fulfilment(self.dk, self.dk.get_complementary_formulas()[1], self.context)
+                suma = sum(self.tao)
+                if suma > 0:
+                    self.tao = [self.tao[0]/suma, self.tao[1]/suma]
 
     def get_tao_for_state(self, state1, state2=None):
         """

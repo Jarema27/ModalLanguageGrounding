@@ -19,17 +19,11 @@
         <traitname>Wysoki</traitname>
     </traitset>
     <traitset id="4">
-        <traitname>Rosyjski</traitname>
-        <traitname>Długolufowy</traitname>
-    </traitset>
-    <traitset id="5">
-        <traitname>Brytyjski</traitname>
-        <traitname>Wielkokolbowy</traitname>
+        <traitname>Krnka_M1867</traitname>
+        <traitname>Martini_-_Henry</traitname>
+        <traitname>Mauser_M1905</traitname>
+
     </traitset>
 
-    <traitset id="6">
-        <traitname>Niemiecki</traitname>
-        <traitname>Orzechowy</traitname>
-    </traitset>
 
 </data>

@@ -159,6 +159,8 @@ class Interrogative(Sentence):
                 if shattered[2] == trait.name:
                     traitfound = trait
             tense = None
+            if shattered[0] == 'is':
+                tense = Tense.PRESENT
             if shattered[0] == 'was':
                 tense = Tense.PAST
                 shattered[0] = 'is'

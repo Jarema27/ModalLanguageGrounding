@@ -19,10 +19,8 @@ class Observation:
             self.identifier = identifier
         if observed is not None:
             self.observed = observed
-        if episode is None:
-            self.episode = int(time.time())
-        else:
-            self.episode = episode
+
+        self.episode = episode
 
     def get_identifier(self):
         """

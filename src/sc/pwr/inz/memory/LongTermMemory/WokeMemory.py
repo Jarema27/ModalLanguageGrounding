@@ -59,10 +59,16 @@ class WokeMemory:
                     holon.update(self.get_distributed_knowledge(holon.get_formula(), episode, holon.get_episode()))
                     return holon
             if formula.get_type() == TypeOfFormula.SF:
-                dk = self.get_distributed_knowledge(formula, episode, self.point_of_no_return)
-                new_holon = BinaryHolon(dk)
-                self.holons.append(new_holon)
-                return new_holon
+                if formula.get_tense() == Tense.PAST or formula.get_tense() is None:
+                    dk = self.get_distributed_knowledge(formula, episode, self.point_of_no_return)
+                    new_holon = BinaryHolon(dk)
+                    self.holons.append(new_holon)
+                    return new_holon
+                if formula.get_tense() == Tense.PRESENT:
+                    dk = self.get_distributed_knowledge(formula, episode, episode - 1)
+                    new_holon = BinaryHolon(dk)
+                    self.holons.append(new_holon)
+                    return new_holon
             else:
                 dk = self.get_distributed_knowledge(formula, episode, self.point_of_no_return)
                 new_holon = NonBinaryHolon(dk)
